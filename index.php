@@ -3,8 +3,10 @@ include_once "header.php";
 ?>
 
 <main class="mdl-layout__content">
-	<div class="page-content">
-		<h1>Main content here<h1>
+	<div class="mdl-grid page-content">
+		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+            Main content here
+          </div>
 	</div>
 </main>
 
