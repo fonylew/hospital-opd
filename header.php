@@ -32,6 +32,6 @@
 			<nav class="mdl-navigation">
 				<a class="mdl-navigation__link" href="">ใบนัดแพทย์</a>
 				<a class="mdl-navigation__link" href="">ประวัติการนัดแพทย์</a>
+				<a class="mdl-navigation__link" href="viewAppointment_patient.php">View Appointment (Patient)</a>
 			</nav>
 		</div>
-		
