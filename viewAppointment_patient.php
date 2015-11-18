@@ -75,7 +75,7 @@ include_once "header.php";
 				node.appendChild(nnode);
 				document.getElementById("box1").appendChild(node);
 			// };
-		}	
+		};
 	</script>
 
 	<!-- FAB button with ripple -->
