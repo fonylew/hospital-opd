@@ -15,16 +15,17 @@
 		</header>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Hospital OPD</span>
-			<img src="dashboard/images/dog.png" width="175" height="175" border="0" alt=""
+			<img src="dashboard/images/dog.png" width="125" height="125" border="0" alt=""
 							style="padding:10px; margin-right: auto; margin-left: auto;">
 			<div class="mdl-card__supporting-text">
 				<h2 class="mdl-card__title-text">Pharmacist</h2>
-			    <h6>Firstname:</h6>Mauris
-			    <h6>Lastname:</h6>sagittis
+			    <h6>Miss Mauris SoHappy</h6>
+			    ID: 123-4-56789
 			</div>
 
 			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="">View prescription</a>
-				<a class="mdl-navigation__link" href="employeeLogin.php">View patient's allergic record</a>
+				<a class="mdl-navigation__link" href="viewPrescription_pharmacist.php">View prescription</a>
+				<a class="mdl-navigation__link" href="">View patient's allergic record</a>
+				<a class="mdl-navigation__link" href="">Log out</a>
 			</nav>
 		</div>

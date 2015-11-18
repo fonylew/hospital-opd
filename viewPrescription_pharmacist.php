@@ -64,9 +64,9 @@ include_once "nav_pharmacist.php";
 		
 		for (var i = 2; i >= 0; i--) {
 			nameNode = document.createElement("div");
-			nameNode.className = "mdl-cell mdl-cell--2-col";
+			//nameNode.className = "mdl-cell mdl-cell--2-col";
 			detailNode = document.createElement("div");
-			detailNode.className = "mdl-cell mdl-cell--5-col"
+			//detailNode.className = "mdl-cell mdl-cell--8-col";
 
 			medF = document.createElement("h6");
 			medName = document.createTextNode("Med"+i);
@@ -74,7 +74,7 @@ include_once "nav_pharmacist.php";
 			nameNode.appendChild(medF);
 
 			detailF = document.createElement("h6");
-			detaill = document.createTextNode("Let's random the detail!!!! adsfnjklwejmpxohrmfc[ihmc;dfkm[q2mgcjsbfdlmuchupowufpu");
+			detaill = document.createTextNode("Let's random the detail!!!! adsfnjklwejmpxohrmfc[i hmc;dfkm[q2mgcj sbfdlmuchupowufpu");
 			detailF.appendChild(detaill);
 			detailNode.appendChild(detailF);
 
@@ -130,12 +130,6 @@ include_once "nav_pharmacist.php";
 		};
 	</script>
 
-	<!-- FAB button with ripple -->
-	<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" 
-			id="add-button" 
-			onClick="addAppointment()">
-		<i class="material-icons">add</i>
-	</button>
 </main>
 
 <?php
