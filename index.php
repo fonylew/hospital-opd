@@ -1,5 +1,6 @@
 <?php
 include_once "header.php";
+include_once "nav_patient.php";
 ?>
 
 <main class="mdl-layout__content">
@@ -18,5 +19,6 @@ include_once "header.php";
 </main>
 
 <?php
+include_once "nav_end.php";
 include_once "footer.php";
 ?>

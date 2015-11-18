@@ -1,5 +1,6 @@
 <?php
-include_once "headerNurse.php";
+include_once "header.php";
+include_once "nav_employee.php";
 ?>
 <!--
 <style>
@@ -67,5 +68,6 @@ include_once "headerNurse.php";
 </main>
 
 <?php
+include_once "nav_end.php";
 include_once "footer.php";
 ?>

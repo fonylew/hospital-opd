@@ -1,10 +1,8 @@
-<link rel="stylesheet" href="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.teal-orange.min.css" />
-<script src="https://storage.googleapis.com/code.getmdl.io/1.0.6/material.min.js"></script>
-<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta charset="UTF-8">
-<link rel="stylesheet" type="text/css" href="css/patientLogin.css">
+<?php
+include_once "header.php";
+?>
 
+<link rel="stylesheet" type="text/css" href="css/patientLogin.css">
 
 <div class="mdl-layout mdl-js-layout mdl-color--grey-100">
     <main class="mdl-layout__content">
@@ -26,3 +24,7 @@
         </div>
     </main>
 </div>
+
+<?php
+include_once "footer.php";
+?>
