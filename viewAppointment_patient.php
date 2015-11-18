@@ -2,6 +2,18 @@
 include_once "header.php";
 ?>
 
+<style>
+	#add-button {
+	      position: fixed;
+	      display: block;
+	      right: 0;
+	      bottom: 0;
+	      margin-right: 40px;
+	      margin-bottom: 40px;
+	      z-index: 900;
+	}
+</style>
+
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content" id = "box1">
 		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
@@ -65,7 +77,7 @@ include_once "header.php";
 	</script>
 
 	<!-- FAB button with ripple -->
-	<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+	<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" id="add-button">
 		<i class="material-icons">add</i>
 	</button>
 </main>
