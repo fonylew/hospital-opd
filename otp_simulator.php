@@ -13,21 +13,23 @@
 	<img src="image/otp_sms.png" height="640px"/>
 
 	<div class="fixed">
-		<p id="sms">Your OTP is </p>
+		<p id="sms">Your OTP is 
+			<?php
+				if(isset($_GET['show'])){
+					echo $_GET['show'];
+				}
+			?>
 	</div>
 </center>	
 
+
 <script>
-	var otp = Math.floor(100000 + Math.random() * 900000);
+	/*
 	console.log(otp);
 	$("#sms").append(otp);
+	*/
+</script>
 
-/*
-	$.ajax({
-		url: "test.html", context: document.body
-	});
-*/
-	</script>
 
 <?php
 	include_once "footer.php";

@@ -1,8 +1,10 @@
 <?php
 include_once "header.php";
+//include_once "control_patient.php";
 ?>
 
 <link rel="stylesheet" type="text/css" href="css/patientLogin.css">
+
 
 <div class="mdl-layout mdl-js-layout mdl-color--primary" align="center">
     <main class="mdl-layout__content">
@@ -17,17 +19,50 @@ include_once "header.php";
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="username" />
-                        <label class="mdl-textfield__label" for="username">HN</label>
+                        <label class="mdl-textfield__label" for="username" id="user-label">HN</label>
                         <span class="mdl-textfield__error">Input is not a number!</span>
                     </div>
                 </form>
             </div>
             <div class="mdl-card__actions">
-                <center><a onClick="OTP=window.open('otp_simulator.php','OTP','width=380,height=screen.height'); return false;" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="width:90%; align:center;">Log in</a></center>
+                <center><a onClick="popupOTP()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="width:90%; align:center;">Log in</a></center>
             </div>
         </div>
     </main>
 </div>
+
+<script>
+//onClick="checkUser();
+    var otp = Math.floor(100000 + Math.random() * 900000);
+    console.log(otp);
+    
+/*    
+    function login(){
+        $("user-label").empty();
+        $("user-label").append("OTP");
+    }
+    */
+
+    function popupOTP(){
+        //login();
+        window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
+        return false;
+    }
+
+/*
+    $( "form" ).submit(function( event ) {
+        popupOTP();
+        //checkUser();
+    });
+*/
+        
+/*
+    function checkUser(){
+        if ($("#username").val()=='00') popupOTP();
+    }
+*/
+
+</script>
 
 <footer>
     <center><p style="
