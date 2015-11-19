@@ -17,14 +17,12 @@ include_once "nav_pharmacist.php";
 
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content" id = "box1">
-		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid">
             <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
 	            <div class = "mdl-grid">
 	            	<div class = "mdl-cell mdl-cell--3-col">
-	            		<div class = "mdl-card">
-							<img src="dashboard/images/user.jpg" width="175" height="175" border="0" alt=""
-							style="padding:10px; margin-right: auto; margin-left: auto;">	
-	            		</div>
+						<img src="dashboard/images/user.jpg" width="80%" height="80%" border="0" alt=""
+						style="padding:10px; margin-right: auto; margin-left: auto;">			
 	            	</div>
 	            	<div class = "mdl-cell mdl-cell--9-col">
 		            	<div class = "mdl-grid">
@@ -53,6 +51,7 @@ include_once "nav_pharmacist.php";
 				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
 					Edit Prescription
 				</button>
+
             </div>
         </div>
 	</div>
