@@ -1,6 +1,6 @@
 <?php
 include_once "header.php";
-include_once "nav_employee.php";
+include_once "nav_nurse.php";
 ?>
 <!--
 <style>
