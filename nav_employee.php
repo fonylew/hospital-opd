@@ -22,8 +22,9 @@
 			    <h6>Lastname:</h6>sagittis
 			</div>
 
-			<nav class="mdl-navigation">
+			<nav class="mdl-navigation" style="flex-grow: 1;">
 				<a class="mdl-navigation__link" href="">Add Medical Record</a>
+				<div class="mdl-layout-spacer"></div>
 				<a class="mdl-navigation__link" href="employeeLogin.php">Logout</a>
 			</nav>
 		</div>

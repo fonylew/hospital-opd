@@ -15,8 +15,16 @@
 		</header>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Hospital OPD</span>
+			<header class="demo-drawer-header">
+				<center>
+		        
+		        	<img src="dashboard/images/dog.png" class="demo-avatar" style="width:55%;">
+		        	<br>asdfjk sdjfkk<br>
+		        	HN: 123-4-45678
+		        </center>
+		 	</header>
 			<nav class="mdl-navigation" style="flex-grow: 1;">
-				<a class="mdl-navigation__link" href="">ใบนัดแพทย์</a>
+				<a class="mdl-navigation__link" href="index.php">ใบนัดแพทย์</a>
 				<a class="mdl-navigation__link" href="">ประวัติการนัดแพทย์</a>
 				<a class="mdl-navigation__link" href="viewAppointment_patient.php">View Appointment (Patient)</a>
 				<div class="mdl-layout-spacer"></div>
