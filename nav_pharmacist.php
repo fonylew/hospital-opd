@@ -15,17 +15,18 @@
 		</header>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Hospital OPD</span>
-			<img src="dashboard/images/dog.png" width="125" height="125" border="0" alt=""
-							style="padding:10px; margin-right: auto; margin-left: auto;">
-			<div class="mdl-card__supporting-text">
-				<h2 class="mdl-card__title-text">Pharmacist</h2>
-			    <h6>Miss Mauris SoHappy</h6>
-			    ID: 123-4-56789
-			</div>
-
-			<nav class="mdl-navigation">
+			<header class="demo-drawer-header">
+				<center>
+		        
+		        	<img src="dashboard/images/dog.png" class="demo-avatar" style="width:60%;">
+		        	<br>asdfjk sdjfkk<br>
+		        	HN: 123-4-45678
+		        </center>
+		 	</header>
+			<nav class="mdl-navigation" style="flex-grow: 1;">
 				<a class="mdl-navigation__link" href="viewPrescription_pharmacist.php">View prescription</a>
-				<a class="mdl-navigation__link" href="">View patient's allergic record</a>
-				<a class="mdl-navigation__link" href="">Log out</a>
+				<a class="mdl-navigation__link" href="viewallergic_pharmacist.php">View patient's allergic record</a>
+				<div class="mdl-layout-spacer"></div>
+				<a class="mdl-navigation__link" href="login_employee.php">Log out</a>
 			</nav>
 		</div>
