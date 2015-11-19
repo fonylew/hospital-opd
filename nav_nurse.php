@@ -15,15 +15,17 @@
 		</header>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Hospital OPD</span>
+				<header class="demo-drawer-header">
+					<center>
+			        
+			        	<img src="dashboard/images/dog.png" class="demo-avatar" style="width:60%;">
+			        	<br>asdfjk sdjfkk<br>
+			        	HN: 123-4-45678
+			        </center>
+			 	</header>
 
-			<div class="mdl-card__supporting-text">
-				<h2 class="mdl-card__title-text">Nurse</h2>
-			    <h6>Firstname:</h6>Mauris
-			    <h6>Lastname:</h6>sagittis
-			</div>
-
-			<nav class="mdl-navigation">
-				<a class="mdl-navigation__link" href="">Add Medical Record</a>
-				<a class="mdl-navigation__link" href="employeeLogin.php">Logout</a>
+			<nav class="mdl-navigation" style="flex-grow: 1;">
+				<div class="mdl-layout-spacer"></div>
+				<a class="mdl-navigation__link" href="login_employee.php">Logout</a>
 			</nav>
 		</div>
