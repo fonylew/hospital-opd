@@ -15,12 +15,11 @@
 		</header>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Hospital OPD</span>
-			<nav class="mdl-navigation">
+			<nav class="mdl-navigation" style="flex-grow: 1;">
 				<a class="mdl-navigation__link" href="">ใบนัดแพทย์</a>
 				<a class="mdl-navigation__link" href="">ประวัติการนัดแพทย์</a>
 				<a class="mdl-navigation__link" href="viewAppointment_patient.php">View Appointment (Patient)</a>
-				<a class="mdl-navigation__link"
-				href="login.php" 
-				style="position:fixed; bottom: 0px; width: 100%">Logout</a>
+				<div class="mdl-layout-spacer"></div>
+				<a class="mdl-navigation__link" href="login.php" >Logout</a>
 			</nav>
 		</div>
