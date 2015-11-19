@@ -19,6 +19,8 @@
 				<a class="mdl-navigation__link" href="">ใบนัดแพทย์</a>
 				<a class="mdl-navigation__link" href="">ประวัติการนัดแพทย์</a>
 				<a class="mdl-navigation__link" href="viewAppointment_patient.php">View Appointment (Patient)</a>
-				<a class="mdl-navigation__link" href="login.php">Logout</a>
+				<a class="mdl-navigation__link"
+				href="login.php" 
+				style="position:fixed; bottom: 0px; width: 100%">Logout</a>
 			</nav>
 		</div>
