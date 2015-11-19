@@ -2,6 +2,11 @@
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 		<header class="mdl-layout__header">
 			<div class="mdl-layout__header-row">
+				<button class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--icon" id="hdrbtn">
+            		<i class="material-icons">navigate_before</i>
+          		</button>
+				<div class="mdl-layout-spacer"></div>
+				<div style="font-size:x-large;">View Appointment</div>
 				<div class="mdl-layout-spacer"></div>
 				<div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
         			<label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
