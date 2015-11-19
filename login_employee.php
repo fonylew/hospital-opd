@@ -25,10 +25,12 @@ include_once "header.php";
                     </div>
                 </form>
             </div>
-            <div class="mdl-card__actions mdl-card--border">
-                <Button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect">
-                    Log in
-                </Button>
+            <div class="mdl-card__actions">
+                <center>
+                    <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
+                       style="width:90%; align:center;"
+                       href="#">Log in</a>
+                </center>
             </div>
         </div>
     </main>
@@ -40,7 +42,6 @@ include_once "header.php";
     bottom: 0px;
     width:100%;
     color:white;">
-
         Outcube© 2015
     </p></center>   
 </footer>
