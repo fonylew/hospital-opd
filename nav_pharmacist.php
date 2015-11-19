@@ -25,7 +25,7 @@
 
 			<nav class="mdl-navigation">
 				<a class="mdl-navigation__link" href="viewPrescription_pharmacist.php">View prescription</a>
-				<a class="mdl-navigation__link" href="">View patient's allergic record</a>
-				<a class="mdl-navigation__link" href="">Log out</a>
+				<a class="mdl-navigation__link" href="viewallergic_pharmacist.php">View patient's allergic record</a>
+				<a class="mdl-navigation__link" href="login_employee.php">Log out</a>
 			</nav>
 		</div>
