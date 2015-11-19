@@ -13,6 +13,13 @@ include_once "nav_pharmacist.php";
 	      margin-bottom: 40px;
 	      z-index: 900;
 	}
+	#circlepic{
+		background-repeat: no-repeat;
+	    background-position: 50%;
+	    border-radius: 50%;
+	    width: 100px;
+	    height: 100px;
+	}
 </style>
 
 <main class="mdl-layout__content">
@@ -38,30 +45,19 @@ include_once "nav_pharmacist.php";
 
         <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--5-col">
         	<div class="mdl-grid" style="margin:20px;">
-	        	<div class="mdl-cell mdl-cell--3-col" style="margin:20px;">
-	   				<img src="dashboard/images/dog.png" class="demo-avatar" style = "width =: 60%; margin:auto;">
+	        	<div class="mdl-cell mdl-cell--2-col" style="margin:20px;">
+	   				<img src="dashboard/images/dog.png" id = "circlepic" class="demo-avatar" style = "margin:auto;">
 				</div>
-				<div class="mdl-cell mdl-cell--1-col"></div>
-				<div class="mdl-cell mdl-cell--6-col" style="align:center;">
-					<h5>Name: Happy Viva</h5>
-					<h5>HN: 123-4-6789</h5>			
+				<div class = "mdl-cell mdl-cell--1-col"></div>
+				<div class="section__text mdl-cell mdl-cell--8-col" style="margin: auto; font-size:1.3em">
+					Name: Happy Viva<br><br>
+					HN: 123-4-6789			
 				</div>
 			</div>
 		</div>
-
-		<div class = "mdl-cell mdl-cell--3-col"></div>
-		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-grid" id = "info">
-			<div class="mdl-cell mdl-cell--12-col">
-				<center><img src="dashboard/images/dog.png" class="demo-avatar" style = "width =: 60%; margin:auto;">
-					<h5>Name: Happy Viva</h5>
-					<h5>HN: 123-4-6789</h5>
-					
-			</center>
-			</div>
+		<div id = "fo" class = "mdl-cell mdl-cell--9-col">
 		</div>
-		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--5-col mdl-grid" id = "allergic">
-			ig,d,d;
-		</div>
+		
 	</div>
 
 
@@ -70,12 +66,49 @@ include_once "nav_pharmacist.php";
 	<script>		
 		function searchPatientAllergic(){
 			//code here><
-			hn = document.getElementById("hn").value;
-			document.getElementById("info").innerHTML = "Paragraph changed!";
-			showPatientAllergic(hn);
-		};
-		function showPatientAllergic(hn){
+			info = document.createElement("div");
+			ininfo = document.createElement("div");
+			ininfo.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone";
+			info.className = "demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid";
+			
+			dat = document.createElement("h5");
+			datt = document.createTextNode("date: xx/yy/zzzz");
+			dat.appendChild(datt);
 
+			doc = document.createElement("h5");
+			doct = document.createTextNode("Doctor: Hatsune Miku");
+			doc.appendChild(doct);
+
+			ininfo.appendChild(dat);
+			ininfo.appendChild(doc);
+				
+			grd = document.createElement("div");
+			grd.className = "mdl-grid";
+
+			for (var i =  1; i >= 0; i--) {
+				meddiv = document.createElement("div");
+				med = document.createElement("h5");
+				meddiv.className = "mdl-cell mdl-cell--2-col";
+				medt = document.createTextNode("APTX4862");
+				med.appendChild(medt);
+				meddiv.appendChild(med);
+
+				dediv = document.createElement("div");
+				meddetail = document.createElement("h5");
+				dediv.className = "mdl-cell mdl-cell--9-col";
+				meddetailt = document.createTextNode("after have this your age will back to 7 years old or die");
+				meddetail.appendChild(meddetailt);
+				dediv.appendChild(meddetail);
+
+				ininfo.appendChild(meddiv);
+				ininfo.appendChild(dediv);
+			};
+			info.appendChild(ininfo);
+			document.getElementById("fo").appendChild(info);
+		};
+		function showPatientAllergic(){
+			hn = document.getElementById("hn").value;
+			document.getElementById("info").innerHTML = "<h5>"+hn+"</h5>";
 		};
 	</script>
 
