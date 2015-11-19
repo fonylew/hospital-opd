@@ -11,9 +11,9 @@ include_once "nav_patient.php";
         	</div>
   		</div>
   		<div class="mdl-cell mdl-cell--3-col">
-    		<button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
-				<i class="material-icons">add</i>
-			</button>
+    		<a href="patient_newapp_seldoc.php"><button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect">
+				  <i class="material-icons" >add</i>
+			</button></a>
   		</div>
 	</div>
 </main>
