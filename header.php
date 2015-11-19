@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="UTF-8">
+	<script src="js/jquery-2.1.4.min.js"></script>
 <head>
 
 <!-- body will be closed in footer.php -->

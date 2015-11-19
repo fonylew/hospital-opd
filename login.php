@@ -23,7 +23,7 @@ include_once "header.php";
                 </form>
             </div>
             <div class="mdl-card__actions">
-                <center><a href="index.php" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="width:90%; align:center;">Log in</a></center>
+                <center><a onClick="OTP=window.open('otp_simulator.php','OTP','width=380,height=screen.height'); return false;" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="width:90%; align:center;">Log in</a></center>
             </div>
         </div>
     </main>
@@ -36,7 +36,7 @@ include_once "header.php";
     width:100%;
     color:white;">
 
-        Outcube 2015
+        Outcube© 2015
     </p></center>   
 </footer>
     

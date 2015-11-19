@@ -3,6 +3,11 @@ include_once "header.php";
 include_once "nav_patient.php";
 ?>
 
+<script>
+	//$("#actionbar").empty();
+	$("#actionbar-middle").append("View Appointment");
+</script>
+
 <style>
 	#add-button {
 	      position: fixed;
