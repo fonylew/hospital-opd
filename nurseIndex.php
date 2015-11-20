@@ -47,15 +47,16 @@ include_once "nav_nurse.php";
         <div class="mdl-card__supporting-text">
           <form action="#">
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="hn" maxlength="10"/>
+              <input class="mdl-textfield__input" type="text" id="hnquery" maxlength="10"/>
               <label class="mdl-textfield__label" for="hn">HN</label>
             </div>
           </form>
         </div>
 
       
-        <button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick = "searchPatientInfo()" 
-          id="search-button" >
+        <button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+                onClick = "checkPatientInfo()" 
+                id="search-button" >
           <i class="material-icons" style = "padding-right:3px">search</i> search
         </button>
       </div>
@@ -92,9 +93,24 @@ include_once "nav_nurse.php";
     </button>
   </div> -->
 
-  <script>    
+  <script>
+    var show = 0;
+    function checkPatientInfo(){
+        if(show == 0){
+          show = 1;
+          console.log(show);
+          console.log(document.getElementById("hnquery").value);
+          searchPatientInfo();
+        }
+        else if (show == 1){
+          divmain.removeChild(div1);
+          console.log(show);
+          console.log(document.getElementById("hnquery").value);
+          searchPatientInfo();
+        }
+    };
+
     function searchPatientInfo(){
-      //
       div1 = document.createElement("div");
       div2_section__text = document.createElement("div");
       div1.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid";
@@ -162,7 +178,7 @@ include_once "nav_nurse.php";
       span_hn.appendChild(text_hn);
       span_hn_value= document.createElement("span");
       span_hn_value.id = "span_normal";
-      text_hn_value = document.createTextNode("1234567890");
+      text_hn_value = document.createTextNode(document.getElementById("hnquery").value);
       span_hn_value.appendChild(text_hn_value);
       span_hn_value.appendChild(br5);
       span_hn_value.appendChild(br6);
@@ -180,9 +196,7 @@ include_once "nav_nurse.php";
       button = document.createElement("button");
       button.className = "mdl-button mdl-js-button";
       button.id = "addInfo";
-      // document.getElementById("addInfo").onclick = function () {
-      //   location.href = "nurse_addinfo.php";
-      // };
+
       button_text = document.createTextNode("Add General Information");
       button.appendChild(button_text);
 
@@ -192,14 +206,12 @@ include_once "nav_nurse.php";
       div1.appendChild(div2_section__text);
       div1.appendChild(button);
 
-      // div_main = document.createElement(div);
-      // div_main.className = "mdl-grid page-content";
-      // div_main.appendChild(div1);
       document.getElementById("divmain").appendChild(div1);
 
       document.getElementById("addInfo").onclick = function () {
         location.href = "nurse_addinfo.php";
-      };
+      }; 
+      
     };
   </script>
   
