@@ -8,57 +8,55 @@ include_once "nav_nurse.php";
   $("#actionbar-middle").append("Add General Information");
 </script>
 
+
+<style>
+#span_head { 
+    font-size: 1.50em;
+    margin-top: 1.67em;
+    margin-bottom: 1.67em;
+    margin-left: 0;
+    margin-right: 0.3em;
+}
+#span_normal { 
+    font-size: 1.20em;
+    margin-top: 1.67em;
+    margin-bottom: 1.67em;
+    margin-left: 0;
+    margin-right: 0;
+}
+</style>
+
 <main class="mdl-layout__content">
   <div class="mdl-grid page-content">
 
-    <!-- Search Patient --><!-- 
-    <div class="mdl-cell mdl-cell--9-col">
-      <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell--12-col"> -->
+    <!-- Search Patient -->
     <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-grid">
       <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
 
-        
         <div class="mdl-card__title">
           <h2 class="mdl-card__title-text">Search Patient</h2>
         </div>
 
         <div class="mdl-card__supporting-text">
           <form action="#">
-            <!-- <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="firstname" maxlength="100"/>
-              <label class="mdl-textfield__label" for="firstname">Firstname</label>
-            </div>
-
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="lastname" maxlength="100"/>
-              <label class="mdl-textfield__label" for="lastname">Lastname</label>
-            </div> -->
-
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
               <input class="mdl-textfield__input" type="text" id="hn" maxlength="10"/>
               <label class="mdl-textfield__label" for="hn">HN</label>
             </div>
-
-          <!--   <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="identificationNumber" maxlength="20"/>
-              <label class="mdl-textfield__label" for="identificationNumber">ID</label>
-            </div> -->
           </form>
         </div>
 
-        <!-- <div class="mdl-card__actions mdl-card--border"> -->
-          <button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick = "searchPatientAllergic()" 
-            id="search-button" >
-            <i class="material-icons" style = "padding-right:3px">search</i> search
-          </button>
-        <!-- </div> -->
+      
+        <button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick = "searchPatientAllergic()" 
+          id="search-button" >
+          <i class="material-icons" style = "padding-right:3px">search</i> search
+        </button>
       </div>
     </div>
 
     <!-- Patient Information -->
   <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid">
     <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-      <!-- <div class="mdl-cell mdl-cell--9-col  mdl-shadow--2dp"> -->
         
         <div class="mdl-card__title">
           <h2 class="mdl-card__title-text">Patient</h2>
@@ -70,22 +68,17 @@ include_once "nav_nurse.php";
             style="padding:10px; margin-right: auto; margin-left: auto;">     
           </div>  
           
-          <div class="section__text mdl-cell mdl-cell--2-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+          <div class="section__text mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
 
-            <table>
-              <tr>
-                <td><h5>Firstname: </h5></td>
-                <td>Asdf</td>
-              </tr>
-              <tr>
-                <td><h5>Lastname: </h5></td>
-                <td>Asdf</td>
-              </tr>
-              <tr>
-                <td><h5>HN: </h5></td>
-                <td>123456</td>
-              </tr>
-            </table>
+            <span id="span_head">Firstname: </span>
+            <span id="span_normal">Asdf</span><br><br>
+
+            <span id="span_head">Lastname: </span>
+            <span id="span_normal">Qwery</span><br><br>
+
+            <span id="span_head">HN: </span>
+            <span id="span_normal">1234567890</span><br>
+
           </div>
 
         </section>
