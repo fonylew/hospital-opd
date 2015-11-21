@@ -194,7 +194,7 @@ include_once "nav_nurse.php";
       section.appendChild(div5_info);
 
       button = document.createElement("button");
-      button.className = "mdl-button mdl-js-button";
+      button.className = "mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect";
       button.id = "addInfo";
 
       button_text = document.createTextNode("Add General Information");
