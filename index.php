@@ -7,10 +7,11 @@ include_once "nav_patient.php";
   $("#actionbar-middle").append("<div style=\"font-size:x-large\">ใบนัดแพทย์</div>");
 </script>
 
+
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content">
         <div class="mdl-cell mdl-cell--9-col">
-    		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
+    		  <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid">
             	Main content here
         	</div>
   		</div>

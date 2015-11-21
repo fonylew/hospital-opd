@@ -1,4 +1,4 @@
-	<!-- this div will be closed in footer.php -->
+	<!-- this div will be closed in nav_end.php -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
 		<header class="mdl-layout__header">
 			<div class="mdl-layout__header-row" id="actionbar">
