@@ -1,6 +1,5 @@
 <?php
 include_once "header.php";
-//include_once "control_patient.php";
 ?>
 
 <link rel="stylesheet" type="text/css" href="css/patientLogin.css">
@@ -9,8 +8,6 @@ include_once "header.php";
 <div class="mdl-layout mdl-js-layout mdl-color--primary" align="center"
         style="padding-top:1em;padding-bottom:2em;">
     <main class="mdl-layout__content" >
-
-        <!-- <img src="HospitalODP_logo.png" style="width:40%; padding-bottom:100px"> -->
 
         <div class="mdl-card mdl-shadow--6dp">
             <div class="mdl-card__title mdl-color--white mdl-color-text--primary mdl-card--border">
@@ -56,43 +53,21 @@ include_once "header.php";
                 </form>
             </div>
             <div class="mdl-card__actions">
-                <center><a onClick="popupOTP()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="width:90%; align:center;">Next</a></center>
+                <center><a onClick="popupOTP()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="width:90%; align:center;" href="index.php">Next</a></center>
             </div>
         </div>
     </main>
 </div>
 
 <script>
-//onClick="checkUser();
     var otp = Math.floor(100000 + Math.random() * 900000);
     console.log(otp);
     
-/*    
-    function login(){
-        $("user-label").empty();
-        $("user-label").append("OTP");
-    }
-    */
-
     function popupOTP(){
         //login();
         window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
         return false;
     }
-
-/*
-    $( "form" ).submit(function( event ) {
-        popupOTP();
-        //checkUser();
-    });
-*/
-        
-/*
-    function checkUser(){
-        if ($("#username").val()=='00') popupOTP();
-    }
-*/
-
 </script>
 
 <footer>
