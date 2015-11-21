@@ -28,8 +28,8 @@
 		        </center>
 		 	</header>
 			<nav class="mdl-navigation" style="flex-grow: 1;">
-				<a class="mdl-navigation__link" href="viewPrescription_pharmacist.php">View prescription</a>
-				<a class="mdl-navigation__link" href="viewallergic_pharmacist.php">View patient's allergic record</a>
+				<a class="mdl-navigation__link" href="pharmacist_viewPrescription.php">View prescription</a>
+				<a class="mdl-navigation__link" href="pharmacist_viewallergic.php">View patient's allergic record</a>
 				<div class="mdl-layout-spacer"></div>
 				<a class="mdl-navigation__link" href="login_employee.php">Log out</a>
 			</nav>
