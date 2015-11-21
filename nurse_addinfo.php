@@ -200,13 +200,13 @@ include_once "nav_nurse.php";
           id: 'ok-button',
           title: 'OK',
           onClick: function() {
-            location.href = "nurseindex.php";
+            location.href = "nurse_index.php";
           }
       },
     })
    };
   document.getElementById("cancleButton").onclick = function () {
-    location.href = "nurseindex.php";
+    location.href = "nurse_index.php";
   };
 </script> 
 

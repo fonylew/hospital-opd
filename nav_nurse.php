@@ -29,6 +29,7 @@
 			 	</header>
 
 			<nav class="mdl-navigation" style="flex-grow: 1;">
+				<a class="mdl-navigation__link" href="nurse_index.php">ค้นหาผู้ป่วย</a>
 				<div class="mdl-layout-spacer"></div>
 				<a class="mdl-navigation__link" href="login_employee.php">Logout</a>
 			</nav>
