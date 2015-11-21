@@ -29,7 +29,7 @@ include_once "header.php";
                 <center>
                     <a class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect"
                        style="width:90%; align:center;"
-                       href="#">Log in</a>
+                       href="javascript:void(0)" onclick="checkLogin()">Log in</a>
                 </center>
             </div>
         </div>
@@ -45,6 +45,29 @@ include_once "header.php";
         Outcube© 2015
     </p></center>   
 </footer>
+
+
+<script>
+
+    function checkLogin() {
+        $.ajax({
+            url: 'control_general.php',
+            type: 'POST',
+            data: {login_username: document.getElementById("username").value,login_password: document.getElementById("password").value},
+            datatype: "json",
+            success: function(data) {
+                data = $.parseJSON(data);
+                if (data.userrole == 'doctor') location.replace("doctor_viewAppointment.php");
+                else if (data.userrole == 'nurse') location.replace("nurseIndex.php");
+                else if (data.userrole == 'staff') location.replace("staff_viewAppointment.php");
+                else if (data.userrole == 'pharmacist') location.replace("pharmacist_viewPrescription.php");
+                else alert("Wrong username and / or password");
+            }
+        });
+    }
+
+</script>
+
     
 <!-- close body from header.php -->
 </body>
