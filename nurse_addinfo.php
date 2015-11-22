@@ -167,6 +167,7 @@ include_once "nav_nurse.php";
     // console.log(document.getElementById("bloodpressure").value);
     showDialog({
       title: '<span id="span_confirm">Confirmation</span>',
+      // title: 'Confirmation',
       text: '<table><tr><td><p id="bigp">Date: </h5></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("date").value+'</div></td></tr>'+
 
