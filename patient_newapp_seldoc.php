@@ -63,7 +63,22 @@ include_once "nav_patient.php";
                 		</select>
 	              	</div>
               	</div>
-              	<center><button class="mdl-button mdl-button--raised mdl-button--colored center" style="margin-top: 8px;">ต่อไป</button></center>
+              	<center>
+	              	<a href="patient_newapp_seldate.php">
+		              	<button
+		              		class="mdl-button mdl-button--raised mdl-button--colored"
+		              		style="margin-top: 8px; margin-right: 8px;">
+		              		เลือกวันที่
+		              	</button>
+		            </a>
+		            <a href="#">
+		              	<button
+		              		class="mdl-button mdl-button--raised mdl-button--accent"
+		              		style="margin-top: 8px; color: white;">
+		              		นัดเร็วที่สุด
+		              	</button>
+	              	</a>
+              	</center>
   			</div>
   		</div>
   		<div class="mdl-cell mdl-cell--3-col">
