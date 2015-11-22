@@ -8,9 +8,9 @@ include_once "header.php";
 <div class="mdl-layout mdl-js-layout mdl-color--primary" align="center" style="padding-top:0">
     <main class="mdl-layout__content">
 
-        <img src="HospitalODP_logo.png" style="width:40%;">
+        <img src="HospitalODP_logo.png" style="width:50%; min-width:21.3em;">
 
-        <div class="mdl-card mdl-shadow--6dp" style="margin-top:5%">
+        <div class="mdl-card mdl-shadow--6dp" style="margin-top:7%">
             <div class="mdl-card__title mdl-color--white mdl-color-text--primary mdl-card--border">
                 <center><h2 class="mdl-card__title-text">Enter HN to Login</h2></center>
             </div>
@@ -31,9 +31,9 @@ include_once "header.php";
             </div>
             
         </div>
-        <div class="mdl-card__actions" style="margin-bottom:0%;padding-top:1em;">
+        <div class="mdl-card__actions" style="margin-bottom:0%; padding-top:1em;">
             <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--6dp" 
-                    style="width:21.3em;background:#26A69A" href="register.php">Register</a>
+                style="width:21.3em; color: rgb(255,171,64); background-color: white;" href="register.php">Register</a>
         </div>
     </main1>
 </div>

@@ -67,7 +67,7 @@ include_once "nav_patient.php";
 		              		เลือกวันที่
 		              	</button>
 		            </a>
-		            <a href="#">
+		            <a href="patient_newapp_confirm.php">
 		              	<button
 		              		class="mdl-button mdl-button--raised mdl-button--accent"
 		              		style="margin-top: 8px; color: white;">
