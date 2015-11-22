@@ -14,10 +14,6 @@ include_once "nav_patient.php";
 	}
 </script>
 
-<!-- import mui -->
-<link rel="stylesheet" type="text/css" media="screen" href="//cdn.muicss.com/mui-0.2.1/css/mui.css">
-<script type="text/javascript" src="//cdn.muicss.com/mui-0.2.1/js/mui.js"></script>
-
 <!-- bootstrap -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/jquery.dropdown.css">
