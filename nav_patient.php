@@ -29,8 +29,7 @@
 		 	</header>
 			<nav class="mdl-navigation" style="flex-grow: 1;">
 				<a class="mdl-navigation__link" href="index.php">ใบนัดแพทย์</a>
-				<a class="mdl-navigation__link" href="">ประวัติการนัดแพทย์</a>
-				<a class="mdl-navigation__link" href="patient_viewAppointment.php">View Appointment (Patient)</a>
+				<a class="mdl-navigation__link" href="#">ประวัติการนัดแพทย์</a>
 				<div class="mdl-layout-spacer"></div>
 				<a class="mdl-navigation__link" href="login.php" >Logout</a>
 			</nav>
