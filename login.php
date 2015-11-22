@@ -10,7 +10,6 @@ include_once "header.php";
 
         <img src="HospitalODP_logo.png" style="width:40%;">
 
-        <!-- <div class="mdl-card mdl-shadow--6dp" style="vertical-align: text-top"> -->
         <div class="mdl-card mdl-shadow--6dp" style="margin-top:5%">
             <div class="mdl-card__title mdl-color--white mdl-color-text--primary mdl-card--border">
                 <center><h2 class="mdl-card__title-text">Enter HN to Login</h2></center>
@@ -26,12 +25,13 @@ include_once "header.php";
                 </form>
             </div>
             <div class="mdl-card__actions">
-                <center><a onClick="popupOTP()" class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" style="width:90%; align:center;">Log in</a></center>
+                <center><button onClick="popupOTP()" 
+                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+                            style="width:90%; align:center;" id="checkotp">Log in</button></center>
             </div>
             
         </div>
         <div class="mdl-card__actions" style="margin-bottom:0%;padding-top:1em;">
-        <!-- <div class="mdl-card__actions"> -->
             <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--6dp" 
                     style="width:21.3em;background:#26A69A" href="register.php">Register</a>
         </div>
@@ -50,11 +50,44 @@ include_once "header.php";
     }
     */
 
-    function popupOTP(){
+    // function popupOTP(){
         //login();
+    // window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
+        // return false;
+    //}
+
+    document.getElementById("checkotp").onclick = function () {
+        //Mobile Phone Number
+                //OTP Popup Windows
         window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
-        return false;
-    }
+
+        //Check OTP Dialog
+        showDialog({
+          title: 'Enter One-Time Password',
+          text: '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+                    '<input class="mdl-textfield__input" type="text" id="otp" maxlength="10"/>'+
+                    '<label class="mdl-textfield__label" for="otp">One-Time Password</label>'+
+                '</div>',
+            negative: {
+                id: 'cancel-button',
+                title: 'Back',
+                onClick: function() { 
+                  
+                }
+            },
+            positive: {
+                id: 'ok-button',
+                title: 'OK',
+                onClick: function() {
+                    //Check OTP
+                    if(otp == document.getElementById("otp").value){
+                        location.href = "index.php";
+                    }
+
+                }
+            },
+        })
+   };
 
 /*
     $( "form" ).submit(function( event ) {
