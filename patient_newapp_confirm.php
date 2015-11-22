@@ -24,11 +24,52 @@ include_once "nav_patient.php";
 	<div class="mdl-grid page-content">
     	<div class="mdl-cell mdl-cell--9-col mdl-color--white mdl-shadow--2dp" style="padding:24px;">
     	<center>
-    		<a href="patient_newapp_confirm.php">
+    		<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
+				ยืนยันข้อมูลการนัดแพทย์
+			</p>
+		</center>
+		<div class="mdl-shadow--_dp" style="margin-top: 16px; margin-left: auto; margin-right: auto; width: 20em;">
+			<div style="margin-top: 0px;">
+				<span style="font-size: large; ">แผนก: </span>
+	        	<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">ผิวหนัง</span>
+	        </div>
+	        <br>
+	        <div style="margin-top: 0px;">
+				<span style="font-size: large;">แพทย์: </span>
+	        	<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">DOCNAME SURNAME</span>
+	        </div>
+	        <br>
+	        <div style="margin-top: 0px;">
+				<span style="font-size: large;">วันที่: </span>
+	        	<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">พุธที่ 25 พฤศจิกายน 2015</span>
+	        </div>
+	        <br>
+	        <div style="margin-top: 0px;">
+				<span style="font-size: large;">เวลา: </span>
+	        	<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">09.00 - 09.10 น.</span>
+	        </div>
+	        <br>
+		</div>
+    	<center>
+    		<a href="patient_newapp_seldoc.php" style="margin-right: 16px;">
 	  			<button
-	  				class="mdl-button mdl-button--raised mdl-button--colored center"
+	  				class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary mdl-shadow--2dp"
 	  				style="margin-top: 16px;">
-	  				ต่อไป
+	  				แก้ไข แผนก/หมอ
+	  			</button>
+	  		</a>
+    		<a href="patient_newapp_seldate.php" style="margin-right: 16px;">
+	  			<button
+	  				class="mdl-button mdl-js-button mdl-js-ripple-effect mdl-button--primary mdl-shadow--2dp"
+	  				style="margin-top: 16px;">
+	  			แก้ไข วัน/เวลา
+	  			</button>
+	  		</a>
+    		<a href="index.php" style="margin-right: 16px;">
+	  			<button
+	  				class="mdl-button mdl-button--raised mdl-button--primary "
+	  				style="margin-top: 16px;">
+	  				ยืนยันการนัดแพทย์
 	  			</button>
 	  		</a>
     	</center>
