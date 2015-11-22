@@ -4,9 +4,15 @@ include_once "nav_nurse.php";
 ?>
 
 <script>
-  //$("#actionbar").empty();
-  $("#actionbar-middle").append("Add General Information");
+  // $("#actionbar-middle").append("Add General Information");
+  $("#actionbar-left").append("<label onClick=\"browserBack()\" class=\"mdl-button mdl-js-button mdl-button--icon\" for=\"fixed-header-drawer-exp\"><i class=\"material-icons\">arrow_back</i></label>");
+  $("#actionbar-middle").append("<div style=\"font-size:x-large\">ข้อมูลพื้นฐานของผู้ป่วย</div>");
 </script>    
+<script type="text/javascript">
+  function browserBack(){
+    window.history.back();
+  }
+</script>
 
 <style>
 #span_head { 
@@ -44,120 +50,114 @@ include_once "nav_nurse.php";
   font-size: 1.2em;
   margin-bottom: 0;
 }
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
 </style>
 
 <main class="mdl-layout__content">
-  <div class="mdl-grid page-content" id="divmain">
+  <div class="mdl-grid page-content">
 
     <!-- Add General Information -->
-    <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid">
-      <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-          
-          <div class="mdl-card__title">
-            <h2 class="mdl-card__title-text">General Information</h2>
-          </div>
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp" 
+          style="padding:24px; color: mdl-primary;">
 
-          <section class="section--footer mdl-color--white mdl-grid"> 
+      <p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
+        ข้อมูลพื้นฐานของผู้ป่วย
+      </p>
             
-            <div class="section__text mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+      <div class="section__text mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+        <section class="section--footer mdl-color--white mdl-grid">
+          <div class = "mdl-cell mdl-cell--3-col">
+            <img src="dashboard/images/user.jpg" width="80%" height="80%" border="0"
+            style="padding:10px; margin-right: auto; margin-left: auto;">     
+          </div>
+          <div class="section__text mdl-cell mdl-cell--8-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+            <table style="margin-left:5%" align="left">
+              <tr>
+                <td>
+                  <span id="span_head">ชื่อจริง: </span>
+                  <span id="span_normal">Asssssssssssssssssssssssssssssssssssssssssdf</span><br><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span id="span_head">นามสกุล: </span>
+                  <span id="span_normal">Qwery</span><br><br>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  <span id="span_head">HN: </span>
+                  <span id="span_normal">1234567890</span><br>
+                </td>
+              </tr>
+            </table>
+          </div>
+        </section>
 
-              <form action="#">
-                <table>
-                  <tr>
-                    <td><h5 id="upperh5">Date: </h5></td>
-                    <td>
-                      <div>
-                        <input class="mdl-textfield__input" type="date" id="date">
-                        <label class="mdl-textfield__label" for="date">Date</label>
-                      </div>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><h5 id="upperh5">Weight: </h5></td>
-                    <td>
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="weight">
-                        <label class="mdl-textfield__label" for="weight">Weight</label>
-                      </div>
-                    </td>
-                    <td>
-                      (Kilograms)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><h5 id="upperh5">Height: </h5></td>
-                    <td>
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="height">
-                        <label class="mdl-textfield__label" for="height">Height</label>
-                      </div>
-                    </td>
-                    <td>
-                      (Centimaters)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><h5 id="upperh5">Temperature: </h5></td>
-                    <td>
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="temperature">
-                        <label class="mdl-textfield__label" for="temperature">Temperature</label>
-                      </div>
-                    </td>
-                    <td>
-                      (Degree Celsius)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><h5 id="upperh5">Heart Rate: </h5></td>
-                    <td>
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="heartrate">
-                        <label class="mdl-textfield__label" for="heartrate">Heart Rate</label>
-                      </div>
-                    </td>
-                    <td>
-                      (bpm)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td><h5 id="upperh5">Blood Pressure: </h5></td>
-                    <td>
-                      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                        <input class="mdl-textfield__input" type="text" id="bloodpressure">
-                        <label class="mdl-textfield__label" for="bloodpressure">Blood Pressure</label>
-                      </div>
-                    </td>
-                    <td>
-                      (mm Hg)
-                    </td>
-                  </tr>
-                </table>
-
-              </form>
-            </div>
-
-            <div >
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
-                      id="submitButton">
-                Submit
-              </button>
-              <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" 
-                      id="cancleButton">
-                Cancle
-              </button>
-            </div>    
-
-          </section>
-
+        <form action="#">
+          <table align="center">
+            <tr>
+              <td>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="weight">
+                  <label class="mdl-textfield__label" for="weight">น้ำหนัก (กิโลกรัม)</label>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="height">
+                  <label class="mdl-textfield__label" for="height">ส่วนสูง (เซนติเมตร)</label>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="temperature">
+                  <label class="mdl-textfield__label" for="temperature">อุณหถูมิร่างกาย (องศาเซลเซียส)</label>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="heartrate">
+                  <label class="mdl-textfield__label" for="heartrate">อัตราการเต้นหัวใจ (ครั้งต่อนาที)</label>
+                </div>
+              </td>
+            </tr>
+            <tr>
+              <td>
+                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                  <input class="mdl-textfield__input" type="text" id="bloodpressure">
+                  <label class="mdl-textfield__label" for="bloodpressure">ความดันโลหิต (S/D)</label>
+                </div>
+              </td>
+            </tr>
+          </table>
+          
+        </form>
+        <center>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
+                    id="submitButton" align="center">
+              Submit
+            </button>
+          </center>
       </div>
-        
     </div>
 
   </div>
 </main>
 
 <script>
+  
+
+
+
   document.getElementById("submitButton").onclick = function () {
     // console.log(document.getElementById("date").value);
     // console.log(document.getElementById("weight").value);
@@ -165,11 +165,21 @@ include_once "nav_nurse.php";
     // console.log(document.getElementById("temperature").value);
     // console.log(document.getElementById("heartrate").value);
     // console.log(document.getElementById("bloodpressure").value);
+    var dateTime  = new Date();
+    var year      = dateTime.getFullYear();
+    var month     = dateTime.getMonth();
+    var date      = dateTime.getDate();
+    var hours     = dateTime.getHours();
+    var minutes   = dateTime.getMinutes();
+    var seconds   = dateTime.getSeconds();
+    var strDateTime = date+'/'+month+'/'+year+' '+hours+':'+minutes+':'+seconds;
+    console.log(strDateTime);
+    
     showDialog({
       title: '<span id="span_confirm">Confirmation</span>',
       // title: 'Confirmation',
       text: '<table><tr><td><p id="bigp">Date: </h5></td>'+
-      '<td><div id="div_valuetable">'+document.getElementById("date").value+'</div></td></tr>'+
+      '<td><div id="div_valuetable">'+strDateTime+'</div></td></tr>'+
 
       '<tr><td><p id="bigp">Weight: </h5></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("weight").value+
@@ -190,7 +200,7 @@ include_once "nav_nurse.php";
       '<tr><td><p id="bigp">Blood Pressure: </p></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("bloodpressure").value+
       '</div></td><td id="div_valuetable">(mm Hg)</td></tr></table>',
-        negative: {
+      negative: {
         id: 'cancel-button',
         title: 'Cancel',
         onClick: function() { 
@@ -198,18 +208,19 @@ include_once "nav_nurse.php";
         }
       },
       positive: {
-          id: 'ok-button',
-          title: 'OK',
-          onClick: function() {
-            location.href = "nurse_index.php";
-          }
+        id: 'ok-button',
+        title: 'OK',
+        onClick: function() {
+          location.href = "nurse_index.php";
+        }
       },
+      cancelable: false,
     })
    };
-  document.getElementById("cancleButton").onclick = function () {
-    location.href = "nurse_index.php";
-  };
 </script> 
+
+<script src="js/bootstrap.min.js"></script>
+<script src="js/ripples.min.js"></script>
 
 <?php
 include_once "nav_end.php";
