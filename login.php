@@ -25,9 +25,9 @@ include_once "header.php";
                 </form>
             </div>
             <div class="mdl-card__actions">
-                <center><button onClick="popupOTP()" 
+                <center><a onClick="popupOTP()" 
                             class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                            style="width:90%; align:center;" id="checkotp">Log in</button></center>
+                            style="width:90%; align:center;" href="loginotp.php">Log in</a></center>
             </div>
             
         </div>
@@ -40,8 +40,9 @@ include_once "header.php";
 
 <script>
 //onClick="checkUser();
-    var otp = Math.floor(100000 + Math.random() * 900000);
-    console.log(otp);
+    // var otp = Math.floor(100000 + Math.random() * 900000);
+    // console.log(otp);
+
     
 /*    
     function login(){
@@ -51,43 +52,43 @@ include_once "header.php";
     */
 
     // function popupOTP(){
-        //login();
+    //     //login();
     // window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
-        // return false;
-    //}
+    //     return false;
+    // }
 
-    document.getElementById("checkotp").onclick = function () {
-        //Mobile Phone Number
-                //OTP Popup Windows
-        window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
+   //  document.getElementById("checkotp").onclick = function () {
+   //      //Mobile Phone Number
+   //              //OTP Popup Windows
+   //      window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
 
-        //Check OTP Dialog
-        showDialog({
-          title: 'Enter One-Time Password',
-          text: '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
-                    '<input class="mdl-textfield__input" type="text" id="otp" maxlength="10"/>'+
-                    '<label class="mdl-textfield__label" for="otp">One-Time Password</label>'+
-                '</div>',
-            negative: {
-                id: 'cancel-button',
-                title: 'Back',
-                onClick: function() { 
+   //      //Check OTP Dialog
+   //      showDialog({
+   //        title: 'Enter One-Time Password',
+   //        text: '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
+   //                  '<input class="mdl-textfield__input" type="text" id="otp" maxlength="10"/>'+
+   //                  '<label class="mdl-textfield__label" for="otp">One-Time Password</label>'+
+   //              '</div>',
+   //          negative: {
+   //              id: 'cancel-button',
+   //              title: 'Back',
+   //              onClick: function() { 
                   
-                }
-            },
-            positive: {
-                id: 'ok-button',
-                title: 'OK',
-                onClick: function() {
-                    //Check OTP
-                    if(otp == document.getElementById("otp").value){
-                        location.href = "index.php";
-                    }
+   //              }
+   //          },
+   //          positive: {
+   //              id: 'ok-button',
+   //              title: 'OK',
+   //              onClick: function() {
+   //                  //Check OTP
+   //                  if(otp == document.getElementById("otp").value){
+   //                      location.href = "index.php";
+   //                  }
 
-                }
-            },
-        })
-   };
+   //              }
+   //          },
+   //      })
+   // };
 
 /*
     $( "form" ).submit(function( event ) {
