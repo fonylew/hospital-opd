@@ -77,7 +77,7 @@ include_once "nav_nurse.php";
               <tr>
                 <td>
                   <span id="span_head">ชื่อจริง: </span>
-                  <span id="span_normal">Asssssssssssssssssssssssssssssssssssssssssdf</span><br><br>
+                  <span id="span_normal">Asssssssssssssssssssssssssssssssss1sssssssdf</span><br><br>
                 </td>
               </tr>
               <tr>
@@ -96,50 +96,27 @@ include_once "nav_nurse.php";
           </div>
         </section>
 
-        <form action="#">
-          <table align="center">
-            <tr>
-              <td>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="weight">
-                  <label class="mdl-textfield__label" for="weight">น้ำหนัก (กิโลกรัม)</label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="height">
-                  <label class="mdl-textfield__label" for="height">ส่วนสูง (เซนติเมตร)</label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="temperature">
-                  <label class="mdl-textfield__label" for="temperature">อุณหถูมิร่างกาย (องศาเซลเซียส)</label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="heartrate">
-                  <label class="mdl-textfield__label" for="heartrate">อัตราการเต้นหัวใจ (ครั้งต่อนาที)</label>
-                </div>
-              </td>
-            </tr>
-            <tr>
-              <td>
-                <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-                  <input class="mdl-textfield__input" type="text" id="bloodpressure">
-                  <label class="mdl-textfield__label" for="bloodpressure">ความดันโลหิต (S/D)</label>
-                </div>
-              </td>
-            </tr>
-          </table>
-          
+        <form action="#" align="center">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="weight">
+            <label class="mdl-textfield__label" for="weight">น้ำหนัก (กิโลกรัม)</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="height">
+            <label class="mdl-textfield__label" for="height">ส่วนสูง (เซนติเมตร)</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="temperature">
+            <label class="mdl-textfield__label" for="temperature">อุณหถูมิร่างกาย (องศาเซลเซียส)</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="heartrate">
+            <label class="mdl-textfield__label" for="heartrate">อัตราการเต้นหัวใจ (ครั้งต่อนาที)</label>
+          </div>
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="bloodpressure">
+            <label class="mdl-textfield__label" for="bloodpressure">ความดันโลหิต (S/D)</label>
+          </div>
         </form>
         <center>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
@@ -154,10 +131,6 @@ include_once "nav_nurse.php";
 </main>
 
 <script>
-  
-
-
-
   document.getElementById("submitButton").onclick = function () {
     // console.log(document.getElementById("date").value);
     // console.log(document.getElementById("weight").value);
@@ -174,32 +147,32 @@ include_once "nav_nurse.php";
     var seconds   = dateTime.getSeconds();
     var strDateTime = date+'/'+month+'/'+year+' '+hours+':'+minutes+':'+seconds;
     console.log(strDateTime);
-    
+
     showDialog({
       title: '<span id="span_confirm">Confirmation</span>',
       // title: 'Confirmation',
       text: '<table><tr><td><p id="bigp">Date: </h5></td>'+
       '<td><div id="div_valuetable">'+strDateTime+'</div></td></tr>'+
 
-      '<tr><td><p id="bigp">Weight: </h5></td>'+
+      '<tr><td><p id="bigp">น้ำหนัก (กิโลกรัม): </h5></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("weight").value+
-      '</div></td><td id="div_valuetable">(Kilograms)</td></tr>'+
+      '</div></td></tr>'+
 
-      '<tr><td><p id="bigp">Height: </h5></td>'+
+      '<tr><td><p id="bigp">ส่วนสูง (เซนติเมตร): </h5></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("height").value+
-      '</div></td><td id="div_valuetable">(Centimaters)</td></tr>'+
+      '</div></td></tr>'+
 
-      '<tr><td><p id="bigp">Temperature: </h5></td>'+
+      '<tr><td><p id="bigp">อุณหถูมิร่างกาย (องศาเซลเซียส): </h5></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("temperature").value+
-      '</div></td><td id="div_valuetable">(Degree Celsius)</td></tr>'+
+      '</div></td></tr>'+
 
-      '<tr><td><p id="bigp">Heart Rate: </h5></td>'+
+      '<tr><td><p id="bigp">อัตราการเต้นหัวใจ (ครั้งต่อนาที): </h5></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("heartrate").value+
-      '</div></td><td id="div_valuetable">(bpm)</td></tr>'+
+      '</div></td></tr>'+
 
-      '<tr><td><p id="bigp">Blood Pressure: </p></td>'+
+      '<tr><td><p id="bigp">ความดันโลหิต (S/D): </p></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("bloodpressure").value+
-      '</div></td><td id="div_valuetable">(mm Hg)</td></tr></table>',
+      '</div></td></tr></table>',
       negative: {
         id: 'cancel-button',
         title: 'Cancel',
