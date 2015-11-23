@@ -42,6 +42,12 @@ include_once "nav_doctor.php";
 	.no-padding {
 		padding: 0px;
 	}
+	.divider {
+		height: 1px;
+		background-color: rgba(0,0,0,0.12);
+		margin-top: 16px;
+		margin-bottom: 16px;
+	}
 </style>
 
 <!-- import function -->
@@ -52,7 +58,7 @@ include_once "nav_doctor.php";
 		<div class="mdl-cell mdl-cell--10-col mdl-color--white mdl-shadow--2dp mdl-grid" style="padding:24px; color: mdl-primary;">
 			
 			<!-- appointment detail -->
-			<div class="mdl-grid mdl-cell--9-col" style="margin-top: 16px; margin-left: 16px;">
+			<div class="mdl-grid mdl-cell--9-col" style="margin-top: 16px; margin-left: 16px; padding-bottom: 0px;">
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
 						<span style="font-size: large; ">หมายเลขนัด: </span>
@@ -105,8 +111,10 @@ include_once "nav_doctor.php";
 				<img src="dashboard/images/dog.png" style="width: 100%;">
 			</div>
 
+			<div class="mdl-cell--12-col divider" style="margin-top:8px;"></div>
+
 			<!-- patient info from nurse -->
-			<table class="mdl-cell--8-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin-left: auto; margin-right: auto;">
+			<table class="mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin-left: auto; margin-right: auto;">
 				<thead>
 					<tr>
 						<th>น้ำหนัก</th>
@@ -118,14 +126,16 @@ include_once "nav_doctor.php";
 				</thead>
 				<tbody>
 					<tr>
-						<td>500</td>
-						<td>500</td>
-						<td>500</td>
-						<td>500</td>
-						<td>500</td>
+						<td style="font-size: large;">75</td>
+						<td style="font-size: large;">176</td>
+						<td style="font-size: large;">37</td>
+						<td style="font-size: large;">500</td>
+						<td style="font-size: large;">500</td>
 					</tr>
 				</tbody>
 			</table>
+
+
 
 			<center class="mdl-cell--12-col">
 				<button class="mdl-button mdl-button--raised mdl-button--colored" style="margin-top: 16px;" onClick="showSubmitDiagnoseConfirm()">

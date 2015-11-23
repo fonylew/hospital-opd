@@ -43,22 +43,22 @@ include_once "header.php";
     width:100%;
     color:white;">
         Outcube© 2015
-    </p></center>   
+    </p></center>
+    
+    <script src="js/material.min.js"></script>
 </footer>
 
 
 <script>
-
     function checkLogin() {
         $.ajax({
             url: 'control_general.php',
             type: 'POST',
             data: {login_username: document.getElementById("username").value,login_password: document.getElementById("password").value},
-            datatype: "json",
+            dataType: "json",
             success: function(data) {
-                data = $.parseJSON(data);
                 if (data.userrole == 'doctor') location.replace("doctor_viewAppointment.php");
-                else if (data.userrole == 'nurse') location.replace("nurseIndex.php");
+                else if (data.userrole == 'nurse') location.replace("nurse_index.php");
                 else if (data.userrole == 'staff') location.replace("staff_viewAppointment.php");
                 else if (data.userrole == 'pharmacist') location.replace("pharmacist_viewPrescription.php");
                 else alert("Wrong username and / or password");

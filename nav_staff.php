@@ -7,7 +7,7 @@
 	$employee_usertype = $_SESSION['employee_usertype'];
 	// remove below comments when finish 
 	// use for security
-	// if ($employee_usertype != 'nurse') {
+	// if ($employee_usertype != 'staff') {
 	//     header("Location: login_employee.php");
 	//     exit();
 	// }
@@ -20,35 +20,26 @@
 				<div id="actionbar-left"></div>
 				<div class="mdl-layout-spacer"></div>
 				<div id="actionbar-middle"></div>
-				<!--div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable mdl-textfield--floating-label mdl-textfield--align-right">
-        			<label class="mdl-button mdl-js-button mdl-button--icon" for="fixed-header-drawer-exp">
-          				<i class="material-icons">search</i>
-					</label>
-					<div class="mdl-textfield__expandable-holder">
-						<input class="mdl-textfield__input" type="text" name="sample" id="fixed-header-drawer-exp">
-        			</div>
-      			</div-->
       			<div class="mdl-layout-spacer"></div>
       			<div id="actionbar-right"></div>
     		</div>
 		</header>
 		<div class="mdl-layout__drawer">
 			<span class="mdl-layout-title">Hospital OPD</span>
-				<header class="demo-drawer-header">
-					<center>
-			        
-			        	<img src="dashboard/images/dog.png" class="demo-avatar" style="width:60%;">
-			        	<div id="nurse_name"></div>
-			        </center>
-			 	</header>
-
+			<header class="demo-drawer-header">
+				<center>
+		        
+		        	<img src="dashboard/images/dog.png" class="demo-avatar" style="width:55%;">
+		        	<div id="staff_name"></div>
+		        </center>
+		 	</header>
 			<nav class="mdl-navigation" style="flex-grow: 1;">
-				<a class="mdl-navigation__link" href="nurse_index.php">ค้นหาผู้ป่วย</a>
+				<a class="mdl-navigation__link" href="index.php">View Appointment</a>
+				<a class="mdl-navigation__link" href="#">Edit Doctor's Schedule</a>
 				<div class="mdl-layout-spacer"></div>
-				<a class="mdl-navigation__link" href="javascript:void(0)" onclick="logout()">Logout</a>
+				<a class="mdl-navigation__link" href="login.php" >Logout</a>
 			</nav>
 		</div>
-
 
 <script>
 
@@ -57,7 +48,7 @@
     var employee_lname = <?php echo json_encode($employee_lname,JSON_FORCE_OBJECT)?>;
     var employee_username = <?php echo json_encode($employee_username,JSON_FORCE_OBJECT)?>;
 
-    document.getElementById("nurse_name").innerHTML = "<br>"+employee_initial + " " + employee_fname + " " + employee_lname+"</br>";
+    document.getElementById("staff_name").innerHTML = "<br>"+employee_initial + " " + employee_fname + " " + employee_lname+"</br>";
 
 	function logout() {
       	$.ajax({
@@ -69,4 +60,5 @@
           	}	
       	});
     }		
+    
 </script>
