@@ -1,6 +1,6 @@
 <?php
 include_once "header.php";
-include_once "nav_patient.php";
+include_once "nav_doctor.php";
 ?>
 
 <!-- setup actionbar -->
@@ -25,20 +25,23 @@ include_once "nav_patient.php";
 
 <!-- custom css -->
 <style type="text/css">
-.btn.disabled {
-	cursor: not-allowed;
-	opacity: 0.1;
-	filter: alpha(opacity=65);
-	-webkit-box-shadow: none;
-	box-shadow: none;
-}
-a.btn.disabled {
-	pointer-events: none;
-}
-.selected {
-	background-color: #009688;
-	color: white;
-}
+	.btn.disabled {
+		cursor: not-allowed;
+		opacity: 0.1;
+		filter: alpha(opacity=65);
+		-webkit-box-shadow: none;
+		box-shadow: none;
+	}
+	a.btn.disabled {
+		pointer-events: none;
+	}
+	.selected {
+		background-color: #009688;
+		color: white;
+	}
+	.no-padding {
+		padding: 0px;
+	}
 </style>
 
 <!-- import function -->
@@ -46,44 +49,93 @@ a.btn.disabled {
 
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content">
-		<div class="mdl-cell mdl-cell--10-col">
-			<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col" style="padding:24px; color: mdl-primary;">
-				<div style="margin-top: 16px; margin-left: 16px; margin-right: auto; width: 25em;">
-					<div style="margin-top: 0px;">
-					<span style="font-size: large; ">หมายเลขนัด: </span>
-						<span id="appId" class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">123-456-789</span>
+		<div class="mdl-cell mdl-cell--10-col mdl-color--white mdl-shadow--2dp mdl-grid" style="padding:24px; color: mdl-primary;">
+			
+			<!-- appointment detail -->
+			<div class="mdl-grid mdl-cell--9-col" style="margin-top: 16px; margin-left: 16px;">
+				<div class="mdl-cell--12-col mdl-grid no-padding">
+					<div class="section__text mdl-cell mdl-cell--4-col">
+						<span style="font-size: large; ">หมายเลขนัด: </span>
 					</div>
-					<br>
-					<div style="margin-top: 0px;">
-						<span style="font-size: large;">HN: </span>
-						<span id="hn" class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">1234-5678</span>
+					<div class="section__text mdl-cell mdl-cell--6-col">
+						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">123-456-789</span>
 					</div>
-					<br>
-					<div style="margin-top: 0px;">
-						<span style="font-size: large;">ชื่อผู้ป่วย: </span>
-						<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">PATIENTNAME SURNAME</span>
-					</div>
-					<br>
-					<div style="margin-top: 0px;">
-						<span style="font-size: large;">เวลา: </span>
-						<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">09.00 - 09.10 น.</span>
-					</div>
-					<br>
 				</div>
 				
-				<center>
-					<button
-          				class="mdl-button mdl-button--raised mdl-button--colored center"
-          				style="margin-top: 16px;"
-          				onClick="showSubmitDiagnoseConfirm()">
-          				บันทึกผลการตรวจ
-          			</button>
-              	</center>
-  			</div>
-  		</div>
-  		<div class="mdl-cell mdl-cell--3-col">
-    		
-    	</div>
+				<div class="mdl-cell--12-col mdl-grid no-padding">
+					<div class="section__text mdl-cell mdl-cell--4-col">
+						<span style="font-size: large; ">แผนก: </span>
+					</div>
+					<div class="section__text mdl-cell mdl-cell--6-col">
+						<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">DEPARTMENTNAME</span>
+					</div>
+				</div>
+				
+				<div class="mdl-cell--12-col mdl-grid no-padding">
+					<div class="section__text mdl-cell mdl-cell--4-col">
+						<span style="font-size: large; ">แพทย์: </span>
+					</div>
+					<div class="section__text mdl-cell mdl-cell--6-col">
+						<span id="docName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">DOCNAME SURNAME</span>
+					</div>
+				</div>
+				
+				<div class="mdl-cell--12-col mdl-grid no-padding">
+					<div class="section__text mdl-cell mdl-cell--4-col">
+						<span style="font-size: large; ">วัน: </span>
+					</div>
+					<div class="section__text mdl-cell mdl-cell--6-col">
+						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">พุธที่ 25 พฤศจิกายน 2015</span>
+					</div>
+				</div>
+				
+				<div class="mdl-cell--12-col mdl-grid no-padding">
+					<div class="section__text mdl-cell mdl-cell--4-col">
+						<span style="font-size: large; ">เวลา: </span>
+					</div>
+					<div class="section__text mdl-cell mdl-cell--6-col">
+						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">09.00 - 09.10 น.</span>
+					</div>
+				</div>
+
+			</div>
+
+			<!-- patient picture -->
+			<div class="mdl-cell--3-col" style="margin: auto;">
+				<img src="dashboard/images/dog.png" style="width: 100%;">
+			</div>
+
+			<!-- patient info from nurse -->
+			<table class="mdl-cell--8-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin-left: auto; margin-right: auto;">
+				<thead>
+					<tr>
+						<th>น้ำหนัก</th>
+						<th>ส่วนสูง</th>
+						<th>อุณหภูมิร่างกาย</th>
+						<th>อัตราการเต้นของหัวใจ</th>
+						<th>ความดันโลหิต</th>
+					</tr>
+				</thead>
+				<tbody>
+					<tr>
+						<td>500</td>
+						<td>500</td>
+						<td>500</td>
+						<td>500</td>
+						<td>500</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<center class="mdl-cell--12-col">
+				<button class="mdl-button mdl-button--raised mdl-button--colored" style="margin-top: 16px;" onClick="showSubmitDiagnoseConfirm()">
+					บันทึกผลการตรวจ
+				</button>
+			</center>
+		</div>
+		<div class="mdl-cell mdl-cell--3-col">
+
+		</div>
 	</div>
 </main>
 
