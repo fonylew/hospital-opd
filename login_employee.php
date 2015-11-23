@@ -59,7 +59,7 @@ include_once "header.php";
             success: function(data) {
                 data = $.parseJSON(data);
                 if (data.userrole == 'doctor') location.replace("doctor_viewAppointment.php");
-                else if (data.userrole == 'nurse') location.replace("nurseIndex.php");
+                else if (data.userrole == 'nurse') location.replace("nurse_index.php");
                 else if (data.userrole == 'staff') location.replace("staff_viewAppointment.php");
                 else if (data.userrole == 'pharmacist') location.replace("pharmacist_viewPrescription.php");
                 else alert("Wrong username and / or password");
