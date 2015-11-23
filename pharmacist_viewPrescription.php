@@ -17,49 +17,111 @@ include_once "nav_pharmacist.php";
 
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content" id = "box1">
-		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid">
-            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-	            <div class = "mdl-grid">
-	            	<div class = "mdl-cell mdl-cell--3-col">
-						<img src="dashboard/images/user.jpg" width="80%" height="80%" border="0" alt=""
-						style="padding:10px; margin-right: auto; margin-left: auto;">			
-	            	</div>
-	            	<div class = "mdl-cell mdl-cell--9-col">
-		            	<div class = "mdl-grid">
-			            	<div class = "mdl-cell mdl-cell--7-col">
-								<h5>Date: </h5>
-								<h5>Name: </h5>
-								<h5>Doctor: </h5>
-							</div>
-							<div class = "mdl-cell mdl-cell--5-col">
-								<h5>Time: </h5>
-								<h5>HN: </h5>
-							</div>
-						</div>
-						<div class = "mdl-cell mdl-cell--12-col">
-							<h5>Medicine list</h5>
-						</div>
-						<div id = "medList" class = "mdl-cell mdl-cell--12-col"></div>
-						
-					</div>
+		<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid">
+            <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone mdl-grid">
+            	<div class = "mdl-cell mdl-cell--3-col">
+					<img src="dashboard/images/user.jpg" width="80%" height="80%" border="0" alt=""
+					style="padding:10px; margin-right: auto; margin-left: auto;">			
+            	</div>
+            	<div class = "mdl-cell mdl-cell--9-col">
+						<h5>Name: </h5>
+						<h5>Doctor: </h5>
+						<h5>Time: </h5>
+						<h5>HN: </h5>
+						<h5>Medicine list</h5>
+					<div id = "medList" class = "mdl-grid"></div>
 				</div>
+				
 
 				<!-- Raised button with ripple -->
-				<button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect">
+				<button id= "acc0" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onClick = "popAccept(this.id)">
 					Accept
 				</button>
-				<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+				<button id = "edi0" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick = "popEdit(this.id)">
 					Edit Prescription
+				</button>
+				<button id = "test" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printAllprescription()">
+					test
+				</button>
+				<button id = "test" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printMedList(this.id)">
+					show detail
 				</button>
 
             </div>
         </div>
+
 	</div>
 
 
+	<script>
+	function printAllprescription(){
+		for (var i = 1; i >= 0; i--) {
+			div1 = document.createElement("div");
+			div1.id = "log"+i;
+			div1.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid";
+			div2 = document.createElement("div");
+			div2.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone";
+			div3 = document.createElement("div");
+			div3.className = "mdl-grid";
 
-	<script>		
-	//function printMedList(){
+			div31 = document.createElement("div");
+			div31.className = "mdl-cell mdl-cell--3-col";
+			propic = document.createElement("img");
+			propic.src = "dashboard/images/user.jpg"
+			propic.style = "width:80%; height:80%;padding:10px;margin-right:auto;margin-left:auto;";
+			div31.appendChild(propic);
+
+			div32 = document.createElement("div");
+			div32.className = "mdl-cell mdl-cell--9-col";
+			n = "Hatsune Muki";
+			d = "this is DName";
+			t = "dd/mm/yyyy hh:mm";
+			number = "xxx-xxxx-xx";
+			hName = document.createElement("h5");
+			name1 = document.createTextNode("Name: "+n);
+			hName.appendChild(name1);
+			hDoctor = document.createElement("h5");
+			doctor = document.createTextNode("Doctor: "+d);
+			hDoctor.appendChild(doctor);
+			hHN = document.createElement("h5");
+			hN = document.createTextNode("HN: "+number);
+			hHN.appendChild(hN);
+			hTime = document.createElement("h5");
+			time = document.createTextNode("Time: " + t);
+			hTime.appendChild(time);
+			div32.appendChild(hName);
+			div32.appendChild(hDoctor);
+			div32.appendChild(hHN);
+			div32.appendChild(hTime);
+
+			div321 = document.createElement("div");
+			//div321.id = "medList";
+			div321.className = "mdl-grid";
+			div32.appendChild(div321);
+
+			btAccept = document.createElement("button");
+			btAccept.id = "acc"+i;
+			btAccept.className = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect";
+			acceptText = document.createTextNode("accept");
+			btAccept.appendChild(acceptText);
+			btEdit = document.createElement("button");
+			btEdit.id = "edi"+i;
+			btEdit.className ="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
+			editText = document.createTextNode("Edit Prescription");
+			btEdit.appendChild(editText);
+			btEdit.onClick="popEdit(this.id)";
+			btAccept.onClick="popAccept(this.id)";
+
+			div3.appendChild(div31);
+			div3.appendChild(div32);
+			div3.appendChild(btAccept);
+			div3.appendChild(btEdit);
+			div2.appendChild(div3);
+			div1.appendChild(div2);
+			document.getElementById("box1").appendChild(div1);
+		};
+	};
+	function printMedList(){
 		
 		for (var i = 2; i >= 0; i--) {
 			nameNode = document.createElement("div");
@@ -81,52 +143,58 @@ include_once "nav_pharmacist.php";
 			document.getElementById("medList").appendChild(detailNode);
 				
 		};
-	//};
-	function addAppointment() {
-			//get all appointments then change data below
-			// for (var i = 0 ; i < 2; i++) {
-				//prepare data
-				appID = document.createElement("h5");
-				appIDt = document.createTextNode("Appointment ID: getAppID>< ");
-				appID.appendChild(appIDt);
-
-				dep = document.createElement("h5");
-				dept = document.createTextNode("Department: asdfjk");
-				dep.appendChild(dept);
-
-				dat = document.createElement("h5");
-				datt = document.createTextNode("Date: xx/yy/zzzz");
-				dat.appendChild(datt);
-
-				tim = document.createElement("h5");
-				timt = document.createTextNode("time: xx:xx");
-				tim.appendChild(timt);
-
-				//create button
-				var bt = document.createElement("button");
-				var bttext = document.createTextNode("More Detail");
-				bt.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
-				bt.appendChild(bttext);
-
-				//prepare node
-				var nnode = document.createElement("div");
-				var node = document.createElement("div");
-				var t = document.createTextNode(appID);
-				nnode.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone";
-				node.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col mdl-grid";
-				
-				//add data to nnode
-				nnode.appendChild(appID);
-				nnode.appendChild(dep);
-				nnode.appendChild(dat);
-				nnode.appendChild(tim);
-				nnode.appendChild(bt);
-
-				//put everything in box1
-				node.appendChild(nnode);
-				document.getElementById("box1").appendChild(node);
-			// };
-		};
+	};
+	function deletePrescription(idIn){
+		document.getElementById("log"+idIn).innerHTML = "";
+		document.getElementById("log"+idIn).className = "";
+	};
+	function popAccept(idIn){
+  		showDialog({
+	    	title: '<span id="span_confirm">Confirmation</span>',
+	    	 // title: 'Confirmation',
+	      	text: '<h5 style">ยืนยันการจ่ายยา?</h5>',
+	      	negative: {
+		        id: 'cancel-button',
+		        title: 'ยกเลิก',
+		        onClick: function() { 
+		          	
+		        }
+		    },
+		    positive: {
+		        id: 'ok-button',
+		        title: 'ตกลง',
+		        onClick: function() {
+		        	del = idIn.substring(3);
+		        	deletePrescription(del);
+		        }
+		    },
+		    cancelable: false,		  	
+		})
+	};
+	function popEdit(idIn){
+		showDialog({
+		    	title: '<span id="span_confirm">Edit Prescription</span>',
+		    	 // title: 'Confirmation',
+		      	text: '<h5 style="float:left;">Allergic problem</h5><input type="text" name="editdesc" style = "height: 100px;width:60%; float:right;"><br>',
+		      	negative: {
+			        id: 'cancel-button',
+			        title: 'ยกเลิก',
+			        onClick: function() { 
+			          
+			        }
+			    },
+			    positive: {
+			        id: 'ok-button',
+			        title: 'ตกลง',
+			        onClick: function() {
+				        	//send allergicproblem to doctor then delete the prescription
+				        	del = idIn.substring(3);
+			        	deletePrescription(del);
+			        }
+			    },
+			    cancelable: false,		  	
+			})
+	};
 	</script>
 
 </main>
