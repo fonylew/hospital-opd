@@ -6,35 +6,35 @@ include_once "header.php";
 <link rel="stylesheet" type="text/css" href="css/patientLogin.css">
 
 <div class="mdl-layout mdl-js-layout mdl-color--primary" align="center">
-    <main class="mdl-layout__content" >
+    <main class="mdl-layout__content mdl-grid" >
 
-        <div class="demo-card-wide mdl-card mdl-shadow--2dp" style="width: 680px;">
-            <div class="mdl-card__title mdl-color--white mdl-color-text--primary mdl-card--border">
+        <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell--8-col mdl-grid">
+            <div class="mdl-card__title mdl-color--white mdl-color-text--primary mdl-card--border mdl-cell--12-col">
                 <center><h2 class="mdl-card__title-text">Register</h2></center>
             </div>
-            <div class="mdl-card__supporting-text">
+            <div class="mdl-card__supporting-text mdl-cell--12-col mdl-grid">
                 <form action="#">
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
                         <input class="mdl-textfield__input" type="text" id="firstname" maxlength="100"/>
                         <label class="mdl-textfield__label" for="firstname">First name</label>
                     </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
                         <input class="mdl-textfield__input" type="text" id="lastname" maxlength="100"/>
                         <label class="mdl-textfield__label" for="lastname">Last name</label>
                     </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
                         <input class="mdl-textfield__input" type="text" id="idnum" maxlength="20"/>
                         <label class="mdl-textfield__label" for="idnum">Identification Number</label>
                     </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
                         <input class="mdl-textfield__input" type="text" id="email" maxlength="50"/>
                         <label class="mdl-textfield__label" for="email">Email</label>
                     </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
                         <textarea class="mdl-textfield__input" type="text" rows="6" id="address"></textarea>
                         <label class="mdl-textfield__label" for="address">Address</label>
                     </div>
-                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+                    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label mdl-cell--6-col">
                         <textarea class="mdl-textfield__input" type="text" rows="6" id="address"></textarea>
                         <label class="mdl-textfield__label" for="address">Symptom</label>
                     </div>

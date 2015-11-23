@@ -10,7 +10,7 @@ include_once "header.php";
 
         <img src="HospitalODP_logo.png" style="width:50%; min-width:21.3em;">
 
-        <div class="mdl-card mdl-shadow--6dp" style="margin-top:5%;width:30%">
+        <div class="mdl-card mdl-shadow--6dp" style="margin-top:7%;">
             <div class="mdl-card__title mdl-color--white mdl-color-text--primary mdl-card--border">
                 <center><h2 class="mdl-card__title-text">Enter One-Time Password</h2></center>
             </div>

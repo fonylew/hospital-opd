@@ -28,7 +28,7 @@ include_once "nav_patient.php";
 				ยืนยันข้อมูลการนัดแพทย์
 			</p>
 		</center>
-		<div class="mdl-shadow--_dp" style="margin-top: 16px; margin-left: auto; margin-right: auto; width: 20em;">
+		<div style="margin-top: 16px; margin-left: auto; margin-right: auto; width: 20em;">
 			<div style="margin-top: 0px;">
 				<span style="font-size: large; ">แผนก: </span>
 	        	<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">ผิวหนัง</span>
