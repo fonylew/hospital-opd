@@ -56,7 +56,7 @@ include_once "nav_doctor.php";
 
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content">
-		<div class="mdl-cell mdl-cell--10-col mdl-color--white mdl-shadow--2dp mdl-grid" style="padding:24px; color: mdl-primary;">
+		<div class="mdl-cell mdl-cell--9-col mdl-color--white mdl-shadow--2dp mdl-grid" style="padding:24px; color: mdl-primary;">
 			
 			<!-- appointment detail -->
 			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">รายละเอียดการนัด</span>
@@ -148,7 +148,7 @@ include_once "nav_doctor.php";
 				<div id="dropdown-menu" class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
 					<div class="form-group" style="margin-top: 0px;">
 						<select id="s1" class="form-control">
-							<option value="-">เลือกประเภทรหัสโรค</option>
+							<option value="-">-- ประเภทรหัสโรค --</option>
 							<option value="type_1">ICD10</option>
 							<option value="type_2">SNOWMED</option>
 							<option value="type_3">DRG</option>
@@ -178,7 +178,21 @@ include_once "nav_doctor.php";
 			<!-- prescription -->
 			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">การสั่งยา</span>
 
-			<div class="mdl-cell--12-col divider" style="margin-top:32px;"></div>
+			<div id="prescription-box" class="mdl-cell--12-col mdl-grid" style="margin: 0; padding: 0;"></div>
+
+			<div class="mdl-cell--12-col mdl-grid">
+				<div class="mdl-cell--4-col" style="margin-left: auto; margin-right: auto;">
+					<center>
+						<button onclick="addPrescription()" class="mdl-button mdl-js-button mdl-button--fab mdl-button--mini-fab" style="background-color: rgba(220,220,220,1); margin-bottom: 10px; ">
+							<i class="material-icons">add</i>
+						</button>
+						<br>
+						<span>เพิ่มชนิดยา</span>
+					</center>
+				</div>
+			</div>
+			
+			<div class="mdl-cell--12-col divider"></div>
 
 			<!-- next appointment -->
 			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">การนัดครั้งถัดไป</span>
@@ -199,7 +213,7 @@ include_once "nav_doctor.php";
 			<div id="dropdown-menu" class="mdl-cell--4-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
 				<div class="form-group" style="margin-top: 0px;">
 					<select id="s2" class="form-control">
-						<option value="-">หน่วย</option>
+						<option value="-">-- หน่วย --</option>
 						<option value="unit_1">วัน</option>
 						<option value="unit_2">สัปดาห์</option>
 						<option value="unit_2">เดือน</option>
