@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.11
+-- version 4.4.12
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 23, 2015 at 02:25 PM
--- Server version: 5.6.26
--- PHP Version: 5.5.27
+-- Host: 127.0.0.1
+-- Generation Time: Nov 19, 2015 at 05:07 AM
+-- Server version: 5.6.25
+-- PHP Version: 5.6.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -23,10 +23,10 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Allergies`
+-- Table structure for table `allergies`
 --
 
-CREATE TABLE IF NOT EXISTS `Allergies` (
+CREATE TABLE IF NOT EXISTS `allergies` (
   `HN` varchar(10) NOT NULL DEFAULT '',
   `allergy` varchar(200) NOT NULL DEFAULT '',
   `note` varchar(100) DEFAULT NULL
@@ -35,27 +35,35 @@ CREATE TABLE IF NOT EXISTS `Allergies` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Appointment`
+-- Table structure for table `appointment`
 --
 
-CREATE TABLE IF NOT EXISTS `Appointment` (
+CREATE TABLE IF NOT EXISTS `appointment` (
   `appoint_id` int(11) NOT NULL,
   `HN` varchar(10) NOT NULL,
-  `appoint_time` date DEFAULT NULL,
-  `docName` varchar(100) DEFAULT NULL,
-  `department` varchar(50) DEFAULT NULL,
-  `doctor_username` varchar(20) DEFAULT NULL,
-  `worktime_date` date NOT NULL,
-  `worktime_starttime` time NOT NULL
+  `appoint_time` datetime DEFAULT NULL,
+  `doctor_username` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `MedicalProblems`
+-- Table structure for table `illness_db`
 --
 
-CREATE TABLE IF NOT EXISTS `MedicalProblems` (
+CREATE TABLE IF NOT EXISTS `illness_db` (
+  `illness_order` int(10) unsigned NOT NULL,
+  `illness_code` varchar(20) NOT NULL,
+  `illness_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `medicalproblems`
+--
+
+CREATE TABLE IF NOT EXISTS `medicalproblems` (
   `HN` varchar(10) NOT NULL DEFAULT '',
   `problem` varchar(200) NOT NULL DEFAULT '',
   `note` varchar(100) DEFAULT NULL
@@ -64,18 +72,18 @@ CREATE TABLE IF NOT EXISTS `MedicalProblems` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `MedicalRecord`
+-- Table structure for table `medicalrecord`
 --
 
-CREATE TABLE IF NOT EXISTS `MedicalRecord` (
+CREATE TABLE IF NOT EXISTS `medicalrecord` (
   `HN` varchar(10) NOT NULL DEFAULT '',
-  `diagnose_datetime` datetime NOT NULL DEFAULT '0000-00-00 00:00:00',
+  `diagnose_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `code` varchar(20) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
-  `weight` int(10) unsigned DEFAULT NULL,
-  `height` int(10) unsigned DEFAULT NULL,
+  `weight` double unsigned NOT NULL DEFAULT '0',
+  `height` double unsigned NOT NULL DEFAULT '0',
   `bloodPressure` varchar(10) DEFAULT NULL,
-  `temperature` int(10) unsigned DEFAULT NULL,
+  `temperature` double unsigned NOT NULL DEFAULT '0',
   `heartRate` int(10) unsigned DEFAULT NULL,
   `nurse_username` varchar(20) DEFAULT NULL,
   `doctor_username` varchar(20) DEFAULT NULL
@@ -84,14 +92,14 @@ CREATE TABLE IF NOT EXISTS `MedicalRecord` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Medicine`
+-- Table structure for table `medicine`
 --
 
-CREATE TABLE IF NOT EXISTS `Medicine` (
+CREATE TABLE IF NOT EXISTS `medicine` (
   `prescript_id` int(11) NOT NULL DEFAULT '0',
   `medrec_HN` varchar(10) NOT NULL DEFAULT '',
   `medrec_datetime` datetime DEFAULT NULL,
-  `mName` varchar(10) NOT NULL DEFAULT '',
+  `med_code` varchar(20) NOT NULL DEFAULT '',
   `howTo` varchar(20) DEFAULT NULL,
   `amount` int(10) unsigned DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -99,10 +107,22 @@ CREATE TABLE IF NOT EXISTS `Medicine` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Patient`
+-- Table structure for table `medicine_db`
 --
 
-CREATE TABLE IF NOT EXISTS `Patient` (
+CREATE TABLE IF NOT EXISTS `medicine_db` (
+  `med_order` int(10) unsigned NOT NULL,
+  `med_code` varchar(20) NOT NULL,
+  `med_name` varchar(200) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `patient`
+--
+
+CREATE TABLE IF NOT EXISTS `patient` (
   `HN` varchar(10) NOT NULL,
   `id` varchar(20) NOT NULL,
   `initial` varchar(10) DEFAULT NULL,
@@ -112,7 +132,6 @@ CREATE TABLE IF NOT EXISTS `Patient` (
   `tel` varchar(15) NOT NULL,
   `email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Dumping data for table `Patient`
 --
@@ -128,10 +147,10 @@ INSERT INTO `Patient` (`HN`, `id`, `initial`, `fName`, `lName`, `address`, `tel`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `Prescription`
+-- Table structure for table `prescription`
 --
 
-CREATE TABLE IF NOT EXISTS `Prescription` (
+CREATE TABLE IF NOT EXISTS `prescription` (
   `prescript_id` int(11) NOT NULL,
   `pharmacist_username` varchar(20) DEFAULT NULL,
   `medrec_HN` varchar(10) DEFAULT NULL,
@@ -141,10 +160,10 @@ CREATE TABLE IF NOT EXISTS `Prescription` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `User`
+-- Table structure for table `user`
 --
 
-CREATE TABLE IF NOT EXISTS `User` (
+CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(20) NOT NULL,
   `password` varchar(20) DEFAULT NULL,
   `id` varchar(20) DEFAULT NULL,
@@ -157,7 +176,6 @@ CREATE TABLE IF NOT EXISTS `User` (
   `userType` varchar(10) NOT NULL,
   `doctor_department` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
 --
 -- Dumping data for table `User`
 --
@@ -171,10 +189,10 @@ INSERT INTO `User` (`username`, `password`, `id`, `tel`, `initial`, `fName`, `lN
 -- --------------------------------------------------------
 
 --
--- Table structure for table `WorkTime`
+-- Table structure for table `worktime`
 --
 
-CREATE TABLE IF NOT EXISTS `WorkTime` (
+CREATE TABLE IF NOT EXISTS `worktime` (
   `worktime_id` int(11) NOT NULL,
   `status` varchar(10) DEFAULT NULL,
   `worktime_date` date DEFAULT NULL,
@@ -188,66 +206,84 @@ CREATE TABLE IF NOT EXISTS `WorkTime` (
 --
 
 --
--- Indexes for table `Allergies`
+-- Indexes for table `allergies`
 --
-ALTER TABLE `Allergies`
+ALTER TABLE `allergies`
   ADD PRIMARY KEY (`HN`,`allergy`);
 
 --
--- Indexes for table `Appointment`
+-- Indexes for table `appointment`
 --
-ALTER TABLE `Appointment`
+ALTER TABLE `appointment`
   ADD PRIMARY KEY (`appoint_id`),
   ADD KEY `HN` (`HN`),
   ADD KEY `doctor_username` (`doctor_username`);
 
 --
--- Indexes for table `MedicalProblems`
+-- Indexes for table `illness_db`
 --
-ALTER TABLE `MedicalProblems`
+ALTER TABLE `illness_db`
+  ADD PRIMARY KEY (`illness_code`),
+  ADD KEY `illness_order` (`illness_order`);
+
+--
+-- Indexes for table `medicalproblems`
+--
+ALTER TABLE `medicalproblems`
   ADD PRIMARY KEY (`HN`,`problem`);
 
 --
--- Indexes for table `MedicalRecord`
+-- Indexes for table `medicalrecord`
 --
-ALTER TABLE `MedicalRecord`
+ALTER TABLE `medicalrecord`
   ADD PRIMARY KEY (`HN`,`diagnose_datetime`),
   ADD KEY `diagnose_datetime` (`diagnose_datetime`),
   ADD KEY `nurse_username` (`nurse_username`),
-  ADD KEY `doctor_username` (`doctor_username`);
+  ADD KEY `doctor_username` (`doctor_username`),
+  ADD KEY `code` (`code`);
 
 --
--- Indexes for table `Medicine`
+-- Indexes for table `medicine`
 --
-ALTER TABLE `Medicine`
-  ADD PRIMARY KEY (`medrec_HN`,`prescript_id`,`mName`),
-  ADD KEY `prescript_id` (`prescript_id`);
+ALTER TABLE `medicine`
+  ADD PRIMARY KEY (`medrec_HN`,`prescript_id`,`med_code`),
+  ADD KEY `prescript_id` (`prescript_id`),
+  ADD KEY `medrec_datetime` (`medrec_datetime`),
+  ADD KEY `med_code` (`med_code`);
 
 --
--- Indexes for table `Patient`
+-- Indexes for table `medicine_db`
 --
-ALTER TABLE `Patient`
+ALTER TABLE `medicine_db`
+  ADD PRIMARY KEY (`med_code`),
+  ADD KEY `medicine_order` (`med_order`);
+
+--
+-- Indexes for table `patient`
+--
+ALTER TABLE `patient`
   ADD PRIMARY KEY (`HN`),
   ADD UNIQUE KEY `uc_PersonID` (`id`,`fName`,`lName`);
 
 --
--- Indexes for table `Prescription`
+-- Indexes for table `prescription`
 --
-ALTER TABLE `Prescription`
+ALTER TABLE `prescription`
   ADD PRIMARY KEY (`prescript_id`),
   ADD KEY `medrec_HN` (`medrec_HN`),
-  ADD KEY `pharmacist_username` (`pharmacist_username`);
+  ADD KEY `pharmacist_username` (`pharmacist_username`),
+  ADD KEY `medrec_datetime` (`medrec_datetime`);
 
 --
--- Indexes for table `User`
+-- Indexes for table `user`
 --
-ALTER TABLE `User`
+ALTER TABLE `user`
   ADD PRIMARY KEY (`username`);
 
 --
--- Indexes for table `WorkTime`
+-- Indexes for table `worktime`
 --
-ALTER TABLE `WorkTime`
+ALTER TABLE `worktime`
   ADD PRIMARY KEY (`worktime_id`),
   ADD KEY `doctor_username` (`doctor_username`);
 
@@ -256,70 +292,84 @@ ALTER TABLE `WorkTime`
 --
 
 --
--- AUTO_INCREMENT for table `Appointment`
+-- AUTO_INCREMENT for table `appointment`
 --
-ALTER TABLE `Appointment`
+ALTER TABLE `appointment`
   MODIFY `appoint_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `Prescription`
+-- AUTO_INCREMENT for table `illness_db`
 --
-ALTER TABLE `Prescription`
+ALTER TABLE `illness_db`
+  MODIFY `illness_order` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `medicine_db`
+--
+ALTER TABLE `medicine_db`
+  MODIFY `med_order` int(10) unsigned NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `prescription`
+--
+ALTER TABLE `prescription`
   MODIFY `prescript_id` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `WorkTime`
+-- AUTO_INCREMENT for table `worktime`
 --
-ALTER TABLE `WorkTime`
+ALTER TABLE `worktime`
   MODIFY `worktime_id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- Constraints for dumped tables
 --
 
 --
--- Constraints for table `Allergies`
+-- Constraints for table `allergies`
 --
-ALTER TABLE `Allergies`
-  ADD CONSTRAINT `allergies_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `Patient` (`HN`);
+ALTER TABLE `allergies`
+  ADD CONSTRAINT `allergies_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`);
 
 --
--- Constraints for table `Appointment`
+-- Constraints for table `appointment`
 --
-ALTER TABLE `Appointment`
-  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `Patient` (`HN`),
-  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`doctor_username`) REFERENCES `User` (`username`);
+ALTER TABLE `appointment`
+  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`),
+  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`);
 
 --
--- Constraints for table `MedicalProblems`
+-- Constraints for table `medicalproblems`
 --
-ALTER TABLE `MedicalProblems`
-  ADD CONSTRAINT `medicalproblems_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `Patient` (`HN`);
+ALTER TABLE `medicalproblems`
+  ADD CONSTRAINT `medicalproblems_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`);
 
 --
--- Constraints for table `MedicalRecord`
+-- Constraints for table `medicalrecord`
 --
-ALTER TABLE `MedicalRecord`
-  ADD CONSTRAINT `medicalrecord_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `Patient` (`HN`),
-  ADD CONSTRAINT `medicalrecord_ibfk_2` FOREIGN KEY (`nurse_username`) REFERENCES `User` (`username`),
-  ADD CONSTRAINT `medicalrecord_ibfk_3` FOREIGN KEY (`doctor_username`) REFERENCES `User` (`username`);
+ALTER TABLE `medicalrecord`
+  ADD CONSTRAINT `medicalrecord_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`),
+  ADD CONSTRAINT `medicalrecord_ibfk_2` FOREIGN KEY (`nurse_username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `medicalrecord_ibfk_3` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `medicalrecord_ibfk_4` FOREIGN KEY (`code`) REFERENCES `illness_db` (`illness_code`);
 
 --
--- Constraints for table `Medicine`
+-- Constraints for table `medicine`
 --
-ALTER TABLE `Medicine`
-  ADD CONSTRAINT `medicine_ibfk_1` FOREIGN KEY (`prescript_id`) REFERENCES `Prescription` (`prescript_id`),
-  ADD CONSTRAINT `medicine_ibfk_2` FOREIGN KEY (`medrec_HN`) REFERENCES `Patient` (`HN`);
+ALTER TABLE `medicine`
+  ADD CONSTRAINT `medicine_ibfk_1` FOREIGN KEY (`prescript_id`) REFERENCES `prescription` (`prescript_id`),
+  ADD CONSTRAINT `medicine_ibfk_2` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
+  ADD CONSTRAINT `medicine_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`diagnose_datetime`),
+  ADD CONSTRAINT `medicine_ibfk_4` FOREIGN KEY (`med_code`) REFERENCES `medicine_db` (`med_code`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
--- Constraints for table `Prescription`
+-- Constraints for table `prescription`
 --
-ALTER TABLE `Prescription`
-  ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`medrec_HN`) REFERENCES `Patient` (`HN`),
-  ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`pharmacist_username`) REFERENCES `User` (`username`);
+ALTER TABLE `prescription`
+  ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
+  ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`pharmacist_username`) REFERENCES `user` (`username`),
+  ADD CONSTRAINT `prescription_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`diagnose_datetime`);
 
 --
--- Constraints for table `WorkTime`
+-- Constraints for table `worktime`
 --
-ALTER TABLE `WorkTime`
-  ADD CONSTRAINT `worktime_ibfk_1` FOREIGN KEY (`doctor_username`) REFERENCES `User` (`username`);
+ALTER TABLE `worktime`
+  ADD CONSTRAINT `worktime_ibfk_1` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

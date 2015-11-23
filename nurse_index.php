@@ -100,24 +100,32 @@ include_once "nav_nurse.php";
     </div> -->
 
   <script>
-    
-    
+    var card = false;
+    function findPatient(){
+        var hn = document.getElementById("hnquery").value;
+        console.log(hn);
+        $.ajax({
+              url: 'control_nurse.php',
+              type: 'POST',
+              data: {search_hn: hn},
+              dataType: "json",
+              success: function(data) {
+                console.log(data);
+                if(card){
+                  //divmain.removeChild(divmain.firstChild);
+                  card = false;
+                }
+                if (!jQuery.isEmptyObject(data)){
+                  searchPatientInfo(data.patient_initial + data.patient_fname, data.patient_lname, data.patient_hn);
+                  card = true;
+                }
+                else{
+                  alert('ไม่พบรหัสประจำตัวผู้ป่วย (HN) นี้ในระบบ');
+                }
 
-    var show = 0;
-    function checkPatientInfo(){
-        if(show == 0){
-          show = 1;
-          console.log(show);
-          console.log(document.getElementById("hnquery").value);
-          searchPatientInfo("นางสาวต้นไม้","ภูเขา","98765");
-        }
-        else if (show == 1){
-          divmain.removeChild(div1);
-          console.log(show);
-          console.log(document.getElementById("hnquery").value);
-          searchPatientInfo("นายขิขิ","ไพไพ","656565");
-        }
-    };
+              }
+        });
+    }
 
     function searchPatientInfo(fname,lname,hn){
       div1 = document.createElement("div");
@@ -225,27 +233,6 @@ include_once "nav_nurse.php";
       }; 
       
     };
-
-    function findPatient(){
-        var hn = document.getElementById("hnquery").value;
-        console.log(hn);
-        $.ajax({
-              url: 'control_nurse.php',
-              type: 'POST',
-              data: {search_hn: hn},
-              dataType: "json",
-              success: function(data) {
-                console.log(data)
-                if (!jQuery.isEmptyObject(data)){
-                  searchPatientInfo(data.patient_initial + data.patient_fname, data.patient_lname, data.patient_hn);
-                }
-                else{
-                  alert('ไม่พบรหัสประจำตัวผู้ป่วย (HN) นี้ในระบบ');
-                }
-
-              }
-        });
-    }
   </script>
   
   </div>
