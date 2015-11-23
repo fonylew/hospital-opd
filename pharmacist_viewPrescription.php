@@ -3,6 +3,11 @@ include_once "header.php";
 include_once "nav_pharmacist.php";
 ?>
 
+<script>
+  //$("#actionbar").empty();
+  $("#actionbar-middle").append("View Prescription");
+</script>
+
 <style>
 	#add-button {
 	      position: fixed;
@@ -29,7 +34,7 @@ include_once "nav_pharmacist.php";
 						<h5>Time: </h5>
 						<h5>HN: </h5>
 						<h5>Medicine list</h5>
-					<div id = "medList" class = "mdl-grid"></div>
+					<div id = "medList0" class = "mdl-grid"></div>
 				</div>
 				
 
@@ -43,7 +48,7 @@ include_once "nav_pharmacist.php";
 				<button id = "test" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printAllprescription()">
 					test
 				</button>
-				<button id = "test" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printMedList(this.id)">
+				<button id = "det0" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printMedList(this.id)">
 					show detail
 				</button>
 
@@ -56,6 +61,7 @@ include_once "nav_pharmacist.php";
 	<script>
 	function printAllprescription(){
 		for (var i = 1; i >= 0; i--) {
+			//document.getElementById("log0").innerHTML="";
 			div1 = document.createElement("div");
 			div1.id = "log"+i;
 			div1.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid";
@@ -78,7 +84,7 @@ include_once "nav_pharmacist.php";
 			t = "dd/mm/yyyy hh:mm";
 			number = "xxx-xxxx-xx";
 			hName = document.createElement("h5");
-			name1 = document.createTextNode("Name: "+n);
+			name1 = document.createTextNode("Name: "+n+i);
 			hName.appendChild(name1);
 			hDoctor = document.createElement("h5");
 			doctor = document.createTextNode("Doctor: "+d);
@@ -89,13 +95,17 @@ include_once "nav_pharmacist.php";
 			hTime = document.createElement("h5");
 			time = document.createTextNode("Time: " + t);
 			hTime.appendChild(time);
+			hMedList = document.createElement("h5");
+			medListText = document.createTextNode("Medicine List");
+			hMedList.appendChild(medListText);
 			div32.appendChild(hName);
 			div32.appendChild(hDoctor);
 			div32.appendChild(hHN);
 			div32.appendChild(hTime);
+			div32.appendChild(hMedList);
 
 			div321 = document.createElement("div");
-			//div321.id = "medList";
+			div321.id = "medList"+i;
 			div321.className = "mdl-grid";
 			div32.appendChild(div321);
 
@@ -103,31 +113,44 @@ include_once "nav_pharmacist.php";
 			btAccept.id = "acc"+i;
 			btAccept.className = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect";
 			acceptText = document.createTextNode("accept");
+			btAccept.onclick="popAccept2(this.id)";
 			btAccept.appendChild(acceptText);
+
 			btEdit = document.createElement("button");
 			btEdit.id = "edi"+i;
 			btEdit.className ="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
 			editText = document.createTextNode("Edit Prescription");
 			btEdit.appendChild(editText);
-			btEdit.onClick="popEdit(this.id)";
-			btAccept.onClick="popAccept(this.id)";
+			btEdit.onclick="popEdit("+btEdit.id+")";
+			
+			//btAccept.addEventListener("click", popAccept(btAccept.id));
+			btDetail = document.createElement("button");
+			btDetail.id = "det"+i;
+			btDetail.className ="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
+			detailText = document.createTextNode("Show Detail");
+			btDetail.appendChild(detailText);
+			btDetail.onclick="printMedList(this.id)";
+			
 
 			div3.appendChild(div31);
 			div3.appendChild(div32);
 			div3.appendChild(btAccept);
 			div3.appendChild(btEdit);
+			div3.appendChild(btDetail);
+
 			div2.appendChild(div3);
 			div1.appendChild(div2);
 			document.getElementById("box1").appendChild(div1);
 		};
 	};
-	function printMedList(){
-		
+	function printMedList(nid){
+		id = nid.substring(3);
+		document.getElementById("medList"+id).innerHTML = "";
 		for (var i = 2; i >= 0; i--) {
 			nameNode = document.createElement("div");
-			//nameNode.className = "mdl-cell mdl-cell--2-col";
+			nameNode.className = "mdl-cell mdl-cell--2-col";
 			detailNode = document.createElement("div");
-			//detailNode.className = "mdl-cell mdl-cell--8-col";
+			detailNode.className = "mdl-cell mdl-cell--10-col";
 
 			medF = document.createElement("h6");
 			medName = document.createTextNode("Med"+i);
@@ -139,8 +162,8 @@ include_once "nav_pharmacist.php";
 			detailF.appendChild(detaill);
 			detailNode.appendChild(detailF);
 
-			document.getElementById("medList").appendChild(nameNode);
-			document.getElementById("medList").appendChild(detailNode);
+			document.getElementById("medList"+id).appendChild(nameNode);
+			document.getElementById("medList"+id).appendChild(detailNode);
 				
 		};
 	};
