@@ -55,6 +55,9 @@ include_once "header.php";
     if(otp == document.getElementById("otp").value){
       location.replace('index.php');
     }
+    else{
+      alert('รหัส OTP ไม่ถูกต้อง');
+    }
   }
 
 </script>

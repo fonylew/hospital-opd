@@ -54,6 +54,7 @@ include_once "header.php";
                 }
                 else{
                   console.log('no such patient');
+                  alert('ไม่พบรหัสประจำตัวผู้ป่วย (HN) นี้ในระบบ');
                 }
               }
           });

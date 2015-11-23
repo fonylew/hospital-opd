@@ -50,7 +50,7 @@ include_once "nav_nurse.php";
       <div class="mdl-card__supporting-text" align="center" >
         <form action="#">
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="hnquery" maxlength="10"/>
+            <input class="mdl-textfield__input" type="text" id="hnquery" maxlength="20"/>
             <label class="mdl-textfield__label" for="hn">HN</label>
           </div>
         </form>
@@ -58,7 +58,7 @@ include_once "nav_nurse.php";
 
       <center>
         <button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                onClick = "checkPatientInfo()" 
+                onClick = "findPatient()" 
                 id="search-button" >
           <i class="material-icons" style = "padding-right:3px">search</i> ค้นหา
         </button>
@@ -100,23 +100,26 @@ include_once "nav_nurse.php";
     </div> -->
 
   <script>
+    
+    
+
     var show = 0;
     function checkPatientInfo(){
         if(show == 0){
           show = 1;
           console.log(show);
           console.log(document.getElementById("hnquery").value);
-          searchPatientInfo();
+          searchPatientInfo("นางสาวต้นไม้","ภูเขา","98765");
         }
         else if (show == 1){
           divmain.removeChild(div1);
           console.log(show);
           console.log(document.getElementById("hnquery").value);
-          searchPatientInfo();
+          searchPatientInfo("นายขิขิ","ไพไพ","656565");
         }
     };
 
-    function searchPatientInfo(){
+    function searchPatientInfo(fname,lname,hn){
       div1 = document.createElement("div");
       div2_section__text = document.createElement("div");
       div1.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--7-col mdl-grid";
@@ -159,7 +162,7 @@ include_once "nav_nurse.php";
       span_firstname.appendChild(text_firstname);
       span_firstname_value= document.createElement("span");
       span_firstname_value.id = "span_normal";
-      text_firstname_value = document.createTextNode("Asdf");
+      text_firstname_value = document.createTextNode(fname);
       span_firstname_value.appendChild(text_firstname_value);
       span_firstname_value.appendChild(br1);
       span_firstname_value.appendChild(br2);
@@ -170,7 +173,7 @@ include_once "nav_nurse.php";
       span_lastname.appendChild(text_lastname);
       span_lastname_value= document.createElement("span");
       span_lastname_value.id = "span_normal";
-      text_lastname_value = document.createTextNode("Qwerty");
+      text_lastname_value = document.createTextNode(lname);
       span_lastname_value.appendChild(text_lastname_value);
       span_lastname_value.appendChild(br3);
       span_lastname_value.appendChild(br4);
@@ -182,7 +185,7 @@ include_once "nav_nurse.php";
       span_hn.appendChild(text_hn);
       span_hn_value= document.createElement("span");
       span_hn_value.id = "span_normal";
-      text_hn_value = document.createTextNode(document.getElementById("hnquery").value);
+      text_hn_value = document.createTextNode(hn);
       span_hn_value.appendChild(text_hn_value);
       span_hn_value.appendChild(br5);
       span_hn_value.appendChild(br6);
@@ -222,6 +225,27 @@ include_once "nav_nurse.php";
       }; 
       
     };
+
+    function findPatient(){
+        var hn = document.getElementById("hnquery").value;
+        console.log(hn);
+        $.ajax({
+              url: 'control_nurse.php',
+              type: 'POST',
+              data: {search_hn: hn},
+              dataType: "json",
+              success: function(data) {
+                console.log(data)
+                if (!jQuery.isEmptyObject(data)){
+                  searchPatientInfo(data.patient_initial + data.patient_fname, data.patient_lname, data.patient_hn);
+                }
+                else{
+                  alert('ไม่พบรหัสประจำตัวผู้ป่วย (HN) นี้ในระบบ');
+                }
+
+              }
+        });
+    }
   </script>
   
   </div>
