@@ -46,3 +46,14 @@ function showSubmitDiagnoseConfirm(){
 		cancelable: true,
 	});
 }
+
+function onToggleNextApp(){
+	console.log("toggle");
+	if($('#next-app-checkbox').checked){
+		console.log("check");
+
+	} else {
+		console.log("uncheck");
+		
+	}
+}

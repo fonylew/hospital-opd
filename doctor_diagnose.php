@@ -58,9 +58,8 @@ include_once "nav_doctor.php";
 	<div class="mdl-grid page-content">
 		<div class="mdl-cell mdl-cell--10-col mdl-color--white mdl-shadow--2dp mdl-grid" style="padding:24px; color: mdl-primary;">
 			
-			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">รายละเอียดการนัด</span>
-
 			<!-- appointment detail -->
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">รายละเอียดการนัด</span>
 			<div class="mdl-grid mdl-cell--9-col" style="margin-left: 16px; padding-bottom: 0px;">
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
@@ -116,9 +115,8 @@ include_once "nav_doctor.php";
 
 			<div class="mdl-cell--12-col divider"></div>
 
-			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em; margin-bottom: 16px;">การตรวจร่างกายเบื้องต้น</span>
-
 			<!-- patient info from nurse -->
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em; margin-bottom: 16px;">การตรวจร่างกายเบื้องต้น</span>
 			<div class="mdl-cell--12-col" style="overflow: auto;">
 				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: auto; margin-left: auto; margin-right: auto;">
 					<thead>
@@ -144,17 +142,16 @@ include_once "nav_doctor.php";
 
 			<div class="mdl-cell--12-col divider" style="margin-top:32px;"></div>
 
-			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">บันทึกการตรวจ</span>
-
 			<!-- diagnose memo -->
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">บันทึกการตรวจ</span>
 			<div class="mdl-cell--12-col mdl-grid" style="margin-left: auto; margin-right: auto; padding-top: 0px;">
 				<div id="dropdown-menu" class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
 					<div class="form-group" style="margin-top: 0px;">
 						<select id="s1" class="form-control">
-							<option value="department_0">เลือกประเภทรหัสโรค</option>
-							<option value="department_1">ICD10</option>
-							<option value="department_2">SNOWMED</option>
-							<option value="department_3">DRG</option>
+							<option value="-">เลือกประเภทรหัสโรค</option>
+							<option value="type_1">ICD10</option>
+							<option value="type_2">SNOWMED</option>
+							<option value="type_3">DRG</option>
 						</select>
 					</div>
 				</div>
@@ -178,12 +175,37 @@ include_once "nav_doctor.php";
 
 			<div class="mdl-cell--12-col divider" style="margin-top:32px;"></div>
 
+			<!-- prescription -->
 			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">การสั่งยา</span>
 
 			<div class="mdl-cell--12-col divider" style="margin-top:32px;"></div>
 
+			<!-- next appointment -->
 			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">การนัดครั้งถัดไป</span>
-
+			<div class="mdl-cell--3-col" style="margin: auto; padding-top: 16px; padding-left: 32px;">
+				<label class="mdl-checkbox mdl-js-checkbox mdl-js-ripple-effect" onchange="onToggleNextApp(this)" for="next-app-checkbox">
+					<input type="checkbox" id="next-app-checkbox" class="mdl-checkbox__input">
+					<span style="font-size: medium; font-weight: 300;">นัดครั้งถัดไป</span>
+				</label>
+			</div>
+			<div class="mdl-cell--4-col" style="margin-left: auto; margin-right: auto;">
+				<form action="#">
+					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+						<input class="mdl-textfield__input" type="text" id="code" />
+						<label class="mdl-textfield__label" for="username" id="user-label">จำนวน</label>
+					</div>
+				</form>
+			</div>
+			<div id="dropdown-menu" class="mdl-cell--4-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
+				<div class="form-group" style="margin-top: 0px;">
+					<select id="s2" class="form-control">
+						<option value="-">หน่วย</option>
+						<option value="unit_1">วัน</option>
+						<option value="unit_2">สัปดาห์</option>
+						<option value="unit_2">เดือน</option>
+					</select>
+				</div>
+			</div>
 
 
 			<center class="mdl-cell--12-col" style="margin-top: 16px;">
