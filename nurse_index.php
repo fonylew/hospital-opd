@@ -5,7 +5,7 @@ include_once "nav_nurse.php";
 
 <script>
   //$("#actionbar").empty();
-  $("#actionbar-middle").append("Search Patient");
+  $("#actionbar-middle").append("<div style=\"font-size:x-large\">ค้นหาผู้ป่วย</div>");
 </script>
 
 
@@ -31,44 +31,47 @@ include_once "nav_nurse.php";
   margin-left: 0;
   margin-right: 1;
 }
+.demo-card-wide.mdl-card {
+  width: 512px;
+}
 </style>
 
 <main class="mdl-layout__content">
   <div class="mdl-grid page-content" id="divmain">
 
     <!-- Search Patient -->
-    <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--4-col mdl-grid">
-      <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+    <div class="demo-card-wide mdl-card mdl-shadow--2dp" 
+          style="padding:24px; color: mdl-primary;">
 
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">Search Patient</h2>
-        </div>
+      <p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
+        ค้นหาผู้ป่วย
+      </p>
 
-        <div class="mdl-card__supporting-text">
-          <form action="#">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="hnquery" maxlength="10"/>
-              <label class="mdl-textfield__label" for="hn">HN</label>
-            </div>
-          </form>
-        </div>
+      <div class="mdl-card__supporting-text" align="center" >
+        <form action="#">
+          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+            <input class="mdl-textfield__input" type="text" id="hnquery" maxlength="10"/>
+            <label class="mdl-textfield__label" for="hn">HN</label>
+          </div>
+        </form>
+      </div>
 
-      
+      <center>
         <button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
                 onClick = "checkPatientInfo()" 
                 id="search-button" >
-          <i class="material-icons" style = "padding-right:3px">search</i> search
+          <i class="material-icons" style = "padding-right:3px">search</i> ค้นหา
         </button>
-      </div>
+      </center>
     </div>
 
-  <!-- Patient Information -->
-<!--   <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid">
-    <div class="section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
-        
-        <div class="mdl-card__title">
-          <h2 class="mdl-card__title-text">Patient</h2>
-        </div>
+    <!-- Patient Information HTML Original-->
+<!--     <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--7-col mdl-grid">
+      <div class="section__text mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
+           
+        <p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
+          Search Patient
+        </p>
 
         <section class="section--footer mdl-color--white mdl-grid"> 
           <div class = "mdl-cell mdl-cell--3-col">
@@ -86,12 +89,15 @@ include_once "nav_nurse.php";
           </div>
         </section>
 
-    </div>
-    <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-            id="addInfo">
-        Add General Information
-    </button>
-  </div> -->
+        <center>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+                  id="addInfo">
+              Add General Information
+          </button>
+        </center>
+      </div>
+
+    </div> -->
 
   <script>
     var show = 0;
@@ -113,16 +119,14 @@ include_once "nav_nurse.php";
     function searchPatientInfo(){
       div1 = document.createElement("div");
       div2_section__text = document.createElement("div");
-      div1.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid";
-      div2_section__text.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone";
+      div1.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--7-col mdl-grid";
+      div2_section__text.className = "section__text mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone";
       
-      div3_card_title = document.createElement("div");
-      div3_card_title.className = "mdl-card__title";
-      h2 = document.createElement("h2");
-      h2.className = "mdl-card__title-text";
-      text1_head_patient = document.createTextNode("Patient");
-      h2.appendChild(text1_head_patient);
-      div3_card_title.appendChild(h2);
+      div3_card_title = document.createElement("p");
+      div3_card_title.className = "mdl-color-text--primary mdl-typography--display-1";
+      div3_card_title.setAttribute('align' , 'center');
+      text1_head_patient = document.createTextNode("ข้อมูลผู้ป่วย");
+      div3_card_title.appendChild(text1_head_patient);
 
       section = document.createElement("section");
       section.className = "section--footer mdl-color--white mdl-grid";
@@ -151,7 +155,7 @@ include_once "nav_nurse.php";
 
       span_firstname= document.createElement("span");
       span_firstname.id = "span_head";
-      text_firstname = document.createTextNode("Firstname: ");
+      text_firstname = document.createTextNode("ชื่อจริง: ");
       span_firstname.appendChild(text_firstname);
       span_firstname_value= document.createElement("span");
       span_firstname_value.id = "span_normal";
@@ -162,7 +166,7 @@ include_once "nav_nurse.php";
 
       span_lastname= document.createElement("span");
       span_lastname.id = "span_head";
-      text_lastname = document.createTextNode("Lastname: ");
+      text_lastname = document.createTextNode("นามสกุล: ");
       span_lastname.appendChild(text_lastname);
       span_lastname_value= document.createElement("span");
       span_lastname_value.id = "span_normal";
@@ -193,18 +197,23 @@ include_once "nav_nurse.php";
       section.appendChild(div4_img);
       section.appendChild(div5_info);
 
+      center_0 = document.createElement('center');
+
       button = document.createElement("button");
       button.className = "mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect";
       button.id = "addInfo";
 
-      button_text = document.createTextNode("Add General Information");
+      button_text = document.createTextNode("เพิ่มข้อมูลพื้นฐานของผู้ป่วย");
       button.appendChild(button_text);
+
+      center_0.appendChild(button);
 
       div2_section__text.appendChild(div3_card_title);
       div2_section__text.appendChild(section);
+      div2_section__text.appendChild(center_0);
 
       div1.appendChild(div2_section__text);
-      div1.appendChild(button);
+      // div1.appendChild(button);
 
       document.getElementById("divmain").appendChild(div1);
 
