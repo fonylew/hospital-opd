@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.12
+-- version 4.4.11
 -- http://www.phpmyadmin.net
 --
--- Host: 127.0.0.1
--- Generation Time: Nov 19, 2015 at 05:07 AM
--- Server version: 5.6.25
--- PHP Version: 5.6.11
+-- Host: localhost
+-- Generation Time: Nov 23, 2015 at 04:45 PM
+-- Server version: 5.6.26
+-- PHP Version: 5.5.27
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -44,6 +44,34 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `appoint_time` datetime DEFAULT NULL,
   `doctor_username` varchar(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `department_db`
+--
+
+CREATE TABLE IF NOT EXISTS `department_db` (
+  `department_order` int(11) NOT NULL,
+  `department_name` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `department_db`
+--
+
+INSERT INTO `department_db` (`department_order`, `department_name`) VALUES
+(0, 'ไม่ระบุ'),
+(1, 'กุมารเวช'),
+(2, 'จิตเวช'),
+(3, 'ต่อมไร้ท่อ'),
+(4, 'ทันตกรรม'),
+(5, 'ผิวหนัง'),
+(6, 'ระบบทางเดินหายใจและปอด'),
+(7, 'รังสีรักษา'),
+(8, 'สูตินารีเวช'),
+(9, 'หู คอ จมูก'),
+(10, 'อายุรเวช');
 
 -- --------------------------------------------------------
 
@@ -132,11 +160,12 @@ CREATE TABLE IF NOT EXISTS `patient` (
   `tel` varchar(15) NOT NULL,
   `email` varchar(50) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Dumping data for table `Patient`
+-- Dumping data for table `patient`
 --
 
-INSERT INTO `Patient` (`HN`, `id`, `initial`, `fName`, `lName`, `address`, `tel`, `email`) VALUES
+INSERT INTO `patient` (`HN`, `id`, `initial`, `fName`, `lName`, `address`, `tel`, `email`) VALUES
 ('123', '123456789', 'นาย', 'ทดสอบ', 'จริงๆนะ', 'กทมม', '023339999', 'test@aa'),
 ('123456', '8982348211425', 'เด็กหญิง', 'หนูป่วย', 'ช่วยด้วย', 'บ้านบางแค', '0842338568', 'helpme@tee.com'),
 ('555555', '11233499859', 'นางสาว', 'สวยสมร', 'ชมชื่น', 'ถ.สีลม', '0935529943', 'suay@hotmail.com'),
@@ -174,17 +203,18 @@ CREATE TABLE IF NOT EXISTS `user` (
   `address` varchar(200) DEFAULT NULL,
   `email` varchar(50) DEFAULT NULL,
   `userType` varchar(10) NOT NULL,
-  `doctor_department` varchar(50) DEFAULT NULL
+  `department_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
 --
--- Dumping data for table `User`
+-- Dumping data for table `user`
 --
 
-INSERT INTO `User` (`username`, `password`, `id`, `tel`, `initial`, `fName`, `lName`, `address`, `email`, `userType`, `doctor_department`) VALUES
-('doctor01', '1a1dc91c907325c69271', 'test01', 'test01', 'Mr.', 'Doctor', 'First', 'test01', 'test01', 'doctor', 'test01'),
-('nurse01', '1a1dc91c907325c69271', 'test02', 'test02', 'Mrs.', 'Nurse', 'First', 'test02', 'test02', 'nurse', NULL),
-('pharmacist01', '1a1dc91c907325c69271', 'test04', 'test04', 'Mr.', 'Pharmacist', 'First', 'test04', 'test04', 'pharmacist', NULL),
-('staff01', '1a1dc91c907325c69271', 'test03', 'test03', 'Mr.', 'Staff', 'First', 'test03', 'test03', 'staff', NULL);
+INSERT INTO `user` (`username`, `password`, `id`, `tel`, `initial`, `fName`, `lName`, `address`, `email`, `userType`, `department_id`) VALUES
+('doctor01', '1a1dc91c907325c69271', 'test01', 'test01', 'Mr.', 'Doctor', 'First', 'test01', 'test01', 'doctor', 0),
+('nurse01', '1a1dc91c907325c69271', 'test02', 'test02', 'Mrs.', 'Nurse', 'First', 'test02', 'test02', 'nurse', 0),
+('pharmacist01', '1a1dc91c907325c69271', 'test04', 'test04', 'Mr.', 'Pharmacist', 'First', 'test04', 'test04', 'pharmacist', 0),
+('staff01', '1a1dc91c907325c69271', 'test03', 'test03', 'Mr.', 'Staff', 'First', 'test03', 'test03', 'staff', 0);
 
 -- --------------------------------------------------------
 
@@ -218,6 +248,12 @@ ALTER TABLE `appointment`
   ADD PRIMARY KEY (`appoint_id`),
   ADD KEY `HN` (`HN`),
   ADD KEY `doctor_username` (`doctor_username`);
+
+--
+-- Indexes for table `department_db`
+--
+ALTER TABLE `department_db`
+  ADD PRIMARY KEY (`department_order`);
 
 --
 -- Indexes for table `illness_db`
@@ -278,7 +314,8 @@ ALTER TABLE `prescription`
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`username`);
+  ADD PRIMARY KEY (`username`),
+  ADD KEY `department_id` (`department_id`);
 
 --
 -- Indexes for table `worktime`
@@ -364,6 +401,12 @@ ALTER TABLE `prescription`
   ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
   ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`pharmacist_username`) REFERENCES `user` (`username`),
   ADD CONSTRAINT `prescription_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`diagnose_datetime`);
+
+--
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department_db` (`department_order`);
 
 --
 -- Constraints for table `worktime`
