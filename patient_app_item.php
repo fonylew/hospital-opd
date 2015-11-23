@@ -48,7 +48,7 @@
 
 	<div class="section__text mdl-cell mdl-cell--12-col">
 		<center>
-			<button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
+			<button onclick="moreDetail()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect">
 				More Detail
 			</button>
 		</center>
