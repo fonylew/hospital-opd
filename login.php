@@ -25,9 +25,9 @@ include_once "header.php";
                 </form>
             </div>
             <div class="mdl-card__actions">
-                <center><a onClick="popupOTP()" 
+                <center><a  onClick="checkUser()" 
                             class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                            style="width:90%; align:center;" href="loginotp.php">Log in</a></center>
+                            style="width:90%; align:center;">Log in</a></center>
             </div>
             
         </div>
@@ -39,69 +39,25 @@ include_once "header.php";
 </div>
 
 <script>
-//onClick="checkUser();
-    // var otp = Math.floor(100000 + Math.random() * 900000);
-    // console.log(otp);
 
-    
-/*    
-    function login(){
-        $("user-label").empty();
-        $("user-label").append("OTP");
-    }
-    */
-
-    // function popupOTP(){
-    //     //login();
-    // window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
-    //     return false;
-    // }
-
-   //  document.getElementById("checkotp").onclick = function () {
-   //      //Mobile Phone Number
-   //              //OTP Popup Windows
-   //      window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
-
-   //      //Check OTP Dialog
-   //      showDialog({
-   //        title: 'Enter One-Time Password',
-   //        text: '<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">'+
-   //                  '<input class="mdl-textfield__input" type="text" id="otp" maxlength="10"/>'+
-   //                  '<label class="mdl-textfield__label" for="otp">One-Time Password</label>'+
-   //              '</div>',
-   //          negative: {
-   //              id: 'cancel-button',
-   //              title: 'Back',
-   //              onClick: function() { 
-                  
-   //              }
-   //          },
-   //          positive: {
-   //              id: 'ok-button',
-   //              title: 'OK',
-   //              onClick: function() {
-   //                  //Check OTP
-   //                  if(otp == document.getElementById("otp").value){
-   //                      location.href = "index.php";
-   //                  }
-
-   //              }
-   //          },
-   //      })
-   // };
-
-/*
-    $( "form" ).submit(function( event ) {
-        popupOTP();
-        //checkUser();
-    });
-*/
-        
-/*
     function checkUser(){
-        if ($("#username").val()=='00') popupOTP();
+        var hn = document.getElementById("username").value;
+        $.ajax({
+              url: 'control_patient.php',
+              type: 'POST',
+              data: {login_hn: hn},
+              dataType: "json",
+              success: function(data) {
+                if(data == hn||hn=='00'){
+                  console.log('true');
+                  location.replace('login_otp.php');
+                }
+                else{
+                  console.log('no such patient');
+                }
+              }
+          });
     }
-*/
 
 </script>
 

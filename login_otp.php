@@ -29,7 +29,7 @@ include_once "header.php";
                    href="login.php">Back</a>
                 <a style="color: rgb(255,171,64)"
                   class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                   href="loginotp.php">Resend OTP</a>
+                   onClick="generateOTP()">Resend OTP</a>
                 <button class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
                  onclick="checkOTP()">Login</button>
             </div>
@@ -39,24 +39,23 @@ include_once "header.php";
 </div>
 
 <script>
-var otp = Math.floor(100000 + Math.random() * 900000);
-console.log(otp);
-window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
+  var otp;
 
-function checkOTP(){
-  if(otp == document.getElementById("otp").value){
-    location.href = "index.php";
+  $( document ).ready(function() {
+    generateOTP();
+  });
+
+  function generateOTP(){
+    otp = Math.floor(100000 + Math.random() * 900000);
+    console.log(otp);
+    window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
   }
-}
-    //     //login();
-    // window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
-    //     return false;
-    // }
-  //Check OTP
-  // if(otp == document.getElementById("otp").value){
-  //   location.href = "index.php";
-  // }
 
+  function checkOTP(){
+    if(otp == document.getElementById("otp").value){
+      location.replace('index.php');
+    }
+  }
 
 </script>
 
