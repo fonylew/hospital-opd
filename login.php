@@ -71,7 +71,6 @@ include_once "header.php";
         Outcube© 2015
     </p></center>   
 
-    <script src="js/material.js"></script>
     <script src="js/material.min.js"></script>
     <script> $.material.init(); </script>
 </footer>

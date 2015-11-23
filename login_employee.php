@@ -43,12 +43,13 @@ include_once "header.php";
     width:100%;
     color:white;">
         Outcube© 2015
-    </p></center>   
+    </p></center>
+    
+    <script src="js/material.min.js"></script>
 </footer>
 
 
 <script>
-
     function checkLogin() {
         $.ajax({
             url: 'control_general.php',
