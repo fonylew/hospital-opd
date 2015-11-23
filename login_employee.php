@@ -55,9 +55,8 @@ include_once "header.php";
             url: 'control_general.php',
             type: 'POST',
             data: {login_username: document.getElementById("username").value,login_password: document.getElementById("password").value},
-            datatype: "json",
+            dataType: "json",
             success: function(data) {
-                data = $.parseJSON(data);
                 if (data.userrole == 'doctor') location.replace("doctor_viewAppointment.php");
                 else if (data.userrole == 'nurse') location.replace("nurse_index.php");
                 else if (data.userrole == 'staff') location.replace("staff_viewAppointment.php");

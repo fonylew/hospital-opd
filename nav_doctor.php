@@ -57,7 +57,6 @@
           	url: 'control_general.php',
           	type: 'POST',
           	data: {employee_logout: 'logout'},
-          	datatype: "json",
           	success: function(data) {
              	if (data = 'logout') location.replace("login_employee.php")
           	}	
