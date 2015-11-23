@@ -23,7 +23,10 @@ include_once "nav_staff.php";
 <script type="text/javascript">
 	$("#actionbar-middle").append("<div style=\"font-size:x-large\">ใบนัดแพทย์</div>");
 	
-	$("#actionbar-right").append("<button id=\"demo-menu-lower-right\"class=\"mdl-button mdl-js-button mdl-button--icon\"><i class=\"material-icons\">filter_list</i></button><ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"for=\"demo-menu-lower-right\"><div class=\"mdl-cell mdl-cell--4-col\" style=\"display: inline-block; padding: 16px; min-width: 260px; margin-left: auto; margin-right: auto;\"><div class=\"datepicker datepicker-inline\" style=\"color:#666666;margin-left: auto; margin-right: auto;\"></div><center>\<button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" style=\"margin-right:1em\">Clear</button><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\">Apply</button></center></div></ul>");
+	$("#actionbar-right").append("<button id=\"demo-menu-lower-right\"class=\"mdl-button mdl-js-button mdl-button--icon\"><i class=\"material-icons\">filter_list</i></button><ul class=\"mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect\"for=\"demo-menu-lower-right\">"+
+		"<div class=\"mdl-grid\"> <div class=\"mdl-cell mdl-cell--9-col\"style=\"min-width:300px ;padding: 10px;display: inline-block;\"> <!-- Select Date --> <div class=\"mdl-cell mdl-cell--4-col mdl-shadow--2dp\" style=\"display: inline-block; padding: 16px; min-width: 260px; margin-right: auto;\"> <!-- calendar --> <div class=\"datepicker datepicker-inline\" style=\"color:#666666; margin-left: auto; margin-right: auto;\"></div> </div> <!-- Select Doctor --> <div class=\"mdl-cell mdl-cell--4-col mdl-shadow--2dp\"style=\"margin-left:10px; position:relative; top:0px; height:300px; display: inline-block; min-width:260px;\"> <div id=\"dropdown-menu\" style=\"color:#666666; position: relative; width: 90%; margin-left: auto; margin-right: auto;\"> <div class=\"form-group\"> <label for=\"s1\">เลือกแผนกที่ต้องการเข้าตรวจ</label> <select id=\"s1\" class=\"form-control\"> <option value=\"department_0\">โปรดเลือกแผนก</option> <option value=\"department_1\">DEPARTMENT_NAME1</option> </select> </div> <br> <div class=\"form-group\"> <label for=\"s1\">เลือกแพทย์ที่ต้องการนัด (ไม่จำเป็นต้องเลือก)</label> <select id=\"s1\" class=\"form-control\"> <option value=\"doc_id_จ\">ไม่ระบุแพทย์</option> <option value=\"doc_id_1\">Dr. NAME1 SURMANE1</option> <option value=\"doc_id_2\">Dr. NAME2 SURMANE2</option> </select> </div> </div> </div> <center> <button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" style=\"margin-right:1em\"> Clear </button> <button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\"> Apply </button> </center> </div> </div>"+"</ul>");
+
+	//<div class=\"mdl-cell mdl-cell--4-col\" style=\"display: inline-block; padding: 16px; min-width: 260px; margin-left: auto; margin-right: auto;\"><div class=\"datepicker datepicker-inline\" style=\"color:#666666;margin-left: auto; margin-right: auto;\"></div><center>\<button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect\" style=\"margin-right:1em\">Clear</button><button class=\"mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent\">Apply</button></center></div>
 </script>
 
 <!-- import function -->
@@ -49,25 +52,24 @@ include_once "nav_staff.php";
     				style="padding:24px; color: mdl-primary;">
 
 				<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
-					Test Filter Area
+					Test Filter Area (Bug T^T)
 				</p>
 
 				<!-- In the Filter Menu -->
 				<div class="mdl-grid">
 					<div class="mdl-cell mdl-cell--9-col mdl-shadow--2dp" 
-							style="padding: 10px;display: inline-block;">
+							style="min-width:300px ;padding: 10px;display: inline-block;">
 						
 						<!-- Select Date -->
 						<div class="mdl-cell mdl-cell--4-col mdl-shadow--2dp" style="display: inline-block; padding: 16px; min-width: 260px; margin-right: auto;">
 							<!-- calendar -->
-							<div class="datepicker datepicker-inline" style="margin-left: auto; margin-right: auto;"></div>
-							
+							<div class="datepicker datepicker-inline" style="color:#666666; margin-left: auto; margin-right: auto;"></div>
 						</div>
 
 						<!-- Select Doctor -->
 						<div class="mdl-cell mdl-cell--4-col mdl-shadow--2dp" 
-								style="position:static; top:10px;height:300px;display: inline-block;  min-width: 260px;">
-							<div id="dropdown-menu" style="position: relative; width: 90%;margin-left: auto; margin-right: auto;">
+								style="margin-left:10px; position:relative; top:0px; height:300px; display: inline-block; min-width:260px;">
+							<div id="dropdown-menu" style="color:#666666; position: relative; width: 90%; margin-left: auto; margin-right: auto;">
 								<div class="form-group">
 				                	<label for="s1">เลือกแผนกที่ต้องการเข้าตรวจ</label>
 			                		<select id="s1" class="form-control">
