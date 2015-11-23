@@ -121,7 +121,7 @@ include_once "nav_nurse.php";
         <center>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect"
                     id="submitButton" align="center">
-              Submit
+              ยืนยัน
             </button>
           </center>
       </div>
@@ -151,7 +151,7 @@ include_once "nav_nurse.php";
     showDialog({
       title: '<span id="span_confirm">Confirmation</span>',
       // title: 'Confirmation',
-      text: '<table><tr><td><p id="bigp">Date: </h5></td>'+
+      text: '<table><tr><td><p id="bigp">วันที่ตรวจ: </h5></td>'+
       '<td><div id="div_valuetable">'+strDateTime+'</div></td></tr>'+
 
       '<tr><td><p id="bigp">น้ำหนัก (กิโลกรัม): </h5></td>'+
@@ -175,14 +175,14 @@ include_once "nav_nurse.php";
       '</div></td></tr></table>',
       negative: {
         id: 'cancel-button',
-        title: 'Cancel',
+        title: 'ยกเลิก',
         onClick: function() { 
           
         }
       },
       positive: {
         id: 'ok-button',
-        title: 'OK',
+        title: 'ตกลง',
         onClick: function() {
           location.href = "nurse_index.php";
         }
