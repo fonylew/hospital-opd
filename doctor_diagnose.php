@@ -6,7 +6,7 @@ include_once "nav_doctor.php";
 <!-- setup actionbar -->
 <script type="text/javascript">
 	$("#actionbar-left").append("<label onClick=\"browserBack()\" class=\"mdl-button mdl-js-button mdl-button--icon\" for=\"fixed-header-drawer-exp\"><i class=\"material-icons\">arrow_back</i></label>");
-	$("#actionbar-middle").append("<div style=\"font-size:x-large\">Diagnose</div>");
+	$("#actionbar-middle").append("<div style=\"font-size:x-large\">บันทึกผลการตรวจ</div>");
 </script>
 <script type="text/javascript">
 	function browserBack(){
@@ -17,6 +17,7 @@ include_once "nav_doctor.php";
 <!-- for dropdown -->
 <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="css/material-fullpalette.css">
+<link rel="stylesheet" type="text/css" href="css/jquery.dropdown.css">
 <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
 <link rel="stylesheet" type="text/css" href="css/roboto.min.css">
 
@@ -45,8 +46,8 @@ include_once "nav_doctor.php";
 	.divider {
 		height: 1px;
 		background-color: rgba(0,0,0,0.12);
-		margin-top: 16px;
-		margin-bottom: 16px;
+		margin-top: 24px;
+		margin-bottom: 24px;
 	}
 </style>
 
@@ -57,8 +58,10 @@ include_once "nav_doctor.php";
 	<div class="mdl-grid page-content">
 		<div class="mdl-cell mdl-cell--10-col mdl-color--white mdl-shadow--2dp mdl-grid" style="padding:24px; color: mdl-primary;">
 			
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">รายละเอียดการนัด</span>
+
 			<!-- appointment detail -->
-			<div class="mdl-grid mdl-cell--9-col" style="margin-top: 16px; margin-left: 16px; padding-bottom: 0px;">
+			<div class="mdl-grid mdl-cell--9-col" style="margin-left: 16px; padding-bottom: 0px;">
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
 						<span style="font-size: large; ">หมายเลขนัด: </span>
@@ -79,10 +82,10 @@ include_once "nav_doctor.php";
 				
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
-						<span style="font-size: large; ">แพทย์: </span>
+						<span style="font-size: large; ">ชื่อผู้ป่วย: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="docName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">DOCNAME SURNAME</span>
+						<span id="patientName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">PATIENTNAME</span>
 					</div>
 				</div>
 				
@@ -111,34 +114,83 @@ include_once "nav_doctor.php";
 				<img src="dashboard/images/dog.png" style="width: 100%;">
 			</div>
 
-			<div class="mdl-cell--12-col divider" style="margin-top:8px;"></div>
+			<div class="mdl-cell--12-col divider"></div>
+
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em; margin-bottom: 16px;">การตรวจร่างกายเบื้องต้น</span>
 
 			<!-- patient info from nurse -->
-			<table class="mdl-cell--12-col mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="margin-left: auto; margin-right: auto;">
-				<thead>
-					<tr>
-						<th>น้ำหนัก</th>
-						<th>ส่วนสูง</th>
-						<th>อุณหภูมิร่างกาย</th>
-						<th>อัตราการเต้นของหัวใจ</th>
-						<th>ความดันโลหิต</th>
-					</tr>
-				</thead>
-				<tbody>
-					<tr>
-						<td style="font-size: large;">75</td>
-						<td style="font-size: large;">176</td>
-						<td style="font-size: large;">37</td>
-						<td style="font-size: large;">500</td>
-						<td style="font-size: large;">500</td>
-					</tr>
-				</tbody>
-			</table>
+			<div class="mdl-cell--12-col" style="overflow: auto;">
+				<table class="mdl-data-table mdl-js-data-table mdl-shadow--2dp" style="width: auto; margin-left: auto; margin-right: auto;">
+					<thead>
+						<tr>
+							<th>น้ำหนัก</th>
+							<th>ส่วนสูง</th>
+							<th>อุณหภูมิร่างกาย</th>
+							<th>อัตราการเต้นของหัวใจ</th>
+							<th>ความดันโลหิต</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td style="font-size: large;">75</td>
+							<td style="font-size: large;">176</td>
+							<td style="font-size: large;">37</td>
+							<td style="font-size: large;">500</td>
+							<td style="font-size: large;">500</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+
+			<div class="mdl-cell--12-col divider" style="margin-top:32px;"></div>
+
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">บันทึกการตรวจ</span>
+
+			<!-- diagnose memo -->
+			<div class="mdl-cell--12-col mdl-grid" style="margin-left: auto; margin-right: auto; padding-top: 0px;">
+				<div id="dropdown-menu" class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
+					<div class="form-group" style="margin-top: 0px;">
+						<select id="s1" class="form-control">
+							<option value="department_0">เลือกประเภทรหัสโรค</option>
+							<option value="department_1">ICD10</option>
+							<option value="department_2">SNOWMED</option>
+							<option value="department_3">DRG</option>
+						</select>
+					</div>
+				</div>
+				<div class="mdl-cell--5-col" style="margin-left: auto; margin-right: auto;">
+					<form action="#">
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+							<input class="mdl-textfield__input" type="text" id="code" />
+							<label class="mdl-textfield__label" for="username" id="user-label">รหัสโรค</label>
+						</div>
+					</form>
+				</div>
+				<div class="mdl-cell--11-col" style="margin-left: auto; margin-right: auto;">
+					<form action="#">
+						<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label" style="width: 100%;">
+							<input class="mdl-textfield__input" type="text" id="description" />
+							<label class="mdl-textfield__label" for="username" id="user-label">รายละเอียด</label>
+						</div>
+					</form>
+				</div>
+			</div>
+
+			<div class="mdl-cell--12-col divider" style="margin-top:32px;"></div>
+
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">การสั่งยา</span>
+
+			<div class="mdl-cell--12-col divider" style="margin-top:32px;"></div>
+
+			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">การนัดครั้งถัดไป</span>
 
 
 
-			<center class="mdl-cell--12-col">
-				<button class="mdl-button mdl-button--raised mdl-button--colored" style="margin-top: 16px;" onClick="showSubmitDiagnoseConfirm()">
+			<center class="mdl-cell--12-col" style="margin-top: 16px;">
+				<button class="mdl-button mdl-button--raised mdl-color-text--primary mdl-color--white"  onClick="showClearConfirm()">
+					ลบทั้งหมด
+				</button>
+				<button class="mdl-button mdl-button--raised mdl-button--colored" style="margin-left: 16px;" onClick="showSubmitDiagnoseConfirm()">
 					บันทึกผลการตรวจ
 				</button>
 			</center>
@@ -151,8 +203,11 @@ include_once "nav_doctor.php";
 
 <!-- import custom js -->
 <script src="js/bootstrap.min.js"></script>
+<script src="js/jquery.dropdown.js"></script>
 <script src="js/ripples.min.js"></script>
-
+<script>
+	$("#dropdown-menu select").dropdown();
+</script>
 
 <script src="js/bootstrap-datepicker.min.js"></script>
 <script src="js/bootstrap-datepicker.th.min.js"></script>
