@@ -1,4 +1,4 @@
-function addAppointment() {
+function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_time) {
 	/* edit layout at /patient_app_item.php */
 	/* generate DOM at http://rick.measham.id.au/paste/html2dom.htm */
 
@@ -32,7 +32,7 @@ function addAppointment() {
 	span_appId.id = "appId";
 	span_appId.style.paddingLeft = "8px";
 	span_appId.style.fontSize = "large";
-	span_appId.appendChild( document.createTextNode("123-456-789") );
+	span_appId.appendChild( document.createTextNode(appoint_id) );
 	div_2.appendChild( span_appId );
 
 	div_0.appendChild( div_2 );
@@ -66,7 +66,7 @@ function addAppointment() {
 	span_hn.style.fontSize = "large";
 	span_hn.id = "hn";
 	span_hn.className = "mdl-color-text--primary";
-	span_hn.appendChild( document.createTextNode("123-456-789") );
+	span_hn.appendChild( document.createTextNode(appoint_hn) );
 	div_5.appendChild( span_hn );
 
 	div_3.appendChild( div_5 );
@@ -100,7 +100,7 @@ function addAppointment() {
 	span_patientName.style.fontSize = "large";
 	span_patientName.id = "patientName";
 	span_patientName.className = "mdl-color-text--primary";
-	span_patientName.appendChild( document.createTextNode("PATIENTNAME SURNAME") );
+	span_patientName.appendChild( document.createTextNode(appoint_name) );
 	div_8.appendChild( span_patientName );
 
 	div_6.appendChild( div_8 );
@@ -134,7 +134,7 @@ function addAppointment() {
 	span_date.style.paddingLeft = "8px";
 	span_date.style.fontSize = "large";
 	span_date.className = "mdl-color-text--primary";
-	span_date.appendChild( document.createTextNode("พุธที่ 25 พฤศจิกายน 2015") );
+	span_date.appendChild( document.createTextNode(appoint_date) );
 	div_11.appendChild( span_date );
 
 	div_9.appendChild( div_11 );
@@ -168,7 +168,7 @@ function addAppointment() {
 	span_time.style.fontSize = "large";
 	span_time.id = "time";
 	span_time.className = "mdl-color-text--primary";
-	span_time.appendChild( document.createTextNode("09.00 - 09.10 น.") );
+	span_time.appendChild( document.createTextNode(appoint_time) );
 	div_14.appendChild( span_time );
 
 	div_12.appendChild( div_14 );
@@ -186,9 +186,11 @@ function addAppointment() {
 	var center_0 = document.createElement('center');
 
 	var a_0 = document.createElement('a');
-	a_0.href = "doctor_diagnose.php";
+	a_0.href = "doctor_diagnose.php?diagnose_appoint_id="+appoint_id+"&diagnose_appoint_hn="+appoint_hn+"&diagnose_appoint_name="+appoint_name+"&diagnose_appoint_date="+appoint_date+"&diagnose_appoint_time="+appoint_time;
+
 	a_0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
 	a_0.appendChild( document.createTextNode("\n				ตรวจ\n			") );
+
 	center_0.appendChild( a_0 );
 
 	div_15.appendChild( center_0 );
