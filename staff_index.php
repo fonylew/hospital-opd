@@ -48,19 +48,19 @@ $("#actionbar-middle").append("<div style=\"font-size:x-large\">ค้นหา�
 			style="padding:24px; color: mdl-primary;">
 
 			<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
-				เลือกวิธีที่ต้องการค้นหา
+				เลือกวิธีที่ต้องการค้นหานัดหมาย
 			</p>
 
 			<center>
 				<a href="staff_viewapp_seldoc.php" 
-				class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+				class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
 				style="margin:10px">
-					Search by Doctor
+					ค้นหาจากแพทย์
 				</a>
 				<a href="staff_viewapp_searchpatient.php" 
-				class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
+				class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
 				style="margin:10px">
-					Search by Patient
+					ค้นหาจาก HN
 				</a>
 			</center>
 		</div>
