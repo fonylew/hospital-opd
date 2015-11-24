@@ -9,10 +9,15 @@
     	viewAppointment($_POST['view_appoint']);
 	}
 
-	  if (isset($_POST['cancel_appoint'])){
+	if (isset($_POST['cancel_appoint'])){
     	cancelAppointment($_POST['cancel_appoint']);
 	}
-
+	if (isset($_POST['get_department'])){
+    	getDepartment();
+	}
+	if (isset($_POST['get_doctor'])){
+    	getDoctor($_POST['get_doctor']);
+	}
     function checkUser($hn){
     	$connection = $GLOBALS['connection'];
 		$hn = $connection->real_escape_string($hn);
@@ -50,7 +55,8 @@
 				$datetrim = explode(" ",$dateTime);
 				$date = $datetrim[0];
 				$time = $datetrim[1];
-
+				//DATE_FORMAT(TIME(appoint_time),'%H:%i') AS appoint_time,DATE_FORMAT(TIME(appoint_time)+ INTERVAL 10 MINUTE,'%H:%i') AS appoint_time2
+				
 				$a['appoint_time']= $time;
 				$a['appoint_date']= $date;
 				
@@ -66,13 +72,40 @@
     	echo json_encode($b,JSON_FORCE_OBJECT); 
     } 
 
-      function cancelAppointment($appoint_id){
+    function cancelAppointment($appoint_id){
         $connection = $GLOBALS['connection'];
   		$appoint_id = $connection->real_escape_string($appoint_id);
-  		//$hno = $hn;
     	$result = mysqli_query($connection, "DELETE FROM appointment WHERE appoint_id = '$appoint_id'") or die("Query fail: " . mysqli_error($connection));
 
     }
+    function getDepartment(){
+        $connection = $GLOBALS['connection'];
+    	$result = mysqli_query($connection, "SELECT * FROM department_db") or die("Query fail: " . mysqli_error($connection));
+    	  $a = array();
+    	  $b = array();
+    	  while ($row = mysqli_fetch_array($result)){
+    	  	$a['dNo'] = $row['department_order'];
+    	  	$a['dName'] = $row['department_name'];
+			array_push($b, $a);	
+	      }
+	      echo json_encode($b,JSON_FORCE_OBJECT);
+    }
+
+    function getDoctor($depart_no){
+    	  $connection = $GLOBALS['connection'];
+    	  $depart_no= $connection->real_escape_string($depart_no);
+    	  $result = mysqli_query($connection, "SELECT * FROM user WHERE userType='doctor'AND department_id ='$depart_no'") or die("Query fail: " . mysqli_error($connection));
+    	  $a = array();
+    	  $b = array();
+    	  while ($row = mysqli_fetch_array($result)){
+    	  	$a['doc_username'] = $row['username'];
+    	  	$doctor_name = $row['initial']."".$row['fName']." ".$row['lName'];
+    	  	$a['doc_name'] = $doctor_name;
+			array_push($b, $a);	
+	      }
+	      echo json_encode($b,JSON_FORCE_OBJECT);
+    }
+
 
 
 ?>
