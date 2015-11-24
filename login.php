@@ -73,6 +73,7 @@ include_once "header.php";
     </p></center>   
 
     <script src="js/material.min.js"></script>
+    <script src="js/material.js"></script>
     <script> $.material.init(); </script>
 </footer>
     
