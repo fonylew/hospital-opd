@@ -5,6 +5,58 @@
         findPatient($_POST['search_hn']);
     }
 
+    if (isset($_POST['check_appoint_hn'])) {
+        findTodayAppointment($_POST['check_appoint_hn']);
+    }
+
+    if (isset($_POST['listdoctor'])) {
+        getDoctor();
+    }
+/*
+SELECT initial,fName,lName,username FROM `user`WHERE userType='doctor'
+*/
+    function findTodayAppointment($hn){
+        $connection = $GLOBALS['connection'];
+        $hn = $connection->real_escape_string($hn);
+        $result = mysqli_query($connection, "SELECT `appoint_time` FROM `appointment` WHERE HN='$hn' AND DATE(`appoint_time`)=CURRENT_DATE AND `diagnose_status`=0 ORDER BY `appoint_time` LIMIT 1;") or die("Query fail: " . mysqli_error($connection));
+        $num_row = mysqli_num_rows($result);
+        //handling in javascript appointNow($hn);
+        if( $num_row == 1 ) echo $result;
+        else echo 'false';
+    }
+    
+    function addPatientInfo($hn,$appoint_datetime,$w,$h,$b,$t,$h,$nurse,$doctor){
+        $connection = $GLOBALS['connection'];
+        $hn = $connection->real_escape_string($hn);
+        $result = mysqli_query($connection, "INSERT INTO `medicalrecord`(`HN`, `appoint_datetime`, `weight`, `height`, `bloodPressure`, `temperature`, `heartRate`, `nurse_username`, `doctor_username`) VALUES ($hn,$appoint_datetime,$w,$h,$b,$t,$h,$nurse,$doctor);") or die("Query fail: " . mysqli_error($connection));
+        echo 'added';
+    }
+
+    function appointNow($hn,$doctor){
+        $connection = $GLOBALS['connection'];
+        $hn = $connection->real_escape_string($hn);
+        $doctor = $connection->real_escape_string($doctor);
+        $result = mysqli_query($connection, "INSERT INTO `appointment`(`HN`, `appoint_time`, `doctor_username`, `diagnose_status`) VALUES ('$hn',CURRENT_TIMESTAMP,'$doctor',0);") or die("Query fail: " . mysqli_error($connection));
+        //handling in javascript
+        //findTodayAppointment($hn);
+        echo 'added';
+    }
+
+    function getDoctor(){
+        $connection = $GLOBALS['connection'];
+        $result = mysqli_query($connection, "SELECT username,initial,fName,lName FROM `user` WHERE userType='doctor'") or die("Query fail: " . mysqli_error($connection));
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){
+            $b['username']= $row['username'];
+            $b['initial']= $row['initial'];
+            $b['fName']= $row['fName'];
+            $b['lName']= $row['lName'];
+            array_push($a, $b);
+          }
+        echo json_encode($a,JSON_FORCE_OBJECT);
+    }
+
     function findPatient($hn){
     	$connection = $GLOBALS['connection'];
 		$hn = $connection->real_escape_string($hn);
