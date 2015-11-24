@@ -43,14 +43,14 @@
 		</div>
 
 
-<script>
+<!--script>
 
-    // var employee_initial = <?php echo json_encode($employee_initial,JSON_FORCE_OBJECT)?>;
-    // var employee_fname = <?php echo json_encode($employee_fname,JSON_FORCE_OBJECT)?>;
-    // var employee_lname = <?php echo json_encode($employee_lname,JSON_FORCE_OBJECT)?>;
-    // var employee_username = <?php echo json_encode($employee_username,JSON_FORCE_OBJECT)?>;
+    var employee_initial = <?php echo json_encode($employee_initial,JSON_FORCE_OBJECT)?>;
+    var employee_fname = <?php echo json_encode($employee_fname,JSON_FORCE_OBJECT)?>;
+    var employee_lname = <?php echo json_encode($employee_lname,JSON_FORCE_OBJECT)?>;
+    var employee_username = <?php echo json_encode($employee_username,JSON_FORCE_OBJECT)?>;
 
-    // document.getElementById("doctor_name").innerHTML = "<br>"+employee_initial + " " + employee_fname + " " + employee_lname+"</br>";
+    document.getElementById("doctor_name").innerHTML = "<br>"+employee_initial + " " + employee_fname + " " + employee_lname+"</br>";
 
 	function logout() {
       	$.ajax({
@@ -58,8 +58,8 @@
           	type: 'POST',
           	data: {employee_logout: 'logout'},
           	success: function(data) {
-             	if (data = 'logout') location.replace("login_employee.php")
+             	if (data = 'logout') location.replace("login_employee.php");
           	}	
       	});
     }		
-</script>
+</script-->
