@@ -10,7 +10,7 @@ include_once "nav_staff.php";
 <link rel="stylesheet" type="text/css" href="css/ripples.min.css">
 <link rel="stylesheet" type="text/css" href="css/roboto.min.css">
 
-<script src="js/staff_viewapp_function.js"></script>
+<script src="js/staff_viewapp_result_function.js"></script>
 
 <!-- setup actonbar -->
 <script type="text/javascript">
