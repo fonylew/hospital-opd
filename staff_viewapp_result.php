@@ -14,12 +14,12 @@ include_once "nav_staff.php";
 
 <!-- setup actonbar -->
 <script type="text/javascript">
-	$("#actionbar-left").append("<label onClick=\"browserBack()\" class=\"mdl-button mdl-js-button mdl-button--icon\" for=\"fixed-header-drawer-exp\"><i class=\"material-icons\">arrow_back</i></label>");
+	$("#actionbar-left").append("<label onClick=\"browserHome()\" class=\"mdl-button mdl-js-button mdl-button--icon\" for=\"fixed-header-drawer-exp\"><i class=\"material-icons\">home</i></label>");
 	$("#actionbar-middle").append("<div style=\"font-size:x-large\">ผลลัพธ์การค้นหานัดหมาย</div>");
 </script>
 <script type="text/javascript">
-	function browserBack(){
-		window.history.back();
+	function browserHome(){
+		location.href = "staff_index.php";
 	}
 </script>
 
