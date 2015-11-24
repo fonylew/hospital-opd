@@ -1,6 +1,16 @@
 <?php
+
 include_once "header.php";
 include_once "nav_doctor.php";
+
+if (isset($_GET['diagnose_appoint_id'])) {
+	$diagnose_appoint_id = $_GET['diagnose_appoint_id'];
+	$diagnose_appoint_hn = $_GET['diagnose_appoint_hn'];
+	$diagnose_appoint_name = $_GET['diagnose_appoint_name'];
+	$diagnose_appoint_date = $_GET['diagnose_appoint_date'];
+	$diagnose_appoint_time = $_GET['diagnose_appoint_time'];
+}
+
 ?>
 
 <!-- setup actionbar -->
@@ -66,7 +76,7 @@ include_once "nav_doctor.php";
 						<span style="font-size: medium; ">หมายเลขนัด: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">123-456-789</span>
+						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_id;?></span>
 					</div>
 				</div>
 				
@@ -75,7 +85,7 @@ include_once "nav_doctor.php";
 						<span style="font-size: medium; ">HN: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="hn" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">111-222-333</span>
+						<span id="hn" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;"><?php echo $diagnose_appoint_hn;?></span>
 					</div>
 				</div>
 				
@@ -84,7 +94,7 @@ include_once "nav_doctor.php";
 						<span style="font-size: medium; ">ชื่อผู้ป่วย: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="patientName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">PATIENTNAME</span>
+						<span id="patientName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_name;?></span>
 					</div>
 				</div>
 				
@@ -93,7 +103,7 @@ include_once "nav_doctor.php";
 						<span style="font-size: medium; ">วัน: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">พุธที่ 25 พฤศจิกายน 2015</span>
+						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_date;?></span>
 					</div>
 				</div>
 				
@@ -102,7 +112,7 @@ include_once "nav_doctor.php";
 						<span style="font-size: medium; ">เวลา: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">09.00 - 09.10 น.</span>
+						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_time;?></span>
 					</div>
 				</div>
 
@@ -242,6 +252,7 @@ include_once "nav_doctor.php";
 <script src="js/bootstrap.min.js"></script>
 <script src="js/jquery.dropdown.js"></script>
 <script src="js/ripples.min.js"></script>
+
 <script>
 	$("#dropdown-menu select").dropdown();
 </script>

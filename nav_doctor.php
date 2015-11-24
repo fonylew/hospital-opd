@@ -1,16 +1,16 @@
 <?php
-	// session_start();
-	// $employee_initial = $_SESSION['employee_initial'];
-	// $employee_fname = $_SESSION['employee_fname'];
-	// $employee_lname = $_SESSION['employee_lname'];
-	// $employee_username = $_SESSION['employee_username'];
-	// $employee_usertype = $_SESSION['employee_usertype'];
+	session_start();
+	$employee_initial = $_SESSION['employee_initial'];
+	$employee_fname = $_SESSION['employee_fname'];
+	$employee_lname = $_SESSION['employee_lname'];
+	$employee_username = $_SESSION['employee_username'];
+	$employee_usertype = $_SESSION['employee_usertype'];
 	// remove below comments when finish 
 	// use for security
-	// if ($employee_usertype != 'doctor') {
-	//     header("Location: login_employee.php");
-	//     exit();
-	// }
+	if ($employee_usertype != 'doctor') {
+	    header("Location: login_employee.php");
+	    exit();
+	}
 ?>
 
 	<!-- this div will be closed in nav_end.php -->
@@ -43,7 +43,7 @@
 		</div>
 
 
-<!--script>
+<script>
 
     var employee_initial = <?php echo json_encode($employee_initial,JSON_FORCE_OBJECT)?>;
     var employee_fname = <?php echo json_encode($employee_fname,JSON_FORCE_OBJECT)?>;
@@ -62,4 +62,4 @@
           	}	
       	});
     }		
-</script-->
+</script>
