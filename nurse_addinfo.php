@@ -1,6 +1,12 @@
 <?php
 include_once "header.php";
 include_once "nav_nurse.php";
+
+  if (isset($_POST['patient_hn'])) {
+        $patient_fname = $_POST['patient_fname'];
+        $patient_lname = $_POST['patient_lname'];
+        $patient_hn = $_POST['patient_hn'];
+  }
 ?>
 
 <script>
@@ -55,6 +61,8 @@ include_once "nav_nurse.php";
 }
 </style>
 
+
+
 <main class="mdl-layout__content">
   <div class="mdl-grid page-content">
 
@@ -77,19 +85,19 @@ include_once "nav_nurse.php";
               <tr>
                 <td>
                   <span id="span_head">ชื่อจริง: </span>
-                  <span id="span_normal">Asssssssssssssssssssssssssssssssss1sssssssdf</span><br><br>
+                  <span id="span_normal"><?php echo $patient_fname;?></span><br><br>
                 </td>
               </tr>
               <tr>
                 <td>
                   <span id="span_head">นามสกุล: </span>
-                  <span id="span_normal">Qwery</span><br><br>
+                  <span id="span_normal"><?php echo $patient_lname;?></span><br><br>
                 </td>
               </tr>
               <tr>
                 <td>
                   <span id="span_head">HN: </span>
-                  <span id="span_normal">1234567890</span><br>
+                  <span id="span_normal"><?php echo $patient_hn;?></span><br>
                 </td>
               </tr>
             </table>
@@ -107,7 +115,7 @@ include_once "nav_nurse.php";
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="temperature">
-            <label class="mdl-textfield__label" for="temperature">อุณหถูมิร่างกาย (องศาเซลเซียส)</label>
+            <label class="mdl-textfield__label" for="temperature">อุณหภูมิร่างกาย (องศาเซลเซียส)</label>
           </div>
           <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
             <input class="mdl-textfield__input" type="text" id="heartrate">
@@ -131,6 +139,12 @@ include_once "nav_nurse.php";
 </main>
 
 <script>
+var patient_fname = <?php echo json_encode($patient_fname,JSON_FORCE_OBJECT)?>;
+var patient_lname = <?php echo json_encode($patient_lname,JSON_FORCE_OBJECT)?>;
+var patient_hn = <?php echo json_encode($partient_hn,JSON_FORCE_OBJECT)?>;
+
+console.log("POST value: "+patient_fname+patient_lname+patient_hn);
+
   document.getElementById("submitButton").onclick = function () {
     // console.log(document.getElementById("date").value);
     // console.log(document.getElementById("weight").value);
@@ -162,7 +176,7 @@ include_once "nav_nurse.php";
       '<td><div id="div_valuetable">'+document.getElementById("height").value+
       '</div></td></tr>'+
 
-      '<tr><td><p id="bigp">อุณหถูมิร่างกาย (องศาเซลเซียส): </h5></td>'+
+      '<tr><td><p id="bigp">อุณหภูมิร่างกาย (องศาเซลเซียส): </h5></td>'+
       '<td><div id="div_valuetable">'+document.getElementById("temperature").value+
       '</div></td></tr>'+
 

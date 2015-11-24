@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Nov 23, 2015 at 04:45 PM
+-- Generation Time: Nov 24, 2015 at 03:28 AM
 -- Server version: 5.6.26
 -- PHP Version: 5.5.27
 
@@ -83,7 +83,35 @@ CREATE TABLE IF NOT EXISTS `illness_db` (
   `illness_order` int(10) unsigned NOT NULL,
   `illness_code` varchar(20) NOT NULL,
   `illness_name` varchar(200) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `illness_db`
+--
+
+INSERT INTO `illness_db` (`illness_order`, `illness_code`, `illness_name`) VALUES
+(1, 'A00-B99', 'โรคติดเชื้อและโรคปรสิตบางโรค'),
+(2, 'C00-D48', 'เนื้องอก'),
+(3, 'D50-D89', 'โรคของเลือดและอวัยวะสร้างเลือดและความผิดปกติบางอย่างของกลไกภูมิคุ้มกัน'),
+(4, 'E00-E90', 'โรคของต่อมไร้ท่อ โภชนาการ และเมตะบอลิซึม'),
+(5, 'F00-F99', 'ความผิดปกติทางจิตและพฤติกรรม'),
+(6, 'G00-G99', 'โรคของระบบประสาท'),
+(7, 'H00-H59', 'โรคของตาและอวัยวะเคียงลูกตา'),
+(8, 'H60-H95', 'โรคของหูและปุ่มกระดูกกกหู'),
+(9, 'I00-I99', 'โรคของระบบไหลเวียนโลหิต'),
+(10, 'J00-J99', 'โรคของระบบหายใจ'),
+(11, 'K00-K93', 'โรคของระบบย่อยอาหาร'),
+(12, 'L00-L99', 'โรคของผิวหนังและเนื้อเยื่อใต้ผิวหนัง'),
+(13, 'M00-M99', 'โรคของระบบกล้ามเนื้อโครงร่าง และเนื้อเยื่อเกี่ยวพัน'),
+(14, 'N00-N99', 'โรคของระบบสืบพันธุ์และระบบปัสสาวะ'),
+(15, 'O00-O99', 'การตั้งครรภ์ การคลอด และระยะหลังคลอด'),
+(16, 'P00-P96', 'ภาวะบางอย่างที่เริ่มต้นในระยะปริกำเนิด'),
+(17, 'Q00-Q99', 'รูปผิดปกติแต่กำเนิด รูปพิการ และความผิดปกติของโครโมโซม'),
+(18, 'R00-R99', 'อาการ อาการแสดง และความผิดปกติที่พบจากการตรวจทางคลินิกและทางห้องปฏิบัติการ มิได้จำแนกไว้ที่ใด'),
+(19, 'S00-T98', 'การบาดเจ็บ การเป็นพิษ และผลสืบเนื่องบางอย่างจากสาเหตุภายนอก'),
+(22, 'U00-U99', 'รหัสเพื่อวัตถุประสงค์พิเศษ'),
+(20, 'V01-Y98', 'สาเหตุภายนอกของการเจ็บป่วยและการตาย'),
+(21, 'Z00-Z99', 'ปัจจัยที่มีผลต่อสถานะสุขภาพและการรับบริการสุขภาพ');
 
 -- --------------------------------------------------------
 
@@ -105,7 +133,7 @@ CREATE TABLE IF NOT EXISTS `medicalproblems` (
 
 CREATE TABLE IF NOT EXISTS `medicalrecord` (
   `HN` varchar(10) NOT NULL DEFAULT '',
-  `diagnose_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `appoint_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `code` varchar(20) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `weight` double unsigned NOT NULL DEFAULT '0',
@@ -194,7 +222,7 @@ CREATE TABLE IF NOT EXISTS `prescription` (
 
 CREATE TABLE IF NOT EXISTS `user` (
   `username` varchar(20) NOT NULL,
-  `password` varchar(20) DEFAULT NULL,
+  `password` varchar(100) DEFAULT NULL,
   `id` varchar(20) DEFAULT NULL,
   `tel` varchar(15) DEFAULT NULL,
   `initial` varchar(10) DEFAULT NULL,
@@ -211,10 +239,10 @@ CREATE TABLE IF NOT EXISTS `user` (
 --
 
 INSERT INTO `user` (`username`, `password`, `id`, `tel`, `initial`, `fName`, `lName`, `address`, `email`, `userType`, `department_id`) VALUES
-('doctor01', '1a1dc91c907325c69271', 'test01', 'test01', 'Mr.', 'Doctor', 'First', 'test01', 'test01', 'doctor', 0),
-('nurse01', '1a1dc91c907325c69271', 'test02', 'test02', 'Mrs.', 'Nurse', 'First', 'test02', 'test02', 'nurse', 0),
-('pharmacist01', '1a1dc91c907325c69271', 'test04', 'test04', 'Mr.', 'Pharmacist', 'First', 'test04', 'test04', 'pharmacist', 0),
-('staff01', '1a1dc91c907325c69271', 'test03', 'test03', 'Mr.', 'Staff', 'First', 'test03', 'test03', 'staff', 0);
+('doctor01', '1a1dc91c907325c69271ddf0c944bc72', 'test01', 'test01', 'Mr.', 'Doctor', 'First', 'test01', 'test01', 'doctor', 0),
+('nurse01', '1a1dc91c907325c69271ddf0c944bc72', 'test02', 'test02', 'Mrs.', 'Nurse', 'First', 'test02', 'test02', 'nurse', 0),
+('pharmacist01', '1a1dc91c907325c69271ddf0c944bc72', 'test04', 'test04', 'Mr.', 'Pharmacist', 'First', 'test04', 'test04', 'pharmacist', 0),
+('staff01', '1a1dc91c907325c69271ddf0c944bc72', 'test03', 'test03', 'Mr.', 'Staff', 'First', 'test03', 'test03', 'staff', 0);
 
 -- --------------------------------------------------------
 
@@ -247,7 +275,8 @@ ALTER TABLE `allergies`
 ALTER TABLE `appointment`
   ADD PRIMARY KEY (`appoint_id`),
   ADD KEY `HN` (`HN`),
-  ADD KEY `doctor_username` (`doctor_username`);
+  ADD KEY `doctor_username` (`doctor_username`),
+  ADD KEY `appoint_time` (`appoint_time`);
 
 --
 -- Indexes for table `department_db`
@@ -272,8 +301,8 @@ ALTER TABLE `medicalproblems`
 -- Indexes for table `medicalrecord`
 --
 ALTER TABLE `medicalrecord`
-  ADD PRIMARY KEY (`HN`,`diagnose_datetime`),
-  ADD KEY `diagnose_datetime` (`diagnose_datetime`),
+  ADD PRIMARY KEY (`HN`,`appoint_datetime`),
+  ADD KEY `diagnose_datetime` (`appoint_datetime`),
   ADD KEY `nurse_username` (`nurse_username`),
   ADD KEY `doctor_username` (`doctor_username`),
   ADD KEY `code` (`code`);
@@ -337,7 +366,7 @@ ALTER TABLE `appointment`
 -- AUTO_INCREMENT for table `illness_db`
 --
 ALTER TABLE `illness_db`
-  MODIFY `illness_order` int(10) unsigned NOT NULL AUTO_INCREMENT;
+  MODIFY `illness_order` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `medicine_db`
 --
@@ -383,7 +412,8 @@ ALTER TABLE `medicalrecord`
   ADD CONSTRAINT `medicalrecord_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`),
   ADD CONSTRAINT `medicalrecord_ibfk_2` FOREIGN KEY (`nurse_username`) REFERENCES `user` (`username`),
   ADD CONSTRAINT `medicalrecord_ibfk_3` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `medicalrecord_ibfk_4` FOREIGN KEY (`code`) REFERENCES `illness_db` (`illness_code`);
+  ADD CONSTRAINT `medicalrecord_ibfk_4` FOREIGN KEY (`code`) REFERENCES `illness_db` (`illness_code`),
+  ADD CONSTRAINT `medicalrecord_ibfk_5` FOREIGN KEY (`appoint_datetime`) REFERENCES `appointment` (`appoint_time`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `medicine`
@@ -391,7 +421,7 @@ ALTER TABLE `medicalrecord`
 ALTER TABLE `medicine`
   ADD CONSTRAINT `medicine_ibfk_1` FOREIGN KEY (`prescript_id`) REFERENCES `prescription` (`prescript_id`),
   ADD CONSTRAINT `medicine_ibfk_2` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
-  ADD CONSTRAINT `medicine_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`diagnose_datetime`),
+  ADD CONSTRAINT `medicine_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`appoint_datetime`),
   ADD CONSTRAINT `medicine_ibfk_4` FOREIGN KEY (`med_code`) REFERENCES `medicine_db` (`med_code`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
@@ -400,7 +430,7 @@ ALTER TABLE `medicine`
 ALTER TABLE `prescription`
   ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
   ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`pharmacist_username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `prescription_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`diagnose_datetime`);
+  ADD CONSTRAINT `prescription_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`appoint_datetime`);
 
 --
 -- Constraints for table `user`

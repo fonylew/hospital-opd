@@ -100,6 +100,9 @@ include_once "nav_nurse.php";
     </div> -->
 
   <script>
+    var q_fname;
+    var q_lname;
+    var q_hn;
     var card = false;
     function findPatient(){
         var hn = document.getElementById("hnquery").value;
@@ -112,12 +115,16 @@ include_once "nav_nurse.php";
               success: function(data) {
                 console.log(data);
                 if(card){
-                  //divmain.removeChild(divmain.firstChild);
+                  divmain.removeChild(div1);
                   card = false;
                 }
                 if (!jQuery.isEmptyObject(data)){
-                  searchPatientInfo(data.patient_initial + data.patient_fname, data.patient_lname, data.patient_hn);
+                  q_fname = data.patient_initial + data.patient_fname;
+                  q_lname = data.patient_lname;
+                  q_hn = data.patient_hn;
+                  searchPatientInfo(q_fname, q_lname, q_hn);
                   card = true;
+
                 }
                 else{
                   alert('ไม่พบรหัสประจำตัวผู้ป่วย (HN) นี้ในระบบ');
@@ -229,10 +236,21 @@ include_once "nav_nurse.php";
       document.getElementById("divmain").appendChild(div1);
 
       document.getElementById("addInfo").onclick = function () {
-        location.href = "nurse_addinfo.php";
+        console.log('just clicked');
+
+        $.ajax({
+              url: 'nurse_addinfo.php',
+              type: 'POST',
+              data: {patient_fname: q_fname,patient_lname: q_lname,patient_hn: q_hn},
+              success: function(data) {
+                  //console.log(data);
+                  console.log('clicked');
+                  location.replace('nurse_addinfo.php');
+              }
+        });
       }; 
       
-    };
+    }
   </script>
   
   </div>
