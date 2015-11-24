@@ -64,8 +64,13 @@
 			</button>
 			<button onclick="cancleAppointment()" 
 					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-					style="color:white;"
+					style="color:white;">
 				ยกเลิกนัด
+			</button>
+			<button onclick="cancleAppointment()" 
+					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+					style="color:white;">
+				พิมพิ์ใบนัดหมาย
 			</button>
 		</center>
 	</div>

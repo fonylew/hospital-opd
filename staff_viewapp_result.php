@@ -51,7 +51,7 @@ include_once "nav_staff.php";
 	<!-- FAB button with ripple -->
 	<a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" 
 	id="add-button" 
-	href="staff_newapp_checkpatient.php">
+	href="staff_newapp_checkpatient.php?#">
 	<i class="material-icons">add</i>
 </a>
 </main>

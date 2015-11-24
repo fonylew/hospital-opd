@@ -25,7 +25,7 @@ include_once "nav_staff.php";
     	<div class="mdl-cell mdl-cell--9-col mdl-color--white mdl-shadow--2dp" style="padding:24px;">
     	<center>
     		<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
-				ยืนยันข้อมูลการนัดแพทย์
+				ข้อมูลนัดหมาย
 			</p>
 		</center>
 		<div style="margin-top: 16px; margin-left: auto; margin-right: auto; width: 20em;">
@@ -69,7 +69,7 @@ include_once "nav_staff.php";
 	  			<button
 	  				class="mdl-button mdl-button--raised mdl-button--primary "
 	  				style="margin-top: 16px;" id="submitButton">
-	  				ยืนยันการนัดแพทย์
+	  				ยืนยันและออกใบนัดแพทย์
 	  			</button>
 	  		</a>
     	</center>
@@ -84,6 +84,7 @@ include_once "nav_staff.php";
   document.getElementById("submitButton").onclick = function () {
     showDialog({
       title: '<span style="font-size: x-large; " class="mdl-color-text--primary">ยืนยันการสร้างนัดหมาย</span>',
+      text: 'ยืนยันการสร้างนัดหมาย และพิมพ์ใบนัดแพทย์',
       negative: {
         id: 'cancel-button',
         title: 'ยกเลิก',
@@ -95,7 +96,9 @@ include_once "nav_staff.php";
         id: 'ok-button',
         title: 'ตกลง',
         onClick: function() {
-          location.href = "staff_index.php";
+        	//Print Appointment Windows
+        	//window.open('otp_simulator.php?show=','OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
+        	location.href = "staff_index.php";
         }
       },
       cancelable: false,

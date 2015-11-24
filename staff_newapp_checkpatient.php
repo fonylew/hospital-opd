@@ -74,8 +74,15 @@ include_once "nav_staff.php";
 					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-top:8px; margin-right:8px;" disabled>
 		        	Next
               	</a> -->
-              	<a id="next_button" onclick="checkNextButton()" 
-          			class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-top: 8px; margin-right: 8px;" 
+              	<a id="next_disable"
+          			class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
+          			style="margin-top: 8px; margin-right: 8px;" 
+          			disabled>
+		        	Next
+              	</a>
+              	<a id="next_able" onclick="checkNextButton()" 
+          			class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
+          			style="margin-top: 8px; margin-right: 8px; display:none;" 
           			href="staff_newapp_seldoc.php">
 		        	Next
               	</a>
@@ -86,6 +93,7 @@ include_once "nav_staff.php";
 
 <script>
 	var otp;
+	var canCreateApp = 0;
 
 	$( document ).ready(function() {
 		generateOTP();
@@ -97,19 +105,44 @@ include_once "nav_staff.php";
 		window.open('otp_simulator.php?show='+otp,'OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
 	}
 
-	function checkOTP(){
+	function checkHN(){
 		if(otp == document.getElementById("otp").value){
-			document.getElementById("otp_done").style.display = "inline";
+			document.getElementById("otp_done").style.display = "inline-block";
 			document.getElementById("otp_fail").style.display = "none";
+			canCreateApp = 1;
+			if(canCreateApp == 1){
+				document.getElementById("next_able").style.display = "inline-block";
+				document.getElementById("next_disable").style.display = "none";
+			}
 		} else {
 			document.getElementById("otp_done").style.display = "none";
-			document.getElementById("otp_fail").style.display = "inline";
+			document.getElementById("otp_fail").style.display = "inline-block";
+			canCreateApp = 0;
 		}
 	}
 
-	function checkHN(){
-
+	function checkOTP(){
+		if(otp == document.getElementById("otp").value){
+			document.getElementById("otp_done").style.display = "inline-block";
+			document.getElementById("otp_fail").style.display = "none";
+			canCreateApp = 1;
+			if(canCreateApp == 1){
+				document.getElementById("next_able").style.display = "inline-block";
+				document.getElementById("next_disable").style.display = "none";
+			}
+		} else {
+			document.getElementById("otp_done").style.display = "none";
+			document.getElementById("otp_fail").style.display = "inline-block";
+			canCreateApp = 0;
+			if(canCreateApp == 0){
+				document.getElementById("next_able").style.display = "none";
+				document.getElementById("next_disable").style.display = "inline-block";
+			}
+		}
 	}
+
+	console.log(canCreateApp);
+	
 
 	// function checkNextButton(){
 	// 	if(document.getElementById("otp_done").style.display == "inline"){
