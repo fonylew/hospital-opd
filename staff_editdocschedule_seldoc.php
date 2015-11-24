@@ -6,7 +6,7 @@ include_once "nav_staff.php";
 <!-- setup actionbar -->
 <script type="text/javascript">
 	$("#actionbar-left").append("<label onClick=\"browserBack()\" class=\"mdl-button mdl-js-button mdl-button--icon\" for=\"fixed-header-drawer-exp\"><i class=\"material-icons\">arrow_back</i></label>");
-	$("#actionbar-middle").append("<div style=\"font-size:x-large\">New Appointment</div>");
+	$("#actionbar-middle").append("<div style=\"font-size:x-large\">แก้ไขตารางเข้าตรวจ</div>");
 </script>
 <script type="text/javascript">
 	function browserBack(){
@@ -26,12 +26,12 @@ include_once "nav_staff.php";
     	<div class="mdl-cell mdl-cell--9-col">
     		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col" style="padding:24px; color: mdl-primary;">
 				<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
-					เลือกแพทย์
+					เลือกแพทย์ที่ต้องการแก้ไข
 				</p>
 				<br>
 				<div id="dropdown-menu" style="position: relative; width: 70%; height: auto; margin-left: auto; margin-right: auto;">
 					<div class="form-group">
-	                	<label for="s1">เลือกแผนกที่ต้องการเข้าตรวจ</label>
+	                	<label for="s1">เลือกแผนกที่แพทย์อยู่</label>
                 		<select id="s1" class="form-control">
 		                  <option value="department_0">โปรดเลือกแผนก</option>
 		                  <option value="department_1">DEPARTMENT_NAME1</option>
@@ -43,7 +43,7 @@ include_once "nav_staff.php";
 	              	</div>
 	              	<br>
 					<div class="form-group">
-	                	<label for="s1">เลือกแพทย์ที่ต้องการนัด (ไม่จำเป็นต้องเลือก)</label>
+	                	<label for="s1">เลือกแพทย์ที่ต้องการแก้ไข</label>
                 		<select id="s1" class="form-control">
 		                  <option value="doc_id_จ">ไม่ระบุแพทย์</option>
 		                  <option value="doc_id_1">Dr. NAME1 SURMANE1</option>
@@ -60,7 +60,7 @@ include_once "nav_staff.php";
 	              	</div>
               	</div>
               	<center>
-	              	<a href="">
+	              	<a href="staff_editdocschedule.php">
 		              	<button
 		              		class="mdl-button mdl-button--raised mdl-button--colored"
 		              		style="margin-top: 8px; margin-right: 8px;">

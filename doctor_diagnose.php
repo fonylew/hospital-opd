@@ -223,7 +223,7 @@ include_once "nav_doctor.php";
 
 
 			<center class="mdl-cell--12-col" style="margin-top: 16px;">
-				<button class="mdl-button mdl-button--raised mdl-color-text--primary mdl-color--white"  onClick="showClearConfirm()">
+				<button class="mdl-button mdl-button--raised mdl-color-text--primary mdl-color--white" onClick="showClearConfirm()">
 					ลบทั้งหมด
 				</button>
 				<button class="mdl-button mdl-button--raised mdl-button--colored" style="margin-left: 16px;" onClick="showSubmitDiagnoseConfirm()">

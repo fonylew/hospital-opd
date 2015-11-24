@@ -18,7 +18,7 @@ include_once "header.php";
                 <form action="#">
                     <div class="mdl-textfield mdl-js-textfield  mdl-textfield--floating-label">
                         <input class="mdl-textfield__input" type="text" 
-                                pattern="-?[0-9]*(\.[0-9]+)?" id="username" />
+                        pattern="-?[0-9]*(\.[0-9]+)?" id="username" />
                         <label class="mdl-textfield__label" for="username" id="user-label">HN</label>
                         <span class="mdl-textfield__error">Input must be number</span>
                     </div>
@@ -26,23 +26,23 @@ include_once "header.php";
             </div>
             <div class="mdl-card__actions">
                 <center><a  onClick="checkUser()" 
-                            class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                            style="width:90%; align:center;">Log in</a></center>
+                    class="mdl-button mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
+                    style="width:90%; align:center;">Log in</a></center>
+                </div>
+                
             </div>
-            
-        </div>
-        <div class="mdl-card__actions" style="margin-bottom:0%; padding-top:1em;">
-            <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--6dp" 
+            <div class="mdl-card__actions" style="margin-bottom:0%; padding-top:1em;">
+                <a class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-shadow--6dp" 
                 style="width:21.3em; color: rgb(255,171,64); background-color: white;" href="register.php">Register</a>
-        </div>
-    </main1>
-</div>
+            </div>
+        </main1>
+    </div>
 
-<script>
+    <script>
 
-    function checkUser(){
-        var hn = document.getElementById("username").value;
-        $.ajax({
+        function checkUser(){
+            var hn = document.getElementById("username").value;
+            $.ajax({
               url: 'control_patient.php',
               type: 'POST',
               data: {login_hn: hn},
@@ -51,31 +51,32 @@ include_once "header.php";
                 if(data == hn||hn=='00'){
                   console.log('true');
                   location.replace('login_otp.php');
-                }
-                else{
+              }
+              else{
                   console.log('no such patient');
                   alert('ไม่พบรหัสประจำตัวผู้ป่วย (HN) นี้ในระบบ');
-                }
               }
-          });
-    }
+          }
+      });
+        }
 
-</script>
+    </script>
 
-<footer>
-    <center><p style="
-    position:fixed;
-    bottom: 0px;
-    width:100%;
-    color:white;">
+    <footer>
+        <center><p style="
+            position:fixed;
+            bottom: 0px;
+            width:100%;
+            color:white;">
 
-        Outcube© 2015
-    </p></center>   
+            Outcube© 2015
+        </p></center>   
 
-    <script src="js/material.min.js"></script>
-    <script> $.material.init(); </script>
-</footer>
+        <script src="js/material.min.js"></script>
+        <script src="js/material.js"></script>
+        <script> $.material.init(); </script>
+    </footer>
     
-<!-- close body from header.php -->
+    <!-- close body from header.php -->
 </body>
 </html>

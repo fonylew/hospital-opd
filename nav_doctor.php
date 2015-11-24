@@ -1,10 +1,10 @@
 <?php
-	session_start();
-	$employee_initial = $_SESSION['employee_initial'];
-	$employee_fname = $_SESSION['employee_fname'];
-	$employee_lname = $_SESSION['employee_lname'];
-	$employee_username = $_SESSION['employee_username'];
-	$employee_usertype = $_SESSION['employee_usertype'];
+	// session_start();
+	// $employee_initial = $_SESSION['employee_initial'];
+	// $employee_fname = $_SESSION['employee_fname'];
+	// $employee_lname = $_SESSION['employee_lname'];
+	// $employee_username = $_SESSION['employee_username'];
+	// $employee_usertype = $_SESSION['employee_usertype'];
 	// remove below comments when finish 
 	// use for security
 	// if ($employee_usertype != 'doctor') {
@@ -35,7 +35,7 @@
 		 	</header>
 			<nav class="mdl-navigation" style="flex-grow: 1;">
 				<a class="mdl-navigation__link" href="doctor_viewappointment.php">รายการนัด</a>
-				<a class="mdl-navigation__link" href="#">แก้ไขตารางเข้าตรวจ</a>
+				<a class="mdl-navigation__link" href="doctor_editschedule.php">แก้ไขตารางเข้าตรวจ</a>
 				<a class="mdl-navigation__link" href="#">สั่งยาใหม่</a>
 				<div class="mdl-layout-spacer"></div>
 				<a class="mdl-navigation__link" href="javascript:void(0)" onclick="logout()">Logout</a>
@@ -43,7 +43,7 @@
 		</div>
 
 
-<script>
+<!--script>
 
     var employee_initial = <?php echo json_encode($employee_initial,JSON_FORCE_OBJECT)?>;
     var employee_fname = <?php echo json_encode($employee_fname,JSON_FORCE_OBJECT)?>;
@@ -58,8 +58,8 @@
           	type: 'POST',
           	data: {employee_logout: 'logout'},
           	success: function(data) {
-             	if (data = 'logout') location.replace("login_employee.php")
+             	if (data = 'logout') location.replace("login_employee.php");
           	}	
       	});
     }		
-</script>
+</script-->

@@ -95,7 +95,7 @@ include_once "nav_staff.php";
         id: 'ok-button',
         title: 'ตกลง',
         onClick: function() {
-          location.href = "staff_viewAppointment.php";
+          location.href = "staff_index.php";
         }
       },
       cancelable: false,
