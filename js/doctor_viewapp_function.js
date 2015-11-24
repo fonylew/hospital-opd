@@ -30,13 +30,8 @@ function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_
 	span_appId.id = "appId";
 	span_appId.className = "mdl-color-text--primary";
 	span_appId.style.paddingLeft = "8px";
-<<<<<<< HEAD
-	span_appId.style.fontSize = "large";
-	span_appId.appendChild( document.createTextNode(appoint_id) );
-=======
 	span_appId.style.fontSize = "medium";
-	span_appId.appendChild( document.createTextNode("123-456-789") );
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
+	span_appId.appendChild( document.createTextNode(appoint_id) );
 	div_2.appendChild( span_appId );
 
 	div_0.appendChild( div_2 );
@@ -70,12 +65,7 @@ function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_
 	span_hn.style.paddingLeft = "8px";
 	span_hn.style.fontSize = "medium";
 	span_hn.className = "mdl-color-text--primary";
-<<<<<<< HEAD
 	span_hn.appendChild( document.createTextNode(appoint_hn) );
-=======
-	span_hn.id = "hn";
-	span_hn.appendChild( document.createTextNode("123-456-789") );
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
 	div_5.appendChild( span_hn );
 
 	div_3.appendChild( div_5 );
@@ -108,13 +98,9 @@ function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_
 	var span_patientName = document.createElement('span');
 	span_patientName.id = "patientName";
 	span_patientName.className = "mdl-color-text--primary";
-<<<<<<< HEAD
-	span_patientName.appendChild( document.createTextNode(appoint_name) );
-=======
 	span_patientName.style.paddingLeft = "8px";
 	span_patientName.style.fontSize = "medium";
-	span_patientName.appendChild( document.createTextNode("PATIENTNAME SURNAME") );
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
+	span_patientName.appendChild( document.createTextNode(appoint_name) );
 	div_8.appendChild( span_patientName );
 
 	div_6.appendChild( div_8 );
@@ -147,13 +133,9 @@ function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_
 	var span_date = document.createElement('span');
 	span_date.id = "date";
 	span_date.className = "mdl-color-text--primary";
-<<<<<<< HEAD
-	span_date.appendChild( document.createTextNode(appoint_date) );
-=======
 	span_date.style.paddingLeft = "8px";
 	span_date.style.fontSize = "medium";
-	span_date.appendChild( document.createTextNode("พุธที่ 25 พฤศจิกายน 2015") );
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
+	span_date.appendChild( document.createTextNode(appoint_date) );
 	div_11.appendChild( span_date );
 
 	div_9.appendChild( div_11 );
@@ -188,12 +170,7 @@ function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_
 	span_time.style.paddingLeft = "8px";
 	span_time.style.fontSize = "medium";
 	span_time.id = "time";
-<<<<<<< HEAD
-	span_time.className = "mdl-color-text--primary";
 	span_time.appendChild( document.createTextNode(appoint_time) );
-=======
-	span_time.appendChild( document.createTextNode("09.00 - 09.10 น.") );
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
 	div_14.appendChild( span_time );
 
 	div_12.appendChild( div_14 );

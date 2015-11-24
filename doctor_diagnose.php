@@ -76,27 +76,16 @@ if (isset($_GET['diagnose_appoint_id'])) {
 						<span style="font-size: medium; ">หมายเลขนัด: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-<<<<<<< HEAD
 						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_id;?></span>
-=======
-						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">123-456-789</span>
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
 					</div>
 				</div>
 				
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
-<<<<<<< HEAD
-						<span style="font-size: large; ">HN: </span>
-					</div>
-					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_hn;?></span>
-=======
 						<span style="font-size: medium; ">HN: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="hn" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">111-222-333</span>
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
+						<span id="hn" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;"><?php echo $diagnose_appoint_hn;?></span>
 					</div>
 				</div>
 				
@@ -105,11 +94,7 @@ if (isset($_GET['diagnose_appoint_id'])) {
 						<span style="font-size: medium; ">ชื่อผู้ป่วย: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-<<<<<<< HEAD
 						<span id="patientName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_name;?></span>
-=======
-						<span id="patientName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">PATIENTNAME</span>
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
 					</div>
 				</div>
 				
@@ -118,11 +103,7 @@ if (isset($_GET['diagnose_appoint_id'])) {
 						<span style="font-size: medium; ">วัน: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-<<<<<<< HEAD
 						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_date;?></span>
-=======
-						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">พุธที่ 25 พฤศจิกายน 2015</span>
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
 					</div>
 				</div>
 				
@@ -131,11 +112,7 @@ if (isset($_GET['diagnose_appoint_id'])) {
 						<span style="font-size: medium; ">เวลา: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-<<<<<<< HEAD
 						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $diagnose_appoint_time;?></span>
-=======
-						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">09.00 - 09.10 น.</span>
->>>>>>> f9536220ccf9e3bb9e78027ac430687ca04b4d2b
 					</div>
 				</div>
 
