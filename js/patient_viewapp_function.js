@@ -273,6 +273,7 @@ function showConfirmDeleteDialog(appoint_id){
           	  }
          	  });
 	          hideDetail();
+	          location.reload();
 	        }
       	},
       	cancelable: true,
