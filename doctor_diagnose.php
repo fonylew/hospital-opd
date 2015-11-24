@@ -63,46 +63,46 @@ include_once "nav_doctor.php";
 			<div class="mdl-grid mdl-cell--9-col" style="margin-left: 16px; padding-bottom: 0px;">
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
-						<span style="font-size: large; ">หมายเลขนัด: </span>
+						<span style="font-size: medium; ">หมายเลขนัด: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">123-456-789</span>
+						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">123-456-789</span>
 					</div>
 				</div>
 				
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
-						<span style="font-size: large; ">แผนก: </span>
+						<span style="font-size: medium; ">HN: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">DEPARTMENTNAME</span>
+						<span id="hn" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">111-222-333</span>
 					</div>
 				</div>
 				
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
-						<span style="font-size: large; ">ชื่อผู้ป่วย: </span>
+						<span style="font-size: medium; ">ชื่อผู้ป่วย: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="patientName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">PATIENTNAME</span>
+						<span id="patientName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">PATIENTNAME</span>
 					</div>
 				</div>
 				
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
-						<span style="font-size: large; ">วัน: </span>
+						<span style="font-size: medium; ">วัน: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">พุธที่ 25 พฤศจิกายน 2015</span>
+						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">พุธที่ 25 พฤศจิกายน 2015</span>
 					</div>
 				</div>
 				
 				<div class="mdl-cell--12-col mdl-grid no-padding">
 					<div class="section__text mdl-cell mdl-cell--4-col">
-						<span style="font-size: large; ">เวลา: </span>
+						<span style="font-size: medium; ">เวลา: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">09.00 - 09.10 น.</span>
+						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: medium;">09.00 - 09.10 น.</span>
 					</div>
 				</div>
 

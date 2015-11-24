@@ -4,20 +4,19 @@ function addAppointment() {
 
 	/* appointment item */
 
-	/* appointment item */
-
 	var div_appItem = document.createElement('div');
 	div_appItem.id = "appItem";
 	div_appItem.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid";
 
 	var div_0 = document.createElement('div');
+	div_0.style.padding = "0px";
 	div_0.className = "mdl-cell--9-col mdl-grid";
 
 	var div_1 = document.createElement('div');
 	div_1.className = "section__text mdl-cell mdl-cell--4-col";
 
 	var span_0 = document.createElement('span');
-	span_0.style.fontSize = "large";
+	span_0.style.fontSize = "medium";
 	span_0.appendChild( document.createTextNode("หมายเลขนัด: ") );
 	div_1.appendChild( span_0 );
 
@@ -28,10 +27,10 @@ function addAppointment() {
 	div_2.className = "section__text mdl-cell mdl-cell--6-col";
 
 	var span_appId = document.createElement('span');
-	span_appId.className = "mdl-color-text--primary";
 	span_appId.id = "appId";
+	span_appId.className = "mdl-color-text--primary";
 	span_appId.style.paddingLeft = "8px";
-	span_appId.style.fontSize = "large";
+	span_appId.style.fontSize = "medium";
 	span_appId.appendChild( document.createTextNode("123-456-789") );
 	div_2.appendChild( span_appId );
 
@@ -46,12 +45,13 @@ function addAppointment() {
 
 	var div_3 = document.createElement('div');
 	div_3.className = "mdl-cell--9-col mdl-grid";
+	div_3.style.padding = "0px";
 
 	var div_4 = document.createElement('div');
 	div_4.className = "section__text mdl-cell mdl-cell--4-col";
 
 	var span_1 = document.createElement('span');
-	span_1.style.fontSize = "large";
+	span_1.style.fontSize = "medium";
 	span_1.appendChild( document.createTextNode("HN: ") );
 	div_4.appendChild( span_1 );
 
@@ -63,9 +63,9 @@ function addAppointment() {
 
 	var span_hn = document.createElement('span');
 	span_hn.style.paddingLeft = "8px";
-	span_hn.style.fontSize = "large";
-	span_hn.id = "hn";
+	span_hn.style.fontSize = "medium";
 	span_hn.className = "mdl-color-text--primary";
+	span_hn.id = "hn";
 	span_hn.appendChild( document.createTextNode("123-456-789") );
 	div_5.appendChild( span_hn );
 
@@ -79,13 +79,14 @@ function addAppointment() {
 
 
 	var div_6 = document.createElement('div');
+	div_6.style.padding = "0px";
 	div_6.className = "mdl-cell--9-col mdl-grid";
 
 	var div_7 = document.createElement('div');
 	div_7.className = "section__text mdl-cell mdl-cell--4-col";
 
 	var span_2 = document.createElement('span');
-	span_2.style.fontSize = "large";
+	span_2.style.fontSize = "medium";
 	span_2.appendChild( document.createTextNode("ชื่อผู้ป่วย: ") );
 	div_7.appendChild( span_2 );
 
@@ -96,10 +97,10 @@ function addAppointment() {
 	div_8.className = "section__text mdl-cell mdl-cell--6-col";
 
 	var span_patientName = document.createElement('span');
-	span_patientName.style.paddingLeft = "8px";
-	span_patientName.style.fontSize = "large";
 	span_patientName.id = "patientName";
 	span_patientName.className = "mdl-color-text--primary";
+	span_patientName.style.paddingLeft = "8px";
+	span_patientName.style.fontSize = "medium";
 	span_patientName.appendChild( document.createTextNode("PATIENTNAME SURNAME") );
 	div_8.appendChild( span_patientName );
 
@@ -113,13 +114,14 @@ function addAppointment() {
 
 
 	var div_9 = document.createElement('div');
+	div_9.style.padding = "0px";
 	div_9.className = "mdl-cell--9-col mdl-grid";
 
 	var div_10 = document.createElement('div');
 	div_10.className = "section__text mdl-cell mdl-cell--4-col";
 
 	var span_3 = document.createElement('span');
-	span_3.style.fontSize = "large";
+	span_3.style.fontSize = "medium";
 	span_3.appendChild( document.createTextNode("วัน: ") );
 	div_10.appendChild( span_3 );
 
@@ -131,9 +133,9 @@ function addAppointment() {
 
 	var span_date = document.createElement('span');
 	span_date.id = "date";
-	span_date.style.paddingLeft = "8px";
-	span_date.style.fontSize = "large";
 	span_date.className = "mdl-color-text--primary";
+	span_date.style.paddingLeft = "8px";
+	span_date.style.fontSize = "medium";
 	span_date.appendChild( document.createTextNode("พุธที่ 25 พฤศจิกายน 2015") );
 	div_11.appendChild( span_date );
 
@@ -147,13 +149,14 @@ function addAppointment() {
 
 
 	var div_12 = document.createElement('div');
+	div_12.style.padding = "0px";
 	div_12.className = "mdl-cell--9-col mdl-grid";
 
 	var div_13 = document.createElement('div');
 	div_13.className = "section__text mdl-cell mdl-cell--4-col";
 
 	var span_4 = document.createElement('span');
-	span_4.style.fontSize = "large";
+	span_4.style.fontSize = "medium";
 	span_4.appendChild( document.createTextNode("เวลา: ") );
 	div_13.appendChild( span_4 );
 
@@ -164,10 +167,10 @@ function addAppointment() {
 	div_14.className = "section__text mdl-cell mdl-cell--6-col";
 
 	var span_time = document.createElement('span');
-	span_time.style.paddingLeft = "8px";
-	span_time.style.fontSize = "large";
-	span_time.id = "time";
 	span_time.className = "mdl-color-text--primary";
+	span_time.style.paddingLeft = "8px";
+	span_time.style.fontSize = "medium";
+	span_time.id = "time";
 	span_time.appendChild( document.createTextNode("09.00 - 09.10 น.") );
 	div_14.appendChild( span_time );
 
