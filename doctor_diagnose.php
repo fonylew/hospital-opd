@@ -145,7 +145,8 @@ include_once "nav_doctor.php";
 			<!-- diagnose memo -->
 			<span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">บันทึกการตรวจ</span>
 			<div class="mdl-cell--12-col mdl-grid" style="margin-left: auto; margin-right: auto; padding-top: 0px;">
-				<div id="dropdown-menu" class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
+				<div class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
+				<!--<div id="dropdown-menu" class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">-->
 					<div class="form-group" style="margin-top: 0px;">
 						<select id="s1" class="form-control">
 							<option value="-">-- ประเภทรหัสโรค --</option>
