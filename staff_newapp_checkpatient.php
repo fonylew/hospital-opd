@@ -41,7 +41,7 @@ include_once "nav_staff.php";
 				<form action="#">
 					<div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
 					    <input class="mdl-textfield__input" type="text" id="hn">
-					    <label class="mdl-textfield__label" for="hn">HN</label>
+					    <label class="mdl-textfield__label" for="hn">HN (Hint "123")</label>
 					</div>
 					<button class="mdl-button mdl-js-button mdl-js-ripple-effect"
 							onclick="checkHN()">
@@ -70,21 +70,22 @@ include_once "nav_staff.php";
 
 				</form>
 				
-				<!-- <a id="next_button" onclick="checkNextButton()" 
-					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" style="margin-top:8px; margin-right:8px;" disabled>
-		        	Next
-              	</a> -->
+				<button id="send_otp" onclick="generateOTP()"
+          			class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent " 
+          			style="color:white; margin-top: 8px; margin-right: 8px;">
+		        	Send OTP
+              	</button>
               	<a id="next_disable"
           			class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
           			style="margin-top: 8px; margin-right: 8px;" 
           			disabled>
-		        	Next
+		        	ต่อไป
               	</a>
               	<a id="next_able" onclick="checkNextButton()" 
           			class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
           			style="margin-top: 8px; margin-right: 8px; display:none;" 
           			href="staff_newapp_seldoc.php">
-		        	Next
+		        	ต่อไป
               	</a>
 			</div>
   		</div>
@@ -93,11 +94,12 @@ include_once "nav_staff.php";
 
 <script>
 	var otp;
-	var canCreateApp = 0;
+	var boolHN = false;
+	var boolOTP = false;
 
-	$( document ).ready(function() {
-		generateOTP();
-	});
+	// $( document ).ready(function() {
+	// 	generateOTP();
+	// });
 
 	function generateOTP(){
 		otp = Math.floor(100000 + Math.random() * 900000);
@@ -106,38 +108,42 @@ include_once "nav_staff.php";
 	}
 
 	function checkHN(){
-		if(otp == document.getElementById("otp").value){
-			document.getElementById("otp_done").style.display = "inline-block";
-			document.getElementById("otp_fail").style.display = "none";
-			canCreateApp = 1;
-			if(canCreateApp == 1){
+		// Correct HN
+		if("123" == document.getElementById("hn").value){	
+			// Show Correct Icon & Disable HN Input!!!
+			document.getElementById("hn_done").style.display = "inline-block";
+			document.getElementById("hn_fail").style.display = "none";
+			document.getElementById("hn").disabled = true;	
+			// Check Next Button
+			boolHN = true;
+			if(boolHN == true && boolOTP == true){
 				document.getElementById("next_able").style.display = "inline-block";
 				document.getElementById("next_disable").style.display = "none";
 			}
-		} else {
-			document.getElementById("otp_done").style.display = "none";
-			document.getElementById("otp_fail").style.display = "inline-block";
-			canCreateApp = 0;
+		} else {	// Wrong HN
+			document.getElementById("hn_done").style.display = "none";
+			document.getElementById("hn_fail").style.display = "inline-block";
+			boolHN = false;
 		}
 	}
 
 	function checkOTP(){
-		if(otp == document.getElementById("otp").value){
+		if(otp == document.getElementById("otp").value){	// Correct OTP
+			// Show Correct Icon & Disable OTP Input & Disable Send OTP Button
 			document.getElementById("otp_done").style.display = "inline-block";
 			document.getElementById("otp_fail").style.display = "none";
-			canCreateApp = 1;
-			if(canCreateApp == 1){
+			document.getElementById("otp").disabled = true;
+			document.getElementById("send_otp").style.display = "none";
+			// Check Next Button
+			boolOTP = true;
+			if(boolHN == true && boolOTP == true){
 				document.getElementById("next_able").style.display = "inline-block";
 				document.getElementById("next_disable").style.display = "none";
 			}
-		} else {
+		} else {	// Wrong OTP
 			document.getElementById("otp_done").style.display = "none";
 			document.getElementById("otp_fail").style.display = "inline-block";
-			canCreateApp = 0;
-			if(canCreateApp == 0){
-				document.getElementById("next_able").style.display = "none";
-				document.getElementById("next_disable").style.display = "inline-block";
-			}
+			boolOTP = false;
 		}
 	}
 

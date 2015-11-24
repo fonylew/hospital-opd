@@ -2,7 +2,8 @@ function resultAppointment() {
 /* edit layout at /patient_app_item.php */
    /* generate DOM at http://rick.measham.id.au/paste/html2dom.htm */
 
-   /* appointment item */
+/* appointment item */
+
 var div_appItem = document.createElement('div');
    div_appItem.id = "appItem";
    div_appItem.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid";
@@ -59,10 +60,10 @@ var div_appItem = document.createElement('div');
          div_5.className = "section__text mdl-cell mdl-cell--6-col";
 
          var span_deptName = document.createElement('span');
+            span_deptName.id = "deptName";
+            span_deptName.className = "mdl-color-text--primary";
             span_deptName.style.paddingLeft = "8px";
             span_deptName.style.fontSize = "large";
-            span_deptName.className = "mdl-color-text--primary";
-            span_deptName.id = "deptName";
             span_deptName.appendChild( document.createTextNode("DEPARTMENTNAME") );
          div_5.appendChild( span_deptName );
 
@@ -94,10 +95,10 @@ var div_appItem = document.createElement('div');
 
          var span_deptName_2 = document.createElement('span');
             span_deptName_2.id = "deptName";
+            span_deptName_2.className = "mdl-color-text--primary";
             span_deptName_2.style.paddingLeft = "8px";
             span_deptName_2.style.fontSize = "large";
-            span_deptName_2.className = "mdl-color-text--primary";
-            span_deptName_2.appendChild( document.createTextNode("DEPARTMENTNAME") );
+            span_deptName_2.appendChild( document.createTextNode("นางสาว สมหญิง ซื้อสัตย์") );
          div_8.appendChild( span_deptName_2 );
 
       div_6.appendChild( div_8 );
@@ -127,10 +128,10 @@ var div_appItem = document.createElement('div');
          div_11.className = "section__text mdl-cell mdl-cell--6-col";
 
          var span_docName = document.createElement('span');
+            span_docName.id = "docName";
             span_docName.className = "mdl-color-text--primary";
             span_docName.style.paddingLeft = "8px";
             span_docName.style.fontSize = "large";
-            span_docName.id = "docName";
             span_docName.appendChild( document.createTextNode("DOCNAME SURNAME") );
          div_11.appendChild( span_docName );
 
@@ -161,10 +162,10 @@ var div_appItem = document.createElement('div');
          div_14.className = "section__text mdl-cell mdl-cell--6-col";
 
          var span_date = document.createElement('span');
-            span_date.id = "date";
-            span_date.className = "mdl-color-text--primary";
             span_date.style.paddingLeft = "8px";
             span_date.style.fontSize = "large";
+            span_date.id = "date";
+            span_date.className = "mdl-color-text--primary";
             span_date.appendChild( document.createTextNode("พุธที่ 25 พฤศจิกายน 2015") );
          div_14.appendChild( span_date );
 
@@ -217,24 +218,35 @@ var div_appItem = document.createElement('div');
       var center_0 = document.createElement('center');
 
          var button_0 = document.createElement('button');
-            button_0.onclick = editAppointment;
-            button_0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored";
             button_0.style.marginRight = "10px";
             button_0.style.color = "white";
-            button_0.appendChild( document.createTextNode("\n           แก้ไขนัด\n        ") );
+            button_0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent";
+            button_0.onclick = cancleAppointment;
+            button_0.appendChild( document.createTextNode("\n           ยกเลิกนัด\n       ") );
          center_0.appendChild( button_0 );
 
 
          var button_1 = document.createElement('button');
-            button_1.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent";
+            button_1.onclick = editAppointment;
+            button_1.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored";
+            button_1.style.marginRight = "10px";
             button_1.style.color = "white";
-            button_1.onclick = cancleAppointment;
-            button_1.appendChild( document.createTextNode("\n           ยกเลิกนัด\n       ") );
+            button_1.appendChild( document.createTextNode("\n           แก้ไขนัด\n        ") );
          center_0.appendChild( button_1 );
+
+
+         var button_2 = document.createElement('button');
+            button_2.onclick = printAppointment;
+            button_2.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored";
+            button_2.style.marginRight = "10px";
+            button_2.style.color = "white";
+            button_2.appendChild( document.createTextNode("\n           พิมพิ์ใบนัดหมาย\n       ") );
+         center_0.appendChild( button_2 );
 
       div_18.appendChild( center_0 );
 
    div_appItem.appendChild( div_18 );
+
 
    document.getElementById("box1").appendChild(div_appItem);
 };
@@ -261,6 +273,10 @@ function editAppointment(){
    location.href = "staff_newapp_seldoc.php";
 }
 
+
+function printAppointment(){
+   window.open('print_appointment.php','Print_Appointment','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
+}
 
 function cancleAppointment(){
    showDialog({

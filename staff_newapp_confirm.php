@@ -97,8 +97,8 @@ include_once "nav_staff.php";
         title: 'ตกลง',
         onClick: function() {
         	//Print Appointment Windows
-        	//window.open('otp_simulator.php?show=','OTP','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
-        	location.href = "staff_index.php";
+        	window.open('print_appointment.php','Print_Appointment','width=380,height=screen.height, resizable=no, scrollbars=no, toolbar=no, menubar=no, location=no, directories=no, status=no,modal=yes,alwaysRaised=yes');
+        	location.href = "staff_newapp_checkpatient.php?#";
         }
       },
       cancelable: false,
