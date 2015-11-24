@@ -41,21 +41,17 @@ include_once "nav_staff.php";
 
 		<script>
 			resultAppointment();
-						resultAppointment();
-
 			resultAppointment();
-
 			resultAppointment();
-
 			resultAppointment();
-
+			resultAppointment();
 		</script>
 	</div>
 
 	<!-- FAB button with ripple -->
 	<a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" 
 	id="add-button" 
-	href="patient_newapp_seldoc.php">
+	href="staff_newapp_checkpatient.php">
 	<i class="material-icons">add</i>
 </a>
 </main>

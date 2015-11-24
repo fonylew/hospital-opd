@@ -35,7 +35,7 @@ include_once "nav_staff.php";
 				style="padding:24px; color: mdl-primary;" align="center">
 
 			<p class="mdl-color-text--primary mdl-typography--display-1" align="center">
-				Check Patient
+				ค้นหาและยืนยันผู้ป่วย
 			</p>
 			<div class="mdl-cell mdl-cell--10-col" align="center">
 				<form action="#">

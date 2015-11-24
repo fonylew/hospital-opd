@@ -54,12 +54,12 @@ $("#actionbar-middle").append("<div style=\"font-size:x-large\">ค้นหา�
 				<center>
 					<a href="staff_viewapp_seldoc.php" 
 						class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-						style="margin-right:10px">
+						style="margin:10px">
 							Search by Doctor
 					</a>
 					<a href="" 
 						class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-						style="margin-right:10px">
+						style="margin:10px">
 							Search by Patient
 					</a>
               	</div>
@@ -70,7 +70,7 @@ $("#actionbar-middle").append("<div style=\"font-size:x-large\">ค้นหา�
 	<!-- FAB button with ripple -->
 	<a class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect" 
 	id="add-button" 
-	href="staff_checkpatient.php">
+	href="staff_newapp_checkpatient.php">
 	<i class="material-icons">add</i>
 </a>
 </main>

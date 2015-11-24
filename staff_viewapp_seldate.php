@@ -46,7 +46,7 @@ a.btn.disabled {
     	<div class="mdl-cell mdl-cell--6-col">
     		<div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col" style="padding:24px; color: mdl-primary;">
 				<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
-					เลือกวันเวลาที่ต้องการดูนัดหมาย
+					เลือกวันที่ต้องการดูนัดหมาย
 				</p>
 				<div class="mdl-grid">
 					<div class="mdl-shadow--2dp mdl-cell mdl-cell--4-col" style="display: inline-block; padding: 16px; min-width: 260px; margin-left: auto; margin-right: auto;">

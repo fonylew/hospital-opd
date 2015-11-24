@@ -35,7 +35,8 @@
 		 	</header>
 			<nav class="mdl-navigation" style="flex-grow: 1;">
 				<a class="mdl-navigation__link" href="staff_index.php">ค้นหานัดหมาย</a>
-				<a class="mdl-navigation__link" href="#">Edit Doctor's Schedule</a>
+				<a class="mdl-navigation__link" href="staff_newapp_checkpatient.php">เพิ่มนัดหมาย</a>
+				<a class="mdl-navigation__link" href="staff_editdocschedule_seldoc.php">แก้ไขตารางเข้าตรวจ</a>
 				<div class="mdl-layout-spacer"></div>
 				<a class="mdl-navigation__link" href="login.php" >Logout</a>
 			</nav>
