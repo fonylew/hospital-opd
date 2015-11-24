@@ -9,15 +9,22 @@ include_once "nav_pharmacist.php";
 </script>
 
 <style>
+	.large{
+		font-size: large;
+		
+	}
+	.x-large{
+		font-size: x-large;
+	}
 	#span_head { 
-	  font-size: 1.50em;
+	  font-size: large;
 	  margin-top: 1.67em;
 	  margin-bottom: 1.67em;
 	  margin-left: 0;
 	  margin-right: 0.3em;
 	}
 	#span_normal { 
-	  font-size: 1.20em;
+	  font-size: large;
 	  margin-top: 1.67em;
 	  margin-bottom: 1.67em;
 	  margin-left: 0;
@@ -48,8 +55,8 @@ include_once "nav_pharmacist.php";
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content">
         <div class="demo-card-wide mdl-card mdl-shadow--2dp mdl-cell mdl-cell--4-col">
-        	<div class="mdl-card__title">
-            	<h2 class="mdl-card__title-text">Search Patient</h2>
+	       	<div class="mdl-card__title">
+            	<span class="mdl-card__title-text x-large">Search Patient</span>
           	</div>
 
           	<div class="mdl-card__supporting-text">
@@ -90,8 +97,8 @@ include_once "nav_pharmacist.php";
 
 		    div3_card_title = document.createElement("div");
 		    div3_card_title.className = "mdl-card__title";
-		    h2 = document.createElement("h2");
-		    h2.className = "mdl-card__title-text";
+		    h2 = document.createElement("span");
+		    h2.className = "mdl-card__title-text x-large";
 		    text1_head_patient = document.createTextNode("Patient");
 		    h2.appendChild(text1_head_patient);
 		    div3_card_title.appendChild(h2);
@@ -119,13 +126,14 @@ include_once "nav_pharmacist.php";
 		    br4= document.createElement("br");
 		    br5= document.createElement("br");
 		    br6= document.createElement("br");
-
+		   
 		    span_firstname= document.createElement("span");
 		    span_firstname.id = "span_head";
 		    text_firstname = document.createTextNode("Firstname: ");
 		    span_firstname.appendChild(text_firstname);
 		    span_firstname_value= document.createElement("span");
 		    span_firstname_value.id = "span_normal";
+		    span_firstname_value.className = "mdl-color-text--primary";
 		    text_firstname_value = document.createTextNode("Asdf");
 		    span_firstname_value.appendChild(text_firstname_value);
 		    span_firstname_value.appendChild(br1);
@@ -137,6 +145,7 @@ include_once "nav_pharmacist.php";
 		    span_lastname.appendChild(text_lastname);
 		    span_lastname_value= document.createElement("span");
 		    span_lastname_value.id = "span_normal";
+		    span_lastname_value.className = "mdl-color-text--primary";
 		    text_lastname_value = document.createTextNode("Qwerty");
 		    span_lastname_value.appendChild(text_lastname_value);
 		    span_lastname_value.appendChild(br3);
@@ -148,6 +157,7 @@ include_once "nav_pharmacist.php";
 		    span_hn.appendChild(text_hn);
 		    span_hn_value= document.createElement("span");
 		    span_hn_value.id = "span_normal";
+		    span_hn_value.className = "mdl-color-text--primary";
 		    text_hn_value = document.createTextNode(document.getElementById("hn").value);
 		    span_hn_value.appendChild(text_hn_value);
 		    span_hn_value.appendChild(br5);
@@ -173,34 +183,63 @@ include_once "nav_pharmacist.php";
 		    //create log
 
 		    document.getElementById("fo").innerHTML = "";
-		    logNumber = 3;
+		    logNumber = 1;
 		    for (var j = logNumber ; j >= 0; j--) {
 			    info = document.createElement("div");
 				ininfo = document.createElement("div");
-				ininfo.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone";
-				info.className = "mdl-color--white mdl-shadow--2dp mdl-grid";
+				ininfo.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone  mdl-grid";
+				info.className = "mdl-color--white mdl-shadow--2dp";
 				
-				dat = document.createElement("h5");
-				datt = document.createTextNode("date: xx/yy/zzzz");
+				headN = document.createElement("div");
+				headN.className = "mdl-cell mdl-cell--2-col"
+				valueN = document.createElement("div");
+				valueN.className = "mdl-cell mdl-cell--10-col"
+
+				dat = document.createElement("span");
+				datt = document.createTextNode("Date: ");
 				dat.appendChild(datt);
-				dat.className = "mdl-cell mdl-cell--12-col";
+				dat.className = "large";
+				dat_value = document.createElement("span");
+				dat_valuet = document.createTextNode("lalala lalalalala");
+				dat_value.appendChild(dat_valuet);
+				dat_value.className = "mdl-color-text--primary large";
 
-				doc = document.createElement("h5");
-				doct = document.createTextNode("Doctor: Hatsune Miku");
+				doc = document.createElement("span");
+				doct = document.createTextNode("Doctor: ");
 				doc.appendChild(doct);
-				doc.className = "mdl-cell mdl-cell--12-col";
+				doc.className = "large";
+				doc_value = document.createElement("span");
+				doc_valuet = document.createTextNode("lalala lalalalala");
+				doc_value.appendChild(doc_valuet);
+				doc_value.className = "mdl-color-text--primary large";
 
-				ininfo.appendChild(dat);
-				ininfo.appendChild(doc);
-					
+				rec = document.createElement("span");
+				rect = document.createTextNode("Record");
+				rec.appendChild(rect);
+				rec.className = "large";
+
+				headN.appendChild(dat);
+				headN.appendChild(document.createElement("br"));
+				headN.appendChild(document.createElement("br"));
+				headN.appendChild(doc);
+				headN.appendChild(document.createElement("br"));
+				headN.appendChild(document.createElement("br"));
+				headN.appendChild(rec);
+				valueN.appendChild(dat_value);
+				valueN.appendChild(document.createElement("br"));
+				valueN.appendChild(document.createElement("br"));
+				valueN.appendChild(doc_value);
+				ininfo.appendChild(headN);
+				ininfo.appendChild(valueN);
+				
 				grd = document.createElement("div");
 				grd.className = "mdl-grid";
 
 				medNumber = 1;
 				for (var i =  medNumber; i >= 0; i--) {
 					meddiv = document.createElement("div");
-					med = document.createElement("h5");
-					meddiv.className = "mdl-cell mdl-cell--2-col";
+					med = document.createElement("span");
+					meddiv.className = "mdl-cell mdl-cell--2-col large";
 					medt = document.createTextNode("APTX4862");
 					med.appendChild(medt);
 					meddiv.appendChild(med);
@@ -209,8 +248,8 @@ include_once "nav_pharmacist.php";
 					spacediv.className = "mdl-cell mdl-cell--1-col";
 
 					dediv = document.createElement("div");
-					meddetail = document.createElement("h5");
-					dediv.className = "mdl-cell mdl-cell--8-col";
+					meddetail = document.createElement("span");
+					dediv.className = "mdl-cell mdl-cell--8-col large";
 					meddetailt = document.createTextNode("after have this your age will back to 7 years old or die");
 					meddetail.appendChild(meddetailt);
 					dediv.appendChild(meddetail);

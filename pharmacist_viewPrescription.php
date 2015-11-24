@@ -9,6 +9,13 @@ include_once "nav_pharmacist.php";
 </script>
 
 <style>
+	.large{
+		font-size: large;
+		
+	}
+	.x-large{
+		font-size: x-large;
+	}
 	#add-button {
 	      position: fixed;
 	      display: block;
@@ -25,15 +32,24 @@ include_once "nav_pharmacist.php";
 		<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col">
             <div class="section__text mdl-grid">
             	<div class = "mdl-cell mdl-cell--3-col">
-					<img src="dashboard/images/user.jpg" width="80%" height="80%" border="0" alt=""
+					<img src="dashboard/images/user.jpg" width="70%" height="70%"
 					style="padding:10px; margin-right: auto; margin-left: auto;">			
             	</div>
-            	<div class = "mdl-cell mdl-cell--9-col">
-						<h5>Name: </h5>
-						<h5>Doctor: </h5>
-						<h5>Time: </h5>
-						<h5>HN: </h5>
-						<h5>Medicine list</h5>
+            	
+            	<div class = "mdl-cell mdl-cell--9-col mdl-grid">
+            		<div class = "mdl-cell mdl-cell--2-col">
+						<span class="large">Name: </span><br><br>
+						<span class="large">Doctor: </span><br><br>
+						<span class="large">Time: </span><br><br>
+						<span class="large">HN: </span><br><br>
+					</div>
+					<div class = "mdl-cell mdl-cell--9-col">
+						<span class="mdl-color-text--primary large">VY321 UUUU</span><br><br>
+						<span class="mdl-color-text--primary large">VY321 UUUU</span><br><br>
+						<span class="mdl-color-text--primary large">VY321 UUUU</span><br><br>
+						<span class="mdl-color-text--primary large">VY321 UUUU</span>
+					</div>
+					<span class="large">Medicine list</span>
 					<div id = "medList0" class = "mdl-grid"></div>
 				</div>
 				
@@ -139,63 +155,158 @@ include_once "nav_pharmacist.php";
 	var k = 0;
 	function printAllprescription(){
 		k = k+1;
-		var div_log0 = document.createElement('div');
-		   div_log0.id = "log0";
-		   div_log0.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col";
+		
+var div_log0 = document.createElement('div');
+   div_log0.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col";
+   div_log0.id = "log0";
 
-		   var div_0 = document.createElement('div');
-		      div_0.className = "section__text mdl-grid";
+   var div_0 = document.createElement('div');
+      div_0.className = "section__text mdl-grid";
 
-		      var div_1 = document.createElement('div');
-		         div_1.className = "mdl-cell mdl-cell--3-col";
+      var div_1 = document.createElement('div');
+         div_1.className = "mdl-cell mdl-cell--3-col";
 
-		         var img_0 = document.createElement('img');
-		            img_0.src = "dashboard/images/user.jpg";
-		            img_0.height = "80%";
-		            img_0.width = "80%";
-		            img_0.style.padding = "10px";
-		            img_0.style.marginRight = "auto";
-		            img_0.style.marginLeft = "auto";
-		            img_0.border = 0;
-		         div_1.appendChild( img_0 );
+         var img_0 = document.createElement('img');
+            img_0.src = "dashboard/images/user.jpg";
+            img_0.height = "70%";
+            img_0.style.padding = "10px";
+            img_0.style.marginRight = "auto";
+            img_0.style.marginLeft = "auto";
+            img_0.width = "70%";
+         div_1.appendChild( img_0 );
 
-		      div_0.appendChild( div_1 );
-
-
-		      var div_2 = document.createElement('div');
-		         div_2.className = "mdl-cell mdl-cell--9-col";
-
-		         var h5_0 = document.createElement('h5');
-		            h5_0.appendChild( document.createTextNode("Name: ") );
-		         div_2.appendChild( h5_0 );
+      div_0.appendChild( div_1 );
 
 
-		         var h5_1 = document.createElement('h5');
-		            h5_1.appendChild( document.createTextNode("Doctor: ") );
-		         div_2.appendChild( h5_1 );
+      var div_2 = document.createElement('div');
+         div_2.className = "mdl-cell mdl-cell--9-col mdl-grid";
+
+         var div_3 = document.createElement('div');
+            div_3.className = "mdl-cell mdl-cell--2-col";
+
+            var span_0 = document.createElement('span');
+               span_0.className = "large";
+               span_0.appendChild( document.createTextNode("Name: ") );
+            div_3.appendChild( span_0 );
 
 
-		         var h5_2 = document.createElement('h5');
-		            h5_2.appendChild( document.createTextNode("Time: ") );
-		         div_2.appendChild( h5_2 );
+            var br_0 = document.createElement('br');
+            div_3.appendChild( br_0 );
 
 
-		         var h5_3 = document.createElement('h5');
-		            h5_3.appendChild( document.createTextNode("HN: ") );
-		         div_2.appendChild( h5_3 );
+            var br_1 = document.createElement('br');
+            div_3.appendChild( br_1 );
 
 
-		         var h5_4 = document.createElement('h5');
-		            h5_4.appendChild( document.createTextNode("Medicine list") );
-		         div_2.appendChild( h5_4 );
+            var span_1 = document.createElement('span');
+               span_1.className = "large";
+               span_1.appendChild( document.createTextNode("Doctor: ") );
+            div_3.appendChild( span_1 );
 
 
-		         var div_medList0 = document.createElement('div');
-		            div_medList0.className = "mdl-grid";
-		            div_medList0.id = "medList"+k;
-		         div_2.appendChild( div_medList0 );
+            var br_2 = document.createElement('br');
+            div_3.appendChild( br_2 );
 
-		      div_0.appendChild( div_2 );
+
+            var br_3 = document.createElement('br');
+            div_3.appendChild( br_3 );
+
+
+            var span_2 = document.createElement('span');
+               span_2.className = "large";
+               span_2.appendChild( document.createTextNode("Time: ") );
+            div_3.appendChild( span_2 );
+
+
+            var br_4 = document.createElement('br');
+            div_3.appendChild( br_4 );
+
+
+            var br_5 = document.createElement('br');
+            div_3.appendChild( br_5 );
+
+
+            var span_3 = document.createElement('span');
+               span_3.className = "large";
+               span_3.appendChild( document.createTextNode("HN: ") );
+            div_3.appendChild( span_3 );
+
+
+            var br_6 = document.createElement('br');
+            div_3.appendChild( br_6 );
+
+
+            var br_7 = document.createElement('br');
+            div_3.appendChild( br_7 );
+
+         div_2.appendChild( div_3 );
+
+
+         var div_4 = document.createElement('div');
+            div_4.className = "mdl-cell mdl-cell--9-col";
+
+            var span_4 = document.createElement('span');
+               span_4.className = "mdl-color-text--primary large";
+               span_4.appendChild( document.createTextNode("VY321 UUUU") );
+            div_4.appendChild( span_4 );
+
+
+            var br_8 = document.createElement('br');
+            div_4.appendChild( br_8 );
+
+
+            var br_9 = document.createElement('br');
+            div_4.appendChild( br_9 );
+
+
+            var span_5 = document.createElement('span');
+               span_5.className = "mdl-color-text--primary large";
+               span_5.appendChild( document.createTextNode("VY321 UUUU") );
+            div_4.appendChild( span_5 );
+
+
+            var br_10 = document.createElement('br');
+            div_4.appendChild( br_10 );
+
+
+            var br_11 = document.createElement('br');
+            div_4.appendChild( br_11 );
+
+
+            var span_6 = document.createElement('span');
+               span_6.className = "mdl-color-text--primary large";
+               span_6.appendChild( document.createTextNode("VY321 UUUU") );
+            div_4.appendChild( span_6 );
+
+
+            var br_12 = document.createElement('br');
+            div_4.appendChild( br_12 );
+
+
+            var br_13 = document.createElement('br');
+            div_4.appendChild( br_13 );
+
+
+            var span_7 = document.createElement('span');
+               span_7.className = "mdl-color-text--primary large";
+               span_7.appendChild( document.createTextNode("VY321 UUUU") );
+            div_4.appendChild( span_7 );
+
+         div_2.appendChild( div_4 );
+
+
+         var span_8 = document.createElement('span');
+            span_8.className = "large";
+            span_8.appendChild( document.createTextNode("Medicine list") );
+         div_2.appendChild( span_8 );
+
+
+         var div_medList0 = document.createElement('div');
+            div_medList0.className = "mdl-grid";
+            div_medList0.id = "medList"+k;
+         div_2.appendChild( div_medList0 );
+
+      div_0.appendChild( div_2 );
 
 		      /* Raised button with ripple */
 
