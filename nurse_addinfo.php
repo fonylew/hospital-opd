@@ -143,7 +143,6 @@ var patient_fname = <?php echo json_encode($patient_fname,JSON_FORCE_OBJECT)?>;
 var patient_lname = <?php echo json_encode($patient_lname,JSON_FORCE_OBJECT)?>;
 var patient_hn = <?php echo json_encode($patient_hn,JSON_FORCE_OBJECT)?>;
 
-var doctor_username;
 var appoint_time;
 
   $( document ).ready(function() {
@@ -162,15 +161,15 @@ var appoint_time;
               showSelectDoctorPopup();
             }
             else{
-              console.log(data);
               appoint_time = data;
+              console.log("appoint_time : "+appoint_time);
             }
           }
       });
   }
 
   function showSelectDoctorPopup(){
-    var htmldoctorsel = '<form action="nurse_addinfo.php" method="get"><input type="text" list="doctorlist" id="doctor_sel" name="doctor_user" style="width: 100%;"><datalist id="doctorlist"><option value="TEST" label="1234">'
+    var htmldoctorsel = '<form action="nurse_addinfo.php" method="get"><input type="text" list="doctorlist" id="doctor_sel" name="doctor_user" style="width: 100%;"><datalist id="doctorlist"><option value="TEST" label="1234">';
     $.ajax({
           url: 'control_nurse.php',
           type: 'POST',
@@ -179,9 +178,10 @@ var appoint_time;
           success: function(data) {
             console.log(data);
             for(var i = 0 ; i < Object.keys(data).length ;i++){
+              console.log("i = "+i);
               var doctoruser = data[i]['username'];
               var doctorname = data[i]['initial']+""+data[i]['fName']+" "+data[i]['lName'];
-              htmldoctorsel += '<option value="'+doctoruser+'" lable="'+doctorname+'">';
+              htmldoctorsel += '<option value="'+doctoruser+'" label="'+doctorname+'">';
           }
         }
     });
@@ -201,6 +201,7 @@ var appoint_time;
         id: 'ok-button',
         title: 'ตกลง',
         onClick: function() {
+          console.log($("doctor_sel").val());
           //appointNow
           location.replace('nurse_addinfo.php?patient_fname='+patient_fname+'&patient_lname='+patient_lname+'&patient_hn='+patient_hn);
         }
@@ -224,7 +225,7 @@ var appoint_time;
     var minutes   = dateTime.getMinutes();
     var seconds   = dateTime.getSeconds();
     var strDateTime = date+'/'+month+'/'+year+' '+hours+':'+minutes+':'+seconds;
-    console.log(strDateTime);
+    //console.log(strDateTime);
 
     showDialog({
       title: '<span id="span_confirm">Confirmation</span>',

@@ -13,7 +13,7 @@
         getDoctor();
     }
 /*
-SELECT initial,fName,lName,username FROM `user`WHERE userType='doctor'
+ตอนนี้ findTodayAppointment ผิดได้เคสนึง เช่น วันนี้จองไว้ 2 นัด แต่นัดแรกไม่ได้ไปตรวจ มันอาจจะกรอดเข้าไปในนัดที่ไม่ได้ตรวจ
 */
     function findTodayAppointment($hn){
         $connection = $GLOBALS['connection'];
@@ -21,7 +21,9 @@ SELECT initial,fName,lName,username FROM `user`WHERE userType='doctor'
         $result = mysqli_query($connection, "SELECT `appoint_time` FROM `appointment` WHERE HN='$hn' AND DATE(`appoint_time`)=CURRENT_DATE AND `diagnose_status`=0 ORDER BY `appoint_time` LIMIT 1;") or die("Query fail: " . mysqli_error($connection));
         $num_row = mysqli_num_rows($result);
         //handling in javascript appointNow($hn);
-        if( $num_row == 1 ) echo $result;
+        if( $num_row == 1 ){
+            while ($row = mysqli_fetch_array($result)) echo $row['appoint_time'];
+        }
         else echo 'false';
     }
     
@@ -53,8 +55,9 @@ SELECT initial,fName,lName,username FROM `user`WHERE userType='doctor'
             $b['fName']= $row['fName'];
             $b['lName']= $row['lName'];
             array_push($a, $b);
-          }
-        echo json_encode($a,JSON_FORCE_OBJECT);
+        }
+        //echo json_encode($a,JSON_FORCE_OBJECT); 
+        return $a;
     }
 
     function findPatient($hn){
