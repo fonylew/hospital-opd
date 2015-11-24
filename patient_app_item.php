@@ -45,6 +45,9 @@
 		</div>
 	</div>
 	<br>
+	<input type="text "id="id" value="123">
+	<input type="text" id="appoint_id" value="1">
+
 
 	<div class="section__text mdl-cell mdl-cell--12-col">
 		<center>

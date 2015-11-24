@@ -1,8 +1,10 @@
-function addAppointment() {
+
+function addAppointment(hn,appoint_id,department_name,doctor_name,appoint_date,appoint_time) {
 	/* edit layout at /patient_app_item.php */
 	/* generate DOM at http://rick.measham.id.au/paste/html2dom.htm */
 
 	/* appointment item */
+
 
 	var div_appItem = document.createElement('div');
 	div_appItem.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid";
@@ -30,7 +32,7 @@ function addAppointment() {
 	span_appId.className = "mdl-color-text--primary";
 	span_appId.style.paddingLeft = "8px";
 	span_appId.style.fontSize = "large";
-	span_appId.appendChild( document.createTextNode("123-456-789") );
+	span_appId.appendChild( document.createTextNode(appoint_id) );
 	div_2.appendChild( span_appId );
 
 	div_0.appendChild( div_2 );
@@ -64,7 +66,7 @@ function addAppointment() {
 	span_deptName.style.fontSize = "large";
 	span_deptName.id = "deptName";
 	span_deptName.className = "mdl-color-text--primary";
-	span_deptName.appendChild( document.createTextNode("DEPARTMENTNAME") );
+	span_deptName.appendChild( document.createTextNode(department_name) );
 	div_5.appendChild( span_deptName );
 
 	div_3.appendChild( div_5 );
@@ -98,7 +100,7 @@ function addAppointment() {
 	span_docName.id = "docName";
 	span_docName.style.paddingLeft = "8px";
 	span_docName.style.fontSize = "large";
-	span_docName.appendChild( document.createTextNode("DOCNAME SURNAME") );
+	span_docName.appendChild( document.createTextNode(doctor_name) );
 	div_8.appendChild( span_docName );
 
 	div_6.appendChild( div_8 );
@@ -132,7 +134,7 @@ function addAppointment() {
 	span_date.style.fontSize = "large";
 	span_date.className = "mdl-color-text--primary";
 	span_date.id = "date";
-	span_date.appendChild( document.createTextNode("พุธที่ 25 พฤศจิกายน 2015") );
+	span_date.appendChild( document.createTextNode(appoint_date) );
 	div_11.appendChild( span_date );
 
 	div_9.appendChild( div_11 );
@@ -166,7 +168,7 @@ function addAppointment() {
 	span_time.style.fontSize = "large";
 	span_time.className = "mdl-color-text--primary";
 	span_time.id = "time";
-	span_time.appendChild( document.createTextNode("09.00 - 09.10 น.") );
+	span_time.appendChild( document.createTextNode(appoint_time) );
 	div_14.appendChild( span_time );
 
 	div_12.appendChild( div_14 );
@@ -177,6 +179,19 @@ function addAppointment() {
 	var br_4 = document.createElement('br');
 	div_appItem.appendChild( br_4 );
 
+ /* var input_id = document.createElement('input');
+      input_id.value = hn;
+      input_id.type = "text ";
+      input_id.id = "id";
+   div_appItem.appendChild( input_id );
+
+
+   var input_appoint_id = document.createElement('input');
+      input_appoint_id.id = "appoint_id";
+      input_appoint_id.type = "text";
+      input_appoint_id.value = appoint_id;
+   div_appItem.appendChild( input_appoint_id );
+*/
 
 	var div_15 = document.createElement('div');
 	div_15.className = "section__text mdl-cell mdl-cell--12-col";
@@ -184,10 +199,12 @@ function addAppointment() {
 	var center_0 = document.createElement('center');
 
 	var button_0 = document.createElement('button');
-	button_0.onclick = moreDetail;
+	button_0.onclick = function(){
+		moreDetail(hn,appoint_id,department_name,doctor_name,appoint_date,appoint_time)
+	};
 	button_0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
 	button_0.appendChild( document.createTextNode("\n				More Detail\n			") );
-	center_0.appendChild( button_0 );
+	center_0.appendChild( button_0 ); 
 
 	div_15.appendChild( center_0 );
 
@@ -196,21 +213,39 @@ function addAppointment() {
 	document.getElementById("box1").appendChild(div_appItem);
 };
 
-function moreDetail(){
+function moreDetail(hn,appoint_id,department_name,doctor_name,appoint_date,appoint_time){
+	console.log(hn);
+	console.log(appoint_id);
 	showDialog({
 		title:
-		'<span style="font-size: x-large; ">หมายเลขนัด: </span>' + '<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: x-large;">123-456-789</span>',
+		'<span style="font-size: x-large; ">หมายเลขนัด: </span>' + '<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: x-large;" >'+appoint_id+'</span>',
 		text:
-		'<div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">แผนก: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> <span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">DEPARTMENTNAME</span> </div> </div> <div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">แพทย์: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> <span id="docName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">DOCNAME SURNAME</span> </div> </div> <div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">วัน: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> <span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">พุธที่ 25 พฤศจิกายน 2015</span> </div> </div> <div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">เวลา: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> <span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">09.00 - 09.10 น.</span> </div> </div> <div class="section__text mdl-cell mdl-cell--12-col"> <center> <a href="patient_newapp_seldoc.php" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-right: 16px;"> แก้ไขนัด </a> <button onClick="showConfirmDeleteDialog()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"> ยกเลิกนัด </button> <button onClick="hideDetail()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-left: 16px;"> ปิด </button> </center> </div>'
-	});
+		
+		'<div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">แผนก: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col">'+""+ 
+		'<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">'+department_name+'</span> </div> </div>'+""+
+		'<div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">แพทย์: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> <span id="docName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">'+doctor_name+'</span> </div> </div> '+""+
+		'<div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> '+""+
+		'<span style="font-size: large; ">วัน: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> <span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">'+appoint_date+'</span> </div> </div> <div class="mdl-cell--12-col mdl-grid"> '+""+
+		'<div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">เวลา: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> '+""+
+		'<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">'+appoint_time+'</span> </div> </div> <div class="section__text mdl-cell mdl-cell--12-col"> <center> '+""+
+		'<a href="patient_newapp_seldoc.php" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-right: 16px;"> แก้ไขนัด </a> '+""+
+		'<button onClick="showConfirmDeleteDialog('+appoint_id+')" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"> ยกเลิกนัด </button> '+""+
+		'<button onClick="hideDetail()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-left: 16px;"> ปิด </button> </center> </div>' 
+	}); 
 }
+
+
+
 
 function hideDetail(){
 	var dialog = $('#orrsDiag');
 	hideDialog(dialog);
 }
 
-function showConfirmDeleteDialog(){
+
+
+function showConfirmDeleteDialog(appoint_id){
+
 	showDialog({
 		title:
 		'<span style="font-size: x-large; " class="mdl-color-text--primary">ยกเลิกนัด</span>',
@@ -227,7 +262,18 @@ function showConfirmDeleteDialog(){
 	        id: 'ok-button',
 	        title: 'ยกเลิกนัด',
 	        onClick: function() {
+	        console.log(appoint_id);
+	          $.ajax({
+              url: 'control_patient.php',
+              type: 'POST',
+              data: {cancel_appoint: appoint_id},
+              dataType: "json",
+              success: function(data) {
+              	console.log('hello');
+          	  }
+         	  });
 	          hideDetail();
+	          location.reload();
 	        }
       	},
       	cancelable: true,
