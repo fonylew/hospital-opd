@@ -207,7 +207,7 @@ include_once "nav_pharmacist.php";
 		             // Two Parameter in DOM here
 
 		             var medicine = "["+med_code+"] "+med_name;
-					 var description = "amount: "+amount+"    how to: "+howto;
+					 var description = "จำนวน :  "+amount+"เม็ด  |       วิธีการใช้ : "+howto;
 
 		             //UNUN generated code
 		             	num = idIn.substring(3);
@@ -222,7 +222,7 @@ include_once "nav_pharmacist.php";
 						nameNode.appendChild(medF);
 
 						detailF = document.createElement("h6");
-						detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
+						detaill = document.createTextNode(description);
 						detailF.appendChild(detaill);
 						detailNode.appendChild(detailF);
 
@@ -281,7 +281,7 @@ include_once "nav_pharmacist.php";
 
 	            var span_1 = document.createElement('span');
 	               span_1.className = "large";
-	               span_1.appendChild( document.createTextNode("แพทย์เจ้าของไข้: ") );
+	               span_1.appendChild( document.createTextNode("แพทย์: ") );
 	            div_3.appendChild( span_1 );
 
 
