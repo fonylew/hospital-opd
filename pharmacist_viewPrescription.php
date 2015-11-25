@@ -77,6 +77,7 @@ include_once "nav_pharmacist.php";
 
 	<script>
 	var k=0
+	var a={};
 	$(document).ready(function(){
 		$.ajax({
           url: 'control_pharmacist.php',
@@ -86,10 +87,11 @@ include_once "nav_pharmacist.php";
           success: function(data) {
             console.log(data);
             for(var i = 0 ; i < Object.keys(data).length ;i++){
-              console.log("i = "+i);
               var patient_name = data[i]['patient_initial']+data[i]['patient_fName']+" "+data[i]['patient_lName'];
               var doctor_name = data[i]['doctor_initial']+data[i]['doctor_fName']+" "+data[i]['doctor_lName'];
+              a[k]=data[i]['prescript_id'];
               printAllprescription(patient_name,doctor_name,data[i]['datetime'],data[i]['hn']);
+             console.log(a);
             }
           }
       	});
@@ -108,15 +110,33 @@ include_once "nav_pharmacist.php";
 		        id: 'cancel-button',
 		        title: 'ยกเลิก',
 		        onClick: function() { 
-		          	
+
 		        }
 		    },
 		    positive: {
 		        id: 'ok-button',
 		        title: 'ตกลง',
 		        onClick: function() {
-		        	del = idIn.substring(3);
-		        	deletePrescription(del);
+		        	//WTF
+		        	var index = parseInt(idIn.substring(3))-1;
+		        	console.log('this is a = ');
+		        	var pid = a[index];
+		        	console.log(pid,employee_username);
+		        	$.ajax({
+		            	url: 'control_pharmacist.php',
+		            	type: 'POST',
+		            	data: {accept_prescript:pid ,pharmacist_username: employee_username},
+		            	success: function(data) {
+		            	  console.log(data);
+		            	  if(data == 'true'){
+		            	    console.log("accepted");
+		            	    location.href = "pharmacist_viewPrescription.php";
+		            	  }
+		            	  else{
+		            	    console.log(":( cannot accept");
+		            	  }
+		            	}
+          			});
 		        }
 		    },
 		    cancelable: false,		  	
@@ -140,15 +160,33 @@ include_once "nav_pharmacist.php";
 			        id: 'ok-button',
 			        title: 'ตกลง',
 			        onClick: function() {
-				        	//send allergicproblem to doctor then delete the prescription
-				        	del = idIn.substring(3);
-			        	deletePrescription(del);
+				    //send allergicproblem to doctor then delete the prescription
+			        //WTF
+		        	var index = parseInt(idIn.substring(3))-1;
+		        	console.log('this is a = ');
+		        	var pid = a[index];
+		        	console.log(pid,employee_username);
+		        	$.ajax({
+		            	url: 'control_pharmacist.php',
+		            	type: 'POST',
+		            	data: {reject_prescript:pid ,pharmacist_username: employee_username},
+		            	success: function(data) {
+		            	  console.log(data);
+		            	  if(data == 'true'){
+		            	    console.log("rejected");
+		            	    location.href = "pharmacist_viewPrescription.php";
+		            	  }
+		            	  else{
+		            	    console.log(":( cannot reject");
+		            	  }
+		            	}
+          			});
 			        }
 			    },
 			    cancelable: false,		  	
 			})
 	};
-	function printMedList(k){
+	function printMedList(k,description){
 		document.getElementById("medList"+k).innerHTML = "";
 		for (var i = 1; i >= 0; i--) {
 			nameNode = document.createElement("div");
@@ -162,7 +200,7 @@ include_once "nav_pharmacist.php";
 			nameNode.appendChild(medF);
 
 			detailF = document.createElement("h6");
-			detaill = document.createTextNode("Let's random the detail!!!! adsfnjklwejmpxohrmfc[i hmc;dfkm[q2mgcj sbfdlmuchupowufpu");
+			detaill = document.createTextNode(description);
 			detailF.appendChild(detaill);
 			detailNode.appendChild(detailF);
 
