@@ -5,6 +5,12 @@
         checkUser($_POST['login_hn']);
     }
 
+	if (isset($_POST['logout'])) {
+        session_start();
+        session_destroy();
+        echo json_encode('logout',JSON_FORCE_OBJECT); 
+    }
+
     if (isset($_POST['view_appoint'])){
     	viewAppointment($_POST['view_appoint']);
 	}
