@@ -209,8 +209,20 @@ include_once "nav_doctor.php";
 	});
 
 	function saveChanges() {
-		console.log(selectedDate);
-		location.replace("doctor_viewAppointment.php");
+		var worktimes = [];
+		for (var i = 0; i < 31; i++) {
+			if ($("#timeslot"+(i+1)).hasClass("work")) worktimes[i] = 1;
+			else worktimes[i] = 0;
+		}
+		worktimes = JSON.stringify(worktimes);
+      	$.ajax({
+          	url: 'control_doctor.php',
+          	type: 'POST',
+          	data: {save_schedule_date: selectedDate, save_schedule_doctor: employee_username, save_schedule_worktime: worktimes},
+          	success() {
+          		alert("Update schedule successfully.");
+          	}
+      	});
 	}
 
 </script>
