@@ -13,6 +13,34 @@
         getSchedulebyDate($_POST['schedule_date'],$_POST['schedule_doctor']);
     }
 
+    if (isset($_POST['save_schedule_date'])) {
+        saveSchedulebyDate($_POST['save_schedule_date'],$_POST['save_schedule_doctor'],$_POST['save_schedule_worktime']);
+    }
+
+    function saveSchedulebyDate($save_schedule_date,$save_schedule_doctor,$save_schedule_worktime) {
+        $connection = $GLOBALS['connection'];
+        $save_schedule_date=$connection->real_escape_string($save_schedule_date);
+        $save_schedule_doctor=$connection->real_escape_string($save_schedule_doctor);
+        $save_schedule_worktime = json_decode($save_schedule_worktime);
+
+        for ($i = 0; $i < sizeof($save_schedule_worktime); $i++) {
+            $temptimeslot = $i+1;
+            if ($save_schedule_worktime[$i] == 1) {
+                mysqli_query($connection, "DELETE FROM worktime 
+                WHERE doctor_username = '$save_schedule_doctor' AND worktime_date = '$save_schedule_date' AND worktime_slot = '$temptimeslot'") 
+                or die("Query fail: " . mysqli_error($connection));
+                mysqli_query($connection, "INSERT INTO worktime(worktime_id, status, worktime_date, worktime_slot, doctor_username)
+                VALUES (0,'available','$save_schedule_date','$temptimeslot','$save_schedule_doctor')") 
+                or die("Query fail: " . mysqli_error($connection));
+            }
+            else {
+                mysqli_query($connection, "DELETE FROM worktime 
+                WHERE doctor_username = '$save_schedule_doctor' AND worktime_date = '$save_schedule_date' AND worktime_slot = '$temptimeslot'") 
+                or die("Query fail: " . mysqli_error($connection));
+            } 
+        }
+    }
+
     function getSchedulebyDate($schedule_date,$employee_username) {
         $connection = $GLOBALS['connection'];
         $schedule_date=$connection->real_escape_string($schedule_date);
