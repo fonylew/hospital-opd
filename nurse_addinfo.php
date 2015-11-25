@@ -144,6 +144,14 @@ var patient_lname = <?php echo json_encode($patient_lname,JSON_FORCE_OBJECT)?>;
 var patient_hn = <?php echo json_encode($patient_hn,JSON_FORCE_OBJECT)?>;
 
 var appoint_time;
+var appoint_id;
+var doctor_username;
+var htmldoctorsel;
+var form_weight;
+var form_height;
+var form_heart;
+var form_blood;
+var form_temp;
 
   $( document ).ready(function() {
     console.log("GET value: "+patient_fname+patient_lname+patient_hn);
@@ -155,21 +163,24 @@ var appoint_time;
           url: 'control_nurse.php',
           type: 'POST',
           data: {check_appoint_hn: hn},
+          dataType: "json",
           success: function(data) {
-            if(data === 'false'){
+            if(data == false){
               console.log("no appointment");
               showSelectDoctorPopup();
             }
             else{
-              appoint_time = data;
-              console.log("appoint_time : "+appoint_time);
+              appoint_id = data['appoint_id'];
+              appoint_time = data['appoint_time'];
+              doctor_username = data['doctor_username'];
+              console.log("appoint_time : "+appoint_time+"appoint_id : "+appoint_id+"  doctor_username : "+doctor_username);
             }
           }
       });
   }
 
   function showSelectDoctorPopup(){
-    var htmldoctorsel = '<form action="nurse_addinfo.php" method="get"><input type="text" list="doctorlist" id="doctor_sel" name="doctor_user" style="width: 100%;"><datalist id="doctorlist"><option value="TEST" label="1234">';
+    htmldoctorsel = '<form action="nurse_addinfo.php" method="get"><input type="text" list="doctorlist" id="doctor_sel" name="doctor_user" style="width: 100%;"><datalist id="doctorlist"><option value="TEST" label="1234">';
     $.ajax({
           url: 'control_nurse.php',
           type: 'POST',
@@ -181,6 +192,7 @@ var appoint_time;
               console.log("i = "+i);
               var doctoruser = data[i]['username'];
               var doctorname = data[i]['initial']+""+data[i]['fName']+" "+data[i]['lName'];
+              console.log("i = "+i+doctoruser+doctorname);
               htmldoctorsel += '<option value="'+doctoruser+'" label="'+doctorname+'">';
           }
         }
@@ -194,7 +206,7 @@ var appoint_time;
         id: 'cancel-button',
         title: 'ยกเลิก',
         onClick: function() { 
-          location.replace('nurse_index.php');
+            location.replace('nurse_index.php');
         }
       },
       positive: {
@@ -202,7 +214,22 @@ var appoint_time;
         title: 'ตกลง',
         onClick: function() {
           console.log($("doctor_sel").val());
-          //appointNow
+          $.ajax({
+              url: 'control_nurse.php',
+              type: 'POST',
+              data: {appointnow_hn: patient_hn, appointnow_doctor: doctor_username},
+              success: function(data) {
+                console.log(patient_hn+' make appoint '+doctor_username);
+                if(data === 'added'){
+                  console.log("added");
+                }
+                else{
+                  console.log('cannot make it');
+                  alert('กรุณาเลือกค่าใหม่อีกครั้ง');   
+                }
+                location.replace('nurse_addinfo.php?patient_fname='+patient_fname+'&patient_lname='+patient_lname+'&patient_hn='+patient_hn);
+              }
+          });
           location.replace('nurse_addinfo.php?patient_fname='+patient_fname+'&patient_lname='+patient_lname+'&patient_hn='+patient_hn);
         }
       },
@@ -227,6 +254,13 @@ var appoint_time;
     var strDateTime = date+'/'+month+'/'+year+' '+hours+':'+minutes+':'+seconds;
     //console.log(strDateTime);
 
+    form_weight = document.getElementById("weight").value;
+    form_height = document.getElementById("height").value;
+    form_temp = document.getElementById("temperature").value;
+    form_heart = document.getElementById("heartrate").value;
+    form_blood = document.getElementById("bloodpressure").value
+
+
     showDialog({
       title: '<span id="span_confirm">Confirmation</span>',
       // title: 'Confirmation',
@@ -234,23 +268,23 @@ var appoint_time;
       '<td><div id="div_valuetable">'+strDateTime+'</div></td></tr>'+
 
       '<tr><td><p id="bigp">น้ำหนัก (กิโลกรัม): </h5></td>'+
-      '<td><div id="div_valuetable">'+document.getElementById("weight").value+
+      '<td><div id="div_valuetable">'+form_weight+
       '</div></td></tr>'+
 
       '<tr><td><p id="bigp">ส่วนสูง (เซนติเมตร): </h5></td>'+
-      '<td><div id="div_valuetable">'+document.getElementById("height").value+
+      '<td><div id="div_valuetable">'+form_height+
       '</div></td></tr>'+
 
       '<tr><td><p id="bigp">อุณหภูมิร่างกาย (องศาเซลเซียส): </h5></td>'+
-      '<td><div id="div_valuetable">'+document.getElementById("temperature").value+
+      '<td><div id="div_valuetable">'+form_temp+
       '</div></td></tr>'+
 
       '<tr><td><p id="bigp">อัตราการเต้นหัวใจ (ครั้งต่อนาที): </h5></td>'+
-      '<td><div id="div_valuetable">'+document.getElementById("heartrate").value+
+      '<td><div id="div_valuetable">'+form_heart+
       '</div></td></tr>'+
 
       '<tr><td><p id="bigp">ความดันโลหิต (S/D): </p></td>'+
-      '<td><div id="div_valuetable">'+document.getElementById("bloodpressure").value+
+      '<td><div id="div_valuetable">'+form_blood+
       '</div></td></tr></table>',
       negative: {
         id: 'cancel-button',
@@ -263,7 +297,21 @@ var appoint_time;
         id: 'ok-button',
         title: 'ตกลง',
         onClick: function() {
-          location.href = "nurse_index.php";
+          $.ajax({
+              url: 'control_nurse.php',
+              type: 'POST',
+              data: {add_hn: patient_hn,add_appoint: appoint_time, add_appointid: appoint_id, add_weight: form_weight, add_height: form_height, add_blood: form_blood, add_temp: form_temp, add_heart: form_heart, add_nurse: employee_username, add_doctor: doctor_username},
+              success: function(data) {
+                console.log(patient_hn+'|'+appoint_time+'|'+appoint_id+'|'+form_weight+'|'+form_height+'|'+form_blood+'|'+form_temp+'|'+form_heart+'|'+employee_username+'|'+doctor_username);
+                if(data == true){
+                  console.log("added");
+                  location.href = "nurse_index.php";
+                }
+                else{
+                  console.log("something wrong");
+                }
+              }
+          });
         }
       },
       cancelable: false,
