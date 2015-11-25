@@ -206,8 +206,11 @@ include_once "nav_pharmacist.php";
 
 		             // Two Parameter in DOM here
 
-		             var medicine = "["+med_code+"] "+med_name;
-					 var description = "amount: "+amount+"    how to: "+howto;
+		    //          var medicine = "["+med_code+"] "+med_name;
+					 // var description = "amount: "+amount+"    how to: "+howto;
+					 var medicine = "["+med_code+"] "+med_name;
+					 var description_amount = "amount: "+amount;
+					 var description_howto ="how to: "+howto;
 
 		             //UNUN generated code
 		             	num = idIn.substring(3);
@@ -221,10 +224,20 @@ include_once "nav_pharmacist.php";
 						medF.appendChild(medName);
 						nameNode.appendChild(medF);
 
-						detailF = document.createElement("h6");
-						detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
-						detailF.appendChild(detaill);
-						detailNode.appendChild(detailF);
+						// detailF = document.createElement("h6");
+						// detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
+						// detailF.appendChild(detaill);
+						// detailNode.appendChild(detailF);
+						detail_head_amount = document.createElement("h6");
+						detail_amount = document.createTextNode(description_amount);
+
+						detail_head_howto = document.createElement("h6");
+						detail_howto = document.createTextNode(description_howto);
+
+						detail_head_amount.appendChild(detail_amount);
+						detail_head_howto.appendChild(detail_howto);
+						detailNode.appendChild(detail_head_amount);
+						detailNode.appendChild(detail_head_howto);
 
 						document.getElementById("medList"+num).appendChild(nameNode);
 						document.getElementById("medList"+num).appendChild(detailNode);
