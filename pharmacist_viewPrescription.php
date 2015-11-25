@@ -207,7 +207,7 @@ include_once "nav_pharmacist.php";
 		             // Two Parameter in DOM here
 
 		             var medicine = "["+med_code+"] "+med_name;
-					 var description = "amount: "+amount+"    how to: "+howto;
+					 var description = "จำนวน :  "+amount+"เม็ด  |       วิธีการใช้ : "+howto;
 
 		             //UNUN generated code
 		             	num = idIn.substring(3);
@@ -222,7 +222,7 @@ include_once "nav_pharmacist.php";
 						nameNode.appendChild(medF);
 
 						detailF = document.createElement("h6");
-						detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
+						detaill = document.createTextNode(description);
 						detailF.appendChild(detaill);
 						detailNode.appendChild(detailF);
 
@@ -267,7 +267,7 @@ include_once "nav_pharmacist.php";
 
 	            var span_0 = document.createElement('span');
 	               span_0.className = "large";
-	               span_0.appendChild( document.createTextNode("Name: ") );
+	               span_0.appendChild( document.createTextNode("ชื่อผู้ป่วย: ") );
 	            div_3.appendChild( span_0 );
 
 
@@ -281,7 +281,7 @@ include_once "nav_pharmacist.php";
 
 	            var span_1 = document.createElement('span');
 	               span_1.className = "large";
-	               span_1.appendChild( document.createTextNode("Doctor: ") );
+	               span_1.appendChild( document.createTextNode("แพทย์: ") );
 	            div_3.appendChild( span_1 );
 
 
@@ -295,7 +295,7 @@ include_once "nav_pharmacist.php";
 
 	            var span_2 = document.createElement('span');
 	               span_2.className = "large";
-	               span_2.appendChild( document.createTextNode("Time: ") );
+	               span_2.appendChild( document.createTextNode("เวลา: ") );
 	            div_3.appendChild( span_2 );
 
 
@@ -378,7 +378,7 @@ include_once "nav_pharmacist.php";
 
          var span_8 = document.createElement('span');
             span_8.className = "large";
-            span_8.appendChild( document.createTextNode("Medicine list") );
+            span_8.appendChild( document.createTextNode("รายการยา") );
          div_2.appendChild( span_8 );
 
 
@@ -390,14 +390,15 @@ include_once "nav_pharmacist.php";
       div_0.appendChild( div_2 );
 
 		      /* Raised button with ripple */
-
+		      var div_temp = document.createElement('center');
 		      var button_acc0 = document.createElement('button');
 		         button_acc0.id = "acc"+k;
 		         button_acc0.onclick = function(){
 		            popAccept(this.id)
 		         };
 		         button_acc0.className = "mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect";
-		         button_acc0.appendChild( document.createTextNode("\n					Accept\n				") );
+		         button_acc0.style = "margin:10px;"
+		         button_acc0.appendChild( document.createTextNode("\n					ยอมรับ\n				") );
 		      div_0.appendChild( button_acc0 );
 
 
@@ -407,7 +408,8 @@ include_once "nav_pharmacist.php";
 		            popEdit(this.id)
 		         };
 		         button_edi0.id = "edi"+k;
-		         button_edi0.appendChild( document.createTextNode("\n					Reject Prescription\n				") );
+		         button_edi0.style = "margin:10px;"
+		         button_edi0.appendChild( document.createTextNode("\n					ปฏิเสธรายการยา\n				") );
 		      div_0.appendChild( button_edi0 );
 
 		     // printMedList(this.id)
@@ -420,10 +422,11 @@ include_once "nav_pharmacist.php";
 		         };
 		         button_det0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
 		         button_det0.id = "det"+k;
-		         button_det0.appendChild( document.createTextNode("\n					show detail\n				") );
+		         button_det0.style = "margin:10px;"
+		         button_det0.appendChild( document.createTextNode("\n					แสดงรายละเอียด\n				") );
 		      div_0.appendChild( button_det0 );
-
-		   div_log0.appendChild( div_0 );
+		      div_temp.appendChild(div_0);
+		   div_log0.appendChild( div_temp );
 
 		box1.appendChild( div_log0 );
 
