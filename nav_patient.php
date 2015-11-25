@@ -43,8 +43,8 @@
     var patient_lname = <?php echo json_encode($patient_lname,JSON_FORCE_OBJECT)?>;
     var patient_hn = <?php echo json_encode($patient_hn,JSON_FORCE_OBJECT)?>;
 */
-    document.getElementById("patient_name").innerHTML = "<br>"+patient_initial + " " + patient_fname + " " + patient_lname+"</br>";
-    document.getElementById("patient_hn").innerHTML = "<br>HN :"+patient_hn+"</br>";
+   // document.getElementById("patient_name").innerHTML = "<br>"+patient_initial + " " + patient_fname + " " + patient_lname+"</br>";
+   // document.getElementById("patient_hn").innerHTML = "<br>HN :"+patient_hn+"</br>";
 
 	function logout() {
       	$.ajax({
