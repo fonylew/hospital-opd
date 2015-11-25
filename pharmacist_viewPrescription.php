@@ -31,6 +31,7 @@ include_once "nav_pharmacist.php";
 	<div class="mdl-grid page-content" id = "box1">
 		<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col">
             <div class="section__text mdl-grid">
+            <!--
             	<div class = "mdl-cell mdl-cell--3-col">
 					<img src="dashboard/images/user.jpg" width="70%" height="70%"
 					style="padding:10px; margin-right: auto; margin-left: auto;">			
@@ -53,22 +54,21 @@ include_once "nav_pharmacist.php";
 					<div id = "medList0" class = "mdl-grid"></div>
 				</div>
 				
-
-				<!-- Raised button with ripple -->
 				<button id= "acc0" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onClick = "popAccept(this.id)">
 					Accept
 				</button>
 				<button id = "edi0" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick = "popEdit(this.id)">
 					Reject Prescription
 				</button>
-				<!-- just for testing delete this button later -->
+
+
 				<button id = "test" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printAllprescription()">
 					test
 				</button>
 				<button id = "det0" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printMedList(0)">
 					show detail
 				</button>
-
+			-->
             </div>
         </div>
 
@@ -76,6 +76,25 @@ include_once "nav_pharmacist.php";
 
 
 	<script>
+	var k=0
+	$(document).ready(function(){
+		$.ajax({
+          url: 'control_pharmacist.php',
+          type: 'POST',
+          data: {listprescript:true},
+          dataType: "json",
+          success: function(data) {
+            console.log(data);
+            for(var i = 0 ; i < Object.keys(data).length ;i++){
+              console.log("i = "+i);
+              var patient_name = data[i]['patient_initial']+data[i]['patient_fName']+" "+data[i]['patient_lName'];
+              var doctor_name = data[i]['doctor_initial']+data[i]['doctor_fName']+" "+data[i]['doctor_lName'];
+              printAllprescription(patient_name,doctor_name,data[i]['datetime'],data[i]['hn']);
+            }
+          }
+      	});
+	});
+
 	function deletePrescription(idIn){
 		document.getElementById("log"+idIn).remove();
 	};
@@ -153,9 +172,8 @@ include_once "nav_pharmacist.php";
 		};
 	};
 
-	var k = 0;
-	function printAllprescription(){
-		k = k+1;
+	function printAllprescription(patient_name,doctor_name,datetime,hn){
+	k = k+1;
 		
 	var div_log0 = document.createElement('div');
 	   div_log0.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col";
@@ -248,7 +266,7 @@ include_once "nav_pharmacist.php";
 
             var span_4 = document.createElement('span');
                span_4.className = "mdl-color-text--primary large";
-               span_4.appendChild( document.createTextNode("VY321 UUUU") );
+               span_4.appendChild( document.createTextNode(patient_name) );
             div_4.appendChild( span_4 );
 
 
@@ -262,7 +280,7 @@ include_once "nav_pharmacist.php";
 
             var span_5 = document.createElement('span');
                span_5.className = "mdl-color-text--primary large";
-               span_5.appendChild( document.createTextNode("VY321 UUUU") );
+               span_5.appendChild( document.createTextNode(doctor_name) );
             div_4.appendChild( span_5 );
 
 
@@ -276,7 +294,7 @@ include_once "nav_pharmacist.php";
 
             var span_6 = document.createElement('span');
                span_6.className = "mdl-color-text--primary large";
-               span_6.appendChild( document.createTextNode("VY321 UUUU") );
+               span_6.appendChild( document.createTextNode(datetime) );
             div_4.appendChild( span_6 );
 
 
@@ -290,7 +308,7 @@ include_once "nav_pharmacist.php";
 
             var span_7 = document.createElement('span');
                span_7.className = "mdl-color-text--primary large";
-               span_7.appendChild( document.createTextNode("VY321 UUUU") );
+               span_7.appendChild( document.createTextNode(hn) );
             div_4.appendChild( span_7 );
 
          div_2.appendChild( div_4 );
