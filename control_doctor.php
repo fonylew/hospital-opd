@@ -9,6 +9,27 @@
         getIllnessList($_POST['illness_type']);
     }
 
+    if (isset($_POST['schedule_date'])) {
+        getSchedulebyDate($_POST['schedule_date'],$_POST['schedule_doctor']);
+    }
+
+    function getSchedulebyDate($schedule_date,$employee_username) {
+        $connection = $GLOBALS['connection'];
+        $schedule_date=$connection->real_escape_string($schedule_date);
+        $employee_username=$connection->real_escape_string($employee_username);
+
+        $result = mysqli_query($connection, "SELECT worktime_slot FROM worktime 
+        WHERE doctor_username = '$employee_username' AND worktime_date = '$schedule_date'") 
+        or die("Query fail: " . mysqli_error($connection));
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){   
+            $b["worktime_slot"] = $row["worktime_slot"];
+            array_push($a,$b);
+        }
+        echo json_encode($a,JSON_FORCE_OBJECT); 
+    }
+
     function saveMedicalRecord($diagnose_code,$diagnose_description,$diagnose_appointid,$diagnose_prescriptions) {
 
         $connection = $GLOBALS['connection'];
