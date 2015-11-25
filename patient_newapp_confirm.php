@@ -134,8 +134,9 @@ if($departno == 10) $departname = "อายุรเวช"; */
               data: {makeappoint_hn: hn,makeappoint_doctor: doctor_user,makeappoint_timeslot:timeslot,makeappointment_date: date},
               dataType: "json",
               success: function(data) {
-              	alert(data);
-              	console.log(data);
+              	alert("successful !");
+              	window.location.replace("http://localhost/hospital-opd/index.php");
+              	
               	
               } 
           	

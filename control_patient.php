@@ -31,6 +31,9 @@
     	makeAppointment($_POST['makeappoint_hn'],$_POST['makeappoint_doctor'],$_POST['makeappoint_timeslot'],$_POST['makeappointment_date']);
 
 	}
+    if (isset($_POST['schedule_date'])) {
+        getSchedulebyDate($_POST['schedule_date'],$_POST['schedule_doctor']);
+    }
     function checkUser($hn){
     	$connection = $GLOBALS['connection'];
 		$hn = $connection->real_escape_string($hn);
@@ -89,6 +92,7 @@
         $connection = $GLOBALS['connection'];
   		$appoint_id = $connection->real_escape_string($appoint_id);
     	$result = mysqli_query($connection, "DELETE FROM appointment WHERE appoint_id = '$appoint_id'") or die("Query fail: " . mysqli_error($connection));
+        echo true;
 
     }
     function getDepartment(){
@@ -154,9 +158,24 @@
         WHERE doctor_username ='$doctor' AND worktime_slot = '$timeslot' AND worktime_date ='$date'") 
         or die("Query fail: " . mysqli_error($connection));
 
-    	echo json_encode($date." ".$time[0]);
+    	echo true;
 
     }
+    function getSchedulebyDate($schedule_date,$employee_username) {
+        $connection = $GLOBALS['connection'];
+        $schedule_date=$connection->real_escape_string($schedule_date);
+        $employee_username=$connection->real_escape_string($employee_username);
 
+        $result = mysqli_query($connection, "SELECT worktime_slot FROM worktime 
+        WHERE doctor_username = '$employee_username' AND worktime_date = '$schedule_date' AND status ='available' ") 
+        or die("Query fail: " . mysqli_error($connection));
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){   
+            $b["worktime_slot"] = $row["worktime_slot"];
+            array_push($a,$b);
+        }
+        echo json_encode($a,JSON_FORCE_OBJECT); 
+    }
 
 ?>

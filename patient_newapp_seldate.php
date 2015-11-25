@@ -211,7 +211,7 @@ a.btn.disabled {
 		console.log(getdate);
       
       	$.ajax({
-          	url: 'control_doctor.php',
+          	url: 'control_patient.php',
           	type: 'POST',
           	data: {schedule_date: selectedDate, schedule_doctor: employee_username},
           	dataType: "json",
