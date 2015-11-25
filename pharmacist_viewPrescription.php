@@ -186,29 +186,52 @@ include_once "nav_pharmacist.php";
 			    cancelable: false,		  	
 			})
 	};
-	function printMedList(k,description){
-		document.getElementById("medList"+k).innerHTML = "";
-		for (var i = 1; i >= 0; i--) {
-			nameNode = document.createElement("div");
-			nameNode.className = "mdl-cell mdl-cell--2-col";
-			detailNode = document.createElement("div");
-			detailNode.className = "mdl-cell mdl-cell--10-col";
+	function printMedList(k,prescript_id){
+		//This line got error so I comment it out
+		//document.getElementById("medList"+k).innerHTML = "";
+		//getMedicine HERE
+		//FONY code here not generated one.
+			$.ajax({
+            	url: 'control_pharmacist.php',
+            	type: 'POST',
+            	data: {listmedicine:prescript_id},
+            	dataType: 'json',
+            	success: function(data) {
+            	  console.log(data);
+            	  for(var i = 0 ; i < Object.keys(data).length ;i++){
+		              var med_code = data[i]['med_code'];
+		              var med_name = data[i]['med_name'];
+		              var amount = data[i]['amount'];
+		              var howto = data[i]['howTo'];
 
-			medF = document.createElement("h6");
-			medName = document.createTextNode("Med"+i);
-			medF.appendChild(medName);
-			nameNode.appendChild(medF);
+		             // Two Parameter in DOM here
 
-			detailF = document.createElement("h6");
-			detaill = document.createTextNode(description);
-			detailF.appendChild(detaill);
-			detailNode.appendChild(detailF);
+		             var medicine = "["+med_code+"] "+med_name;
+					 var description = "amount: "+amount+"    how to: "+howto;
 
-			document.getElementById("medList"+k).appendChild(nameNode);
-			document.getElementById("medList"+k).appendChild(detailNode);
-				
-		};
-	};
+		             //UNUN generated code
+						nameNode = document.createElement("div");
+						nameNode.className = "mdl-cell mdl-cell--2-col";
+						detailNode = document.createElement("div");
+						detailNode.className = "mdl-cell mdl-cell--10-col";
+
+						medF = document.createElement("h6");
+						medName = document.createTextNode(medicine);
+						medF.appendChild(medName);
+						nameNode.appendChild(medF);
+
+						detailF = document.createElement("h6");
+						detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
+						detailF.appendChild(detaill);
+						detailNode.appendChild(detailF);
+
+						document.getElementById("medList"+k).appendChild(nameNode);
+						document.getElementById("medList"+k).appendChild(detailNode);
+
+		          }
+            	}
+  			});
+	}
 
 	function printAllprescription(patient_name,doctor_name,datetime,hn){
 	k = k+1;
@@ -389,7 +412,10 @@ include_once "nav_pharmacist.php";
 		     // printMedList(this.id)
 		      var button_det0 = document.createElement('button');
 		         button_det0.onclick = function(){
-		            printMedList(k)
+		            var prescript_id = a[parseInt((this.id).substring(3))-1];
+		            printMedList(k,prescript_id)
+		            console.log(a[parseInt((this.id).substring(3))-1]);
+		            //YEAHHHHH HERE
 		         };
 		         button_det0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
 		         button_det0.id = "det"+k;

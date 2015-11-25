@@ -11,7 +11,11 @@
 
     if (isset($_POST['reject_prescript'])) {
         rejectPrescription($_POST['reject_prescript'],$_POST['pharmacist_username']);
-    } 
+    }
+
+	if (isset($_POST['listmedicine'])) {
+        getMedicine($_POST['listmedicine']);
+    }
 
     function acceptPrescription($pid,$user){
     	$connection = $GLOBALS['connection'];
@@ -27,6 +31,22 @@
         $user = $connection->real_escape_string($user);
         mysqli_query($connection, "UPDATE `prescription` SET `pharmacist_username`='$user',`prescript_status`=-1 WHERE `prescript_id`=$pid") or die("Query fail: " . mysqli_error($connection));
         echo 'true';
+    }
+
+    function getMedicine($pid){
+    	$connection = $GLOBALS['connection'];
+    	$pid = $connection->real_escape_string($pid);
+    	$result = mysqli_query($connection, "SELECT medicine.med_code AS med_code,med_name,amount,howTo FROM `medicine` LEFT JOIN medicine_db ON medicine.med_code=medicine_db.med_code WHERE `prescript_id`='$pid'") or die("Query fail: " . mysqli_error($connection));
+    	$a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){
+        	$b['med_code'] = $row['med_code'];
+            $b['med_name'] = $row['med_name'];
+            $b['amount']= $row['amount'];
+            $b['howTo'] = $row['howTo'];
+            array_push($a, $b);
+        }
+        echo json_encode($a,JSON_FORCE_OBJECT);
     }
 
     function getActivePrescription(){
