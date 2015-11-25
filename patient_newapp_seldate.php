@@ -123,13 +123,14 @@ a.btn.disabled {
 	              		<input type="hidden" name="departno" value="<?php echo $departno;?>">
 	              		<input type="hidden" id="getdate" name="getdate" value="">
 	              		<input type="hidden" id="gettime" name="gettime" value="">
+	              		<input type="hidden" id="gettimeslot" name="gettimeslot" value="">
 	              		<input type="hidden" id="getfulldate" name="getfulldate" value="">
 	              	</div>
 	              	<br>
               		
               			<button
               				class="mdl-button mdl-button--raised mdl-button--colored center"
-              				style="margin-top: 16px;" type="submit">
+              				style="margin-top: 16px;" type="submit" >
               				ต่อไป
               			</button>
               		</form>
@@ -144,6 +145,7 @@ a.btn.disabled {
 
 <!-- onSelectDateCallBack -->
 <script>
+
 	$("div.btn-group-vertical").on('click', 'a', function(e){
     	e.preventDefault();
 
@@ -154,10 +156,15 @@ a.btn.disabled {
     	$("#time-display").text(selectedTime);
     	document.getElementById("gettime").value = $(this).text();
     	var time = document.getElementById("gettime").value;
-		console.log(time);
+    	var gettimeslot = e.target.id;
+    	document.getElementById("gettimeslot").value = gettimeslot; 
+		console.log(gettimeslot);
+	
 
     	//----- get selected time here -----
 	});
+
+
 </script>
 
 <!-- import custom js -->

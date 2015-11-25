@@ -1,5 +1,15 @@
 <!DOCTYPE html>
 <!-- html will be closed in footer.php -->
+<?php
+	$appoint_id = $_GET['appoint_id'];
+	$patient_name = $_GET['patient_name'];
+	$department = $_GET['department'];
+	$doctor_name = $_GET['doctor_name'];
+	$date = $_GET['date'];
+	$time = $_GET['time'];
+
+?>
+
 <html>
 <head>
 	<title> Hospital OPD System </title>
@@ -38,7 +48,7 @@
 						<span style="font-size: large; ">หมายเลขนัด: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">123-456-789</span>
+						<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $appoint_id;?></span>
 					</div>
 				</div>
 				<br>
@@ -47,7 +57,7 @@
 						<span style="font-size: large; ">ผู้ป่วย: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">นางสาว สมหญิง ซื่อสัตย์</span>
+						<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $patient_name;?></span>
 					</div>
 				</div>
 				<br>
@@ -56,7 +66,7 @@
 						<span style="font-size: large; ">แผนก: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">จิตเวช</span>
+						<span id="deptName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $department;?></span>
 					</div>
 				</div>
 				<br>
@@ -65,7 +75,7 @@
 						<span style="font-size: large; ">แพทย์: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="docName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">DOCNAME SURNAME</span>
+						<span id="docName" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $doctor_name;?></span>
 					</div>
 				</div>
 				<br>
@@ -74,7 +84,7 @@
 						<span style="font-size: large; ">วัน: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">พุธที่ 25 พฤศจิกายน 2015</span>
+						<span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $date;?></span>
 					</div>
 				</div>
 				<br>
@@ -83,7 +93,7 @@
 						<span style="font-size: large; ">เวลา: </span>
 					</div>
 					<div class="section__text mdl-cell mdl-cell--6-col">
-						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">09.00 - 09.10 น.</span>
+						<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;"><?php echo $time;?></span>
 					</div>
 				</div>
 				<br>
