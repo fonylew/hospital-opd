@@ -187,7 +187,7 @@ include_once "nav_pharmacist.php";
 			})
 	};
 	function printMedList(k,description){
-		document.getElementById("medList"+k).innerHTML = "";
+		//document.getElementById("medList"+k).innerHTML = "";
 		for (var i = 1; i >= 0; i--) {
 			nameNode = document.createElement("div");
 			nameNode.className = "mdl-cell mdl-cell--2-col";
@@ -389,7 +389,9 @@ include_once "nav_pharmacist.php";
 		     // printMedList(this.id)
 		      var button_det0 = document.createElement('button');
 		         button_det0.onclick = function(){
-		            printMedList(k)
+		            printMedList(k,'Test'+this.id)
+		            console.log(a[parseInt((this.id).substring(3))-1]);
+		            //YEAHHHHH
 		         };
 		         button_det0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
 		         button_det0.id = "det"+k;
