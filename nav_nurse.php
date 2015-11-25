@@ -7,10 +7,10 @@
 	$employee_usertype = $_SESSION['employee_usertype'];
 	// remove below comments when finish 
 	// use for security
-	// if ($employee_usertype != 'nurse') {
-	//     header("Location: login_employee.php");
-	//     exit();
-	// }
+	if ($employee_usertype != 'nurse') {
+	    header("Location: login_employee.php");
+	    exit();
+	}
 ?>
 
 	<!-- this div will be closed in nav_end.php -->

@@ -17,6 +17,78 @@
         saveSchedulebyDate($_POST['save_schedule_date'],$_POST['save_schedule_doctor'],$_POST['save_schedule_worktime']);
     }
 
+    if (isset($_POST['prescription_prescriptid'])) {
+        editPrescription($_POST['prescription_prescriptid'],$_POST['prescription_prescriptions']);
+    } 
+
+    function getMedicalRecord($appoint_id) {
+        $connection = $GLOBALS['connection'];
+        $appoint_id=$connection->real_escape_string($appoint_id);
+
+        $result = mysqli_query($connection, 
+            "SELECT illness_db.illness_name,description,illness_db.illness_type
+            FROM medicalrecord 
+            LEFT JOIN illness_db ON medicalrecord.code = illness_db.illness_code
+            WHERE appoint_id = '$appoint_id'") 
+        or die("Query fail: " . mysqli_error($connection));
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){   
+            $b["illness_name"] = $row["illness_name"];
+            $b["description"] = $row["description"];
+            $b["illness_type"] = $row["illness_type"];
+        }
+        return $b;
+    }
+
+    function getPrescriptionRecord($prescript_id) {
+       $connection = $GLOBALS['connection'];
+       $prescript_id=$connection->real_escape_string($prescript_id);
+
+        $result = mysqli_query($connection, 
+            "SELECT *
+            FROM medicine 
+            WHERE prescript_id = '$prescript_id'") 
+        or die("Query fail: " . mysqli_error($connection));
+
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){   
+            $b["med_code"] = $row["med_code"];
+            $b["howTo"] = $row["howTo"];
+            $b["amount"] = $row["amount"];
+            array_push($a,$b);
+        }
+        return $a;
+    }
+
+    function getRejectPrescription($doctor) {
+       $connection = $GLOBALS['connection'];
+       $doctor=$connection->real_escape_string($doctor);
+
+        $result = mysqli_query($connection, 
+            "SELECT appoint_id,appointment.HN,DATE_FORMAT(DATE(appoint_time),'%W %e %M %Y') AS appoint_date,DATE_FORMAT(TIME(appoint_time),'%H:%i') AS appoint_time,DATE_FORMAT(TIME(appoint_time)+ INTERVAL 10 MINUTE,'%H:%i') AS appoint_time2,patient.initial,patient.fName,patient.lName,prescription.prescript_id
+            FROM appointment 
+            LEFT JOIN patient ON appointment.HN = patient.HN
+            LEFT JOIN prescription ON (prescription.medrec_HN = appointment.HN AND prescription.medrec_datetime = appointment.appoint_time)
+            WHERE doctor_username = '$doctor' AND prescription.prescript_status = -1") 
+        or die("Query fail: " . mysqli_error($connection));
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){   
+            $b["prescript_id"] = $row["prescript_id"];
+            $b["appoint_hn"] = $row["HN"];
+            $b["appoint_id"] = $row["appoint_id"];
+            $b["appoint_date"] = $row["appoint_date"];
+            $b["appoint_time"] = $row["appoint_time"];
+            $b["appoint_time2"] = $row["appoint_time2"];
+            $b["appoint_initial"] = $row["initial"];
+            $b["appoint_fName"] = $row["fName"];
+            $b["appoint_lName"] = $row["lName"];
+            array_push($a,$b);
+        }
+        return $a;
+    }
+
     function saveSchedulebyDate($save_schedule_date,$save_schedule_doctor,$save_schedule_worktime) {
         $connection = $GLOBALS['connection'];
         $save_schedule_date=$connection->real_escape_string($save_schedule_date);
@@ -58,6 +130,43 @@
         echo json_encode($a,JSON_FORCE_OBJECT); 
     }
 
+    function editPrescription($prescription_prescriptid,$prescription_prescriptions) {
+        $connection = $GLOBALS['connection'];
+        $prescription_prescriptid=$connection->real_escape_string($prescription_prescriptid);
+        $prescription_prescriptions = json_decode($prescription_prescriptions);
+
+        mysqli_query($connection, "DELETE FROM medicine 
+        WHERE prescript_id = '$prescription_prescriptid'") 
+        or die("Query fail: " . mysqli_error($connection));
+
+        $medrec_record = mysqli_query($connection, "SELECT medrec_HN,medrec_datetime,medrec_order
+        FROM prescription
+        WHERE prescript_id = '$prescription_prescriptid'") 
+        or die("Query fail: " . mysqli_error($connection));
+
+        $row = mysqli_fetch_array($medrec_record);
+        $temphn = $row['medrec_HN'];
+        $tempappointdatetime = $row['medrec_datetime'];
+
+        for ($i = 0; $i < sizeof($prescription_prescriptions); $i++) {
+            if ($prescription_prescriptions[$i] != null) {
+                $tempmedname = $prescription_prescriptions[$i][0];
+                $tempmedamount = $prescription_prescriptions[$i][1];
+                $tempmedhowto = $prescription_prescriptions[$i][2];
+                mysqli_query($connection, "INSERT INTO medicine(prescript_id, medrec_HN, medrec_datetime, med_code, howTo, amount) 
+                VALUES ('$prescription_prescriptid','$temphn','$tempappointdatetime','$tempmedname','$tempmedhowto','$tempmedamount')") 
+                or die("Query fail: " . mysqli_error($connection));
+            }
+        }
+
+        mysqli_query($connection, "UPDATE prescription
+        SET prescript_status = 0
+        WHERE prescript_id = '$prescription_prescriptid'") 
+        or die("Query fail: " . mysqli_error($connection));
+
+        echo true;
+    }
+
     function saveMedicalRecord($diagnose_code,$diagnose_description,$diagnose_appointid,$diagnose_prescriptions) {
 
         $connection = $GLOBALS['connection'];
@@ -81,8 +190,8 @@
         $tempappointdatetime = $row['appoint_datetime'];
         $tempmedrecorder = $row['medrec_order'];
 
-        mysqli_query($connection, "INSERT INTO prescription(prescript_id, pharmacist_username, medrec_HN, medrec_datetime, medrec_order) 
-        VALUES (0,NULL,'$temphn','$tempappointdatetime','$tempmedrecorder')") 
+        mysqli_query($connection, "INSERT INTO prescription(prescript_id, pharmacist_username, medrec_HN, medrec_datetime, medrec_order,prescript_status) 
+        VALUES (0,NULL,'$temphn','$tempappointdatetime','$tempmedrecorder',0)") 
         or die("Query fail: " . mysqli_error($connection));
 
         $prescript_id = mysqli_query($connection, "SELECT prescript_id,medrec_HN,medrec_datetime

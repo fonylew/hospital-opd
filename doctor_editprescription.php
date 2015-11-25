@@ -13,15 +13,12 @@ if (isset($_GET['diagnose_appoint_id'])) {
 	$diagnose_appoint_name = $_GET['diagnose_appoint_name'];
 	$diagnose_appoint_date = $_GET['diagnose_appoint_date'];
 	$diagnose_appoint_time = $_GET['diagnose_appoint_time'];
+	$diagnose_prescript_id = $_GET['diagnose_prescript_id'];
 	$generaldetail = getMedrecGeneralDetail($diagnose_appoint_id);
-} else {
-	$diagnose_appoint_id = '555';
-	$diagnose_appoint_hn = '555';
-	$diagnose_appoint_name = '555';
-	$diagnose_appoint_date = '555';
-	$diagnose_appoint_time = '555';
-	$generaldetail = getMedrecGeneralDetail('7');
-}
+	$medrecdetail = getMedicalRecord($diagnose_appoint_id);
+	$prescriptiondetail = getPrescriptionRecord($diagnose_prescript_id);
+	$prescriptiondetail_count = sizeof($prescriptiondetail);
+} 
 
 ?>
 
@@ -165,18 +162,13 @@ if (isset($_GET['diagnose_appoint_id'])) {
 				<div class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">
 				<!--<div id="dropdown-menu" class="mdl-cell--5-col" style="margin-top: 14px; margin-left: auto; margin-right: auto;">-->
 					<div class="form-group" style="margin-top: 0px;">
-						<select id="s1" class="form-control" onchange="changeIllnessList()" disabled>
-							<option value="-">-- ประเภทรหัสโรค --</option>
-							<option value="ICD10">ICD10</option>
-							<option value="SNOMED">SNOMED</option>
-							<option value="DRG">DRG</option>
+						<select disabled id="s1" class="form-control">
 						</select>
 					</div>
 				</div>
 				<div class="mdl-cell--5-col" style="margin-left: auto; margin-right: auto;">
 					<div class="form-group" style="margin-top: 15px;">
-						<select id="s2" class="form-control"  disabled>
-							<option value="-">-- รหัสโรค --</option>
+						<select disabled id="s2" class="form-control">
 						</select>
 					</div>
 				</div>
@@ -261,9 +253,18 @@ if (isset($_GET['diagnose_appoint_id'])) {
 	var medicine_list = <?php echo json_encode($medicine_list,JSON_FORCE_OBJECT)?>;
 	var medicine_count = <?php echo json_encode($medicine_count,JSON_FORCE_OBJECT)?>;	
 	var diagnose_appoint_id = <?php echo json_encode($diagnose_appoint_id,JSON_FORCE_OBJECT)?>;
+	var diagnose_prescript_id = <?php echo json_encode($diagnose_prescript_id,JSON_FORCE_OBJECT)?>;
 	var medicineCount = 0;
 
 	var generaldetail = <?php echo json_encode($generaldetail,JSON_FORCE_OBJECT)?>;
+	var medrecdetail = <?php echo json_encode($medrecdetail,JSON_FORCE_OBJECT)?>;
+	var prescriptiondetail = <?php echo json_encode($prescriptiondetail,JSON_FORCE_OBJECT)?>;
+	var prescriptiondetail_count = <?php echo json_encode($prescriptiondetail_count,JSON_FORCE_OBJECT)?>;
+
+	document.getElementById("description").value = medrecdetail.description;
+	$("#s1").append('<option selected>'+medrecdetail.illness_type+'</option>');
+	$("#s2").append('<option selected>'+medrecdetail.illness_name+'</option>');
+
 	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.weight+" kg.</td>");
 	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.height+" cm.</td>");
 	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.temperature+" ํC</td>");
@@ -271,29 +272,19 @@ if (isset($_GET['diagnose_appoint_id'])) {
 	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.bloodPressure+"</td>");
 
 	$("#dropdown-menu select").dropdown();
-	
-	function addMedicineClicked() {
+
+	console.log(prescriptiondetail);
+	console.log(prescriptiondetail_count);
+
+
+	for (var i = 0; i < prescriptiondetail_count; i++) {
 		medicineCount++;
-		addPrescription(medicineCount);
+		addPrescription(medicineCount,prescriptiondetail[i].med_code,prescriptiondetail[i].howTo,prescriptiondetail[i].amount);
 	}
 
-	function changeIllnessList() {
-		var illness_type = document.getElementById("s1").value;
-		if (illness_type != '-') {
-			$.ajax({
-	            url: 'control_doctor.php',
-	            type: 'POST',
-	            data: {illness_type: illness_type},
-	            dataType: "json",
-	            success: function(data) {
-	            	$('#s2').empty();
-	            	$('#s2').append('<option value="-">-- รหัสโรค --</option>');
-	                for (var i = 0; i < Object.keys(data).length; i++) {
-	                	$('#s2').append('<option value="'+data[i].illness_code+'">'+data[i].illness_name+'</option>');
-	                }
-	            }
-        	});
-		} 
+	function addMedicineClicked() {
+		medicineCount++;
+		addPrescription(medicineCount,"-","","");
 	}
 
 </script>

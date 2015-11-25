@@ -51,10 +51,10 @@ function showSubmitDiagnoseConfirm(){
 		        $.ajax({
 		            url: 'control_doctor.php',
 		            type: 'POST',
-		            data: {diagnose_code: document.getElementById("s2").value,diagnose_description: document.getElementById("description").value, diagnose_appointid: diagnose_appoint_id, diagnose_prescriptions: prescriptions},
+		            data: {prescription_prescriptid: diagnose_prescript_id, prescription_prescriptions: prescriptions},
 		            dataType: "text",
 		            success: function(data) {
-		            	location.href = "doctor_viewappointment.php";
+		            	location.href = "doctor_viewrejectedprescription.php";
 		            }
 		        });
 			}
@@ -74,7 +74,7 @@ function onToggleNextApp(){
 	}
 }
 
-function addPrescription(medicineCount){
+function addPrescription(medicineCount,medcode,med_howto,med_amount){
 	var div_0 = document.createElement('div');
 	div_0.style.marginTop = "32px";
 	div_0.style.marginBottom = "16px";
@@ -104,6 +104,7 @@ function addPrescription(medicineCount){
 
 	for (var i = 0; i < medicine_count; i++) {
 		var option = document.createElement("option");
+		if (medicine_list[i].med_code == medcode) option.selected = "selected";
 		option.text = medicine_list[i].med_name;
 		option.value = medicine_list[i].med_code;
 		input_medName.add(option);
@@ -131,6 +132,7 @@ function addPrescription(medicineCount){
 	input_medAmount.className = "mdl-textfield__input";
 	input_medAmount.type = "text";
 	input_medAmount.id = "medAmount"+medicineCount;
+	input_medAmount.value = med_amount;
 	div_4.appendChild( input_medAmount );
 
 
@@ -164,6 +166,7 @@ function addPrescription(medicineCount){
 	input_medHowToUse.type = "text";
 	input_medHowToUse.id = "medHowToUse"+medicineCount;
 	input_medHowToUse.className = "mdl-textfield__input";
+	input_medHowToUse.value = med_howto;
 	div_6.appendChild( input_medHowToUse );
 
 
@@ -201,5 +204,6 @@ function addPrescription(medicineCount){
 		$(this).parent().remove();
 	});
 
-	componentHandler.upgradeAllRegistered();
+	// componentHandler.upgradeAllRegistered();
 }
+
