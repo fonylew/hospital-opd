@@ -180,7 +180,7 @@ var form_temp;
   }
 
   function showSelectDoctorPopup(){
-    htmldoctorsel = '<form action="nurse_addinfo.php" method="get"><input type="text" list="doctorlist" id="doctor_sel" name="doctor_user" style="width: 100%;"><datalist id="doctorlist"><option value="TEST" label="1234">';
+    htmldoctorsel = '<form action="nurse_addinfo.php" method="get"><input type="text" list="doctorlist" id="doctor_sel" name="doctor_user" style="width: 100%;"><datalist id="doctorlist"><option value="doctor01" label="Mr.Doctor First">';
     $.ajax({
           url: 'control_nurse.php',
           type: 'POST',
@@ -214,13 +214,15 @@ var form_temp;
         title: 'ตกลง',
         onClick: function() {
           console.log($("doctor_sel").val());
+          doctor_username = 'doctor01';
           $.ajax({
               url: 'control_nurse.php',
               type: 'POST',
               data: {appointnow_hn: patient_hn, appointnow_doctor: doctor_username},
               success: function(data) {
+                console.log(data);
                 console.log(patient_hn+' make appoint '+doctor_username);
-                if(data === 'added'){
+                if(data == true){
                   console.log("added");
                 }
                 else{
@@ -258,7 +260,7 @@ var form_temp;
     form_height = document.getElementById("height").value;
     form_temp = document.getElementById("temperature").value;
     form_heart = document.getElementById("heartrate").value;
-    form_blood = document.getElementById("bloodpressure").value
+    form_blood = String(document.getElementById("bloodpressure").value)
 
 
     showDialog({
@@ -302,13 +304,15 @@ var form_temp;
               type: 'POST',
               data: {add_hn: patient_hn,add_appoint: appoint_time, add_appointid: appoint_id, add_weight: form_weight, add_height: form_height, add_blood: form_blood, add_temp: form_temp, add_heart: form_heart, add_nurse: employee_username, add_doctor: doctor_username},
               success: function(data) {
+                console.log(data);
                 console.log(patient_hn+'|'+appoint_time+'|'+appoint_id+'|'+form_weight+'|'+form_height+'|'+form_blood+'|'+form_temp+'|'+form_heart+'|'+employee_username+'|'+doctor_username);
-                if(data == true){
+                if(data == 'true'){
                   console.log("added");
+                  alert("บันทึกสำเร็จ");
                   location.href = "nurse_index.php";
                 }
                 else{
-                  console.log("something wrong");
+                  console.log(":( addPatientInfo");
                 }
               }
           });

@@ -42,10 +42,20 @@
         else echo 'false';
     }
     
-    function addPatientInfo($hn,$appoint_datetime,$appoint_id,$w,$h,$b,$t,$h,$nurse,$doctor){
+    function addPatientInfo($hn,$appoint_datetime,$appoint_id,$w,$h,$b,$t,$hr,$nurse,$doctor){
         $connection = $GLOBALS['connection'];
         $hn = $connection->real_escape_string($hn);
-        $result = mysqli_query($connection, "INSERT INTO `medicalrecord`(`HN`, `appoint_datetime`, `appoint_id`,`weight`, `height`, `bloodPressure`, `temperature`, `heartRate`, `nurse_username`, `doctor_username`) VALUES ($hn,$appoint_datetime,$appoint_id,$w,$h,$b,$t,$h,$nurse,$doctor);") or die("Query fail: " . mysqli_error($connection));
+        $appoint_datetime = $connection->real_escape_string($appoint_datetime);
+        $appoint_id= $connection->real_escape_string($appoint_id);
+        $w = $connection->real_escape_string($w);
+        $h = $connection->real_escape_string($h);
+        $b = $connection->real_escape_string($b);
+        $t = $connection->real_escape_string($t);
+        $hr = $connection->real_escape_string($hr);
+        $nurse = $connection->real_escape_string($nurse);
+        $doctor = $connection->real_escape_string($doctor);
+
+        mysqli_query($connection, "INSERT INTO `medicalrecord`(`HN`, `appoint_datetime`, `appoint_id`,`weight`, `height`, `bloodPressure`, `temperature`, `heartRate`, `nurse_username`, `doctor_username`) VALUES ('$hn','$appoint_datetime',$appoint_id,$w,$h,'$b',$t,$hr,'$nurse','$doctor');") or die("Query fail: " . mysqli_error($connection));
         echo 'true';
     }
 
