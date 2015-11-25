@@ -207,28 +207,68 @@ include_once "nav_pharmacist.php";
 		             // Two Parameter in DOM here
 
 		             var medicine = "["+med_code+"] "+med_name;
-					 var description = "amount: "+amount+"    how to: "+howto;
+					 var description_amount = "amount: "+amount;
+					 var description_howto ="how to: "+howto;
+
+
+// br1= document.createElement("br");
+// br2= document.createElement("br");
+// br3= document.createElement("br");
+// br4= document.createElement("br");
+// <div class="mdl-layout-spacer"></div>
+
+						
 
 		             //UNUN generated code
 		             	num = idIn.substring(3);
 						nameNode = document.createElement("div");
+<<<<<<< HEAD
 						nameNode.className = "mdl-cell mdl-cell--3-col";
 						detailNode = document.createElement("div");
 						detailNode.className = "mdl-cell mdl-cell--9-col";
+=======
+						nameNode.className = "mdl-cell mdl-cell--4-col";
+						detailNode = document.createElement("div");
+						detailNode.className = "mdl-cell mdl-cell--8-col";
+
+
+>>>>>>> 3caec6a5b8f94e8d7f1b4d3ce1f0260cc558f939
 
 						medF = document.createElement("h6");
 						medName = document.createTextNode(medicine);
+						medF.setAttribute('style','display: inline-block;');
 						medF.appendChild(medName);
 						nameNode.appendChild(medF);
 
-						detailF = document.createElement("h6");
-						detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
-						detailF.appendChild(detaill);
-						detailNode.appendChild(detailF);
+						detail_head_amount = document.createElement("h6");
+						detail_amount = document.createTextNode(description_amount);
+
+						detail_head_howto = document.createElement("h6");
+						detail_howto = document.createTextNode(description_howto);
+
+						detail_head_amount.appendChild(detail_amount);
+						detail_head_howto.appendChild(detail_howto);
+						detailNode.appendChild(detail_head_amount);
+						detailNode.appendChild(detail_head_howto);
+
 
 						document.getElementById("medList"+num).appendChild(nameNode);
 						document.getElementById("medList"+num).appendChild(detailNode);
 
+//========================================
+		// <div class="mdl-grid" id="medList"+k>
+		// 	<div class="mdl-cell mdl-cell--2-col">	//nameNode
+		// 		<h6>	// medF
+		// 			"ชื่อยา" 	// medName
+		// 		</h6>
+		// 	</div>
+		// 	<div class="mdl-cell mdl-cell--10-col">	//detailNode
+		// 		<h6>				// detailF
+		// 			"prescript_id"	// detaill
+		// 		</h6>	
+		// 	</div>
+		// </div>
+//========================================
 		          }
             	}
   			});
@@ -377,14 +417,24 @@ include_once "nav_pharmacist.php";
 
 
          var span_8 = document.createElement('span');
-            span_8.className = "large";
+            span_8.className = "mdl-color-text--primary mdl-cell--12-col";
+            span_8.setAttribute('style', 'font-size: x-large; margin-left: 1em;');
             span_8.appendChild( document.createTextNode("Medicine list") );
          div_2.appendChild( span_8 );
 
+  //        // <span class="mdl-color-text--primary mdl-cell--12-col" style="font-size: x-large; margin-left: 1em;">รายละเอียดการนัด</span>
+
+  //       var	div_spacer_1 = document.createElement("div");
+		// div_spacer_1.className = "mdl-layout-spacer";
+		// div_2.appendChild( div_spacer_1 );
+		// var	div_spacer_2 = document.createElement("div");
+		// div_spacer_2.className = "mdl-layout-spacer";
+		// div_2.appendChild( div_spacer_2 );
 
          var div_medList0 = document.createElement('div');
             div_medList0.className = "mdl-cell mdl-cell--12-col mdl-grid";
             div_medList0.id = "medList"+k;
+            // div_medList0.setAttribute("align", "left");
          div_2.appendChild( div_medList0 );
 
       div_0.appendChild( div_2 );
