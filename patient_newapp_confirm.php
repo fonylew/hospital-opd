@@ -5,6 +5,7 @@ session_start();
 $hn = $_SESSION['patient_hn'];
 $doctor_user = $_POST['getdoctor'];
 $time = $_POST['gettime'];
+$timeslot = $_POST['gettimeslot'];
 $date = $_POST['getdate'];
 $fulldate = $_POST['getfulldate'];
 $departno = $_POST['departno'];
@@ -85,13 +86,13 @@ if($departno == 10) $departname = "อายุรเวช"; */
 	  			แก้ไข วัน/เวลา
 	  			</button>
 	  		</a>
-    		<a href="index.php" style="margin-right: 16px;">
-	  			<button
+    		
+	  			<button onClick="makeAppointment()"
 	  				class="mdl-button mdl-button--raised mdl-button--primary "
 	  				style="margin-top: 16px;">
 	  				ยืนยันการนัดแพทย์
 	  			</button>
-	  		</a>
+	  	
     	</center>
     	</div>
   		<div class="mdl-cell mdl-cell--3-col">
@@ -105,12 +106,13 @@ if($departno == 10) $departname = "อายุรเวช"; */
 <script src="js/bootstrap.min.js"></script>
 <script src="js/ripples.min.js"></script>
 <script>
-var hn = '<?php echo $hn;?>'; 
-var doctor_user = '<?php echo $doctor_user;?>';
-var time = '<?php echo $time;?>';
-var date = '<?php echo $date;?>';
-var departno = '<?php echo $departno;?>';
-console.log(doctor_user);
+	var hn = '<?php echo $hn;?>'; 
+	var doctor_user = '<?php echo $doctor_user;?>';
+	var time = '<?php echo $time;?>';
+	var timeslot = '<?php echo $timeslot;?>';
+	var date = '<?php echo $date;?>';
+	var departno = '<?php echo $departno;?>';
+	console.log(timeslot);
            $.ajax({
               url: 'control_patient.php',
               type: 'POST',
@@ -124,6 +126,22 @@ console.log(doctor_user);
               } 
           	
           });
+
+           function makeAppointment(){  	
+            $.ajax({
+              url: 'control_patient.php',
+              type: 'POST',
+              data: {makeappoint_hn: hn,makeappoint_doctor: doctor_user,makeappoint_timeslot:timeslot,makeappointment_date: date},
+              dataType: "json",
+              success: function(data) {
+              	alert(data);
+              	console.log(data);
+              	
+              } 
+          	
+          });
+
+           }
         
 </script>
 <?php
