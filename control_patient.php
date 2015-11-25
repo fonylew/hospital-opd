@@ -34,6 +34,13 @@
     if (isset($_POST['schedule_date'])) {
         getSchedulebyDate($_POST['schedule_date'],$_POST['schedule_doctor']);
     }
+    if (isset($_POST['appoint_old'])) {
+        getOldAppointment($_POST['appoint_old']);
+    }
+
+    if (isset($_POST['editappoint_hn'])){
+        editAppointment($_POST['editappoint_hn'],$_POST['editappoint_doctor'],$_POST['editappoint_timeslot'],$_POST['editappointment_date'],$_POST['editold_app']);
+    }
     function checkUser($hn){
     	$connection = $GLOBALS['connection'];
 		$hn = $connection->real_escape_string($hn);
@@ -176,6 +183,55 @@
             array_push($a,$b);
         }
         echo json_encode($a,JSON_FORCE_OBJECT); 
+    }
+
+    function getOldAppointment($appid){
+        $connection = $GLOBALS['connection'];
+        $appid =$connection->real_escape_string($appid);
+
+        $result = mysqli_query($connection,"SELECT DATE_FORMAT(DATE(appoint_time),'%W %e %M %Y') AS appoint_date,DATE_FORMAT(TIME(appoint_time),'%H:%i') AS appoint_time,DATE_FORMAT(TIME(appoint_time)+ INTERVAL 10 MINUTE,'%H:%i') AS appoint_time2,user.initial,user.fName,user.lName,department_db.department_name
+            FROM appointment 
+            INNER JOIN user ON appointment.doctor_username = user.username
+            INNER JOIN department_db ON appointment.appoint_id = department_db.department_order
+            WHERE appointment.appoint_id = '$appid'") 
+        or die("Query fail: " . mysqli_error($connection));
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){
+            $b["appoint_date"] = $row["appoint_date"];   
+            $b["appoint_time"] = $row["appoint_time"];
+            $b["appoint_time2"] = $row["appoint_time2"];
+            $b["initial"] = $row["initial"];
+            $b["fName"] = $row["fName"];
+            $b["lName"] = $row["lName"];
+            $b["department_name"] = $row["department_name"];
+            array_push($a,$b);
+        }
+        echo json_encode($a,JSON_FORCE_OBJECT); 
+    }
+    function editAppointment($hn,$doctor,$timeslot,$date,$appid){
+        $connection = $GLOBALS['connection'];
+        $timetrim = explode("timeslot",$timeslot);
+        $timeslot = $connection->real_escape_string($timetrim[1]);
+        
+        $result = mysqli_query($connection, "SELECT time_time FROM timeslot WHERE slot ='$timeslot'") or die("Query fail: " . mysqli_error($connection));
+        $time = mysqli_fetch_array($result);
+        $dateTime = $date." ".$time[0];
+
+        $result = mysqli_query($connection, "INSERT INTO appointment(appoint_id, HN, appoint_time, doctor_username, diagnose_status)
+            VALUES (0,'$hn','$dateTime','$doctor',0)");
+        $result = mysqli_query($connection, "UPDATE worktime SET status = 'busy'
+        WHERE doctor_username ='$doctor' AND worktime_slot = '$timeslot' AND worktime_date ='$date'") 
+        or die("Query fail: " . mysqli_error($connection));
+
+        $result = mysqli_query($connection, "DELETE FROM appointment
+                WHERE appoint_id = '$appid'" );
+
+        /*$result = mysqli_query($connection, "UPDATE worktime SET status = 'available'
+        WHERE doctor_username ='$doctor' AND worktime_slot = '$timeslot' AND worktime_date ='$date'") 
+        or die("Query fail: " . mysqli_error($connection));*/
+        echo true;
+
     }
 
 ?>

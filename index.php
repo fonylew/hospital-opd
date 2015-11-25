@@ -28,11 +28,11 @@ $hn = $_SESSION['patient_hn'];
               	var appointTime = data[i]['appoint_time'];
 
               	addAppointment(hn,data[i]['appoint_id'],data[i]['department_name'],doctorname,data[i]['appoint_date'],data[i]['appoint_time']);
-
               }
           	}
           });
     }
+
 
 </script>
 

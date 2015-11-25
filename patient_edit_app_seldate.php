@@ -5,13 +5,13 @@ session_start();
 $hn = $_SESSION['patient_hn'];
 $doctor_user = $_POST['selectdoc'];
 $departno = $_POST['departno'];
-
+$appid =$_POST['appid'];
 ?>
 
 <!-- setup actionbar -->
 <script type="text/javascript">
 	$("#actionbar-left").append("<label onClick=\"browserBack()\" class=\"mdl-button mdl-js-button mdl-button--icon\" for=\"fixed-header-drawer-exp\"><i class=\"material-icons\">arrow_back</i></label>");
-	$("#actionbar-middle").append("<div style=\"font-size:x-large\">New Appointment</div>");
+	$("#actionbar-middle").append("<div style=\"font-size:x-large\">Edit Appointment</div>");
 </script>
 <script type="text/javascript">
 	function browserBack(){
@@ -112,7 +112,7 @@ a.btn.disabled {
 					</div>
 				</div>
               	<center>
-              		<form method="post" action="patient_newapp_confirm.php">
+              		<form method="post" action="patient_edit_app_confirm.php">
 	              	<div class="mdl-shadow--2dp" style="padding: 16px; width: auto; display: inline-block;">
 		              	<span style="font-size: large;">วันนัด: </span>
 		              	<span id="date-display" value="1234" class="mdl-color-text--primary mdl-typography--title" style="padding-left: 4px;">Select date</span>
@@ -121,6 +121,7 @@ a.btn.disabled {
 		              	<span id="time-display" value="123" class="mdl-color-text--primary mdl-typography--title" style="padding-left: 4px;">select time</span>
 	              		<input type="hidden" name="getdoctor" value="<?php echo $doctor_user;?>">
 	              		<input type="hidden" name="departno" value="<?php echo $departno;?>">
+	              		<input type="hidden" name="appid" value="<?php echo $appid;?>">
 	              		<input type="hidden" id="getdate" name="getdate" value="">
 	              		<input type="hidden" id="gettime" name="gettime" value="">
 	              		<input type="hidden" id="gettimeslot" name="gettimeslot" value="">
