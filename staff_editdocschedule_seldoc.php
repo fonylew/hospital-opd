@@ -1,6 +1,10 @@
 <?php
 include_once "header.php";
 include_once "nav_staff.php";
+include_once "control_staff.php";
+
+$department_list = getAllDepartment();
+$department_count = sizeof($department_list);
 ?>
 
 <!-- setup actionbar -->
@@ -32,35 +36,20 @@ include_once "nav_staff.php";
 				<div id="dropdown-menu" style="position: relative; width: 70%; height: auto; margin-left: auto; margin-right: auto;">
 					<div class="form-group">
 	                	<label for="s1">เลือกแผนกที่แพทย์อยู่</label>
-                		<select id="s1" class="form-control">
-		                  <option value="department_0">โปรดเลือกแผนก</option>
-		                  <option value="department_1">DEPARTMENT_NAME1</option>
-		                  <option value="department_2">DEPARTMENT_NAME2</option>
-		                  <option value="department_3">DEPARTMENT_NAME3</option>
-		                  <option value="department_4">DEPARTMENT_NAME4</option>
-		                  <option value="department_5">DEPARTMENT_NAME5</option>
+                		<select onchange="changeDepartment()" id="s1" class="form-control">
+                			<option value="-">-- เลือกแผนก --</option>
                 		</select>
 	              	</div>
 	              	<br>
 					<div class="form-group">
-	                	<label for="s1">เลือกแพทย์ที่ต้องการแก้ไข</label>
-                		<select id="s1" class="form-control">
-		                  <option value="doc_id_จ">ไม่ระบุแพทย์</option>
-		                  <option value="doc_id_1">Dr. NAME1 SURMANE1</option>
-		                  <option value="doc_id_2">Dr. NAME2 SURMANE2</option>
-		                  <option value="doc_id_3">Dr. NAME3 SURMANE3</option>
-		                  <option value="doc_id_4">Dr. NAME4 SURMANE4</option>
-		                  <option value="doc_id_5">Dr. NAME5 SURMANE5</option>
-		                  <option value="doc_id_6">Dr. NAME6 SURMANE6</option>
-		                  <option value="doc_id_7">Dr. NAME7 SURMANE7</option>
-		                  <option value="doc_id_8">Dr. NAME8 SURMANE8</option>
-		                  <option value="doc_id_9">Dr. NAME9 SURMANE9</option>
-		                  <option value="doc_id_10">Dr. NAME10 SURMANE10</option>
+	                	<label for="s2">เลือกแพทย์ที่ต้องการแก้ไข</label>
+                		<select onchange="changeDoctor()" id="s2" class="form-control">
+		                  	<option value="-">-- เลือกแพทย์ --</option>
                 		</select>
 	              	</div>
               	</div>
               	<center>
-	              	<a href="staff_editdocschedule.php">
+	              	<a id="editScheduleLink">
 		              	<button
 		              		class="mdl-button mdl-button--raised mdl-button--colored"
 		              		style="margin-top: 8px; margin-right: 8px;">
@@ -80,7 +69,39 @@ include_once "nav_staff.php";
 <script src="js/jquery.dropdown.js"></script>
 <script src="js/ripples.min.js"></script>
 <script>
-  $("#dropdown-menu select").dropdown();
+  	
+
+  	var department_list = <?php echo json_encode($department_list,JSON_FORCE_OBJECT)?>;
+	var department_count = <?php echo json_encode($department_count,JSON_FORCE_OBJECT)?>;	
+	for (var i = 0; i < department_count; i++) {
+		$("#s1").append('<option value="'+department_list[i].dNo+'">'+department_list[i].dName+'</option>');
+	}
+
+	function changeDepartment() {
+		var department = document.getElementById("s1").value;
+		if (department != '-' && department != 0) {
+			$.ajax({
+	            url: 'control_staff.php',
+	            type: 'POST',
+	            data: {department_getdoctorlist: department},
+	            dataType: "json",
+	            success: function(data) {
+	            	$('#s2').empty();
+	            	$('#s2').append('<option value="-">-- เลือกแพทย์ --</option>');
+	                for (var i = 0; i < Object.keys(data).length; i++) {
+	                	$('#s2').append('<option value="'+data[i].doc_username+'">'+data[i].doc_name+'</option>');
+	                }
+	            }
+        	});
+		} 
+	}
+
+	function changeDoctor() {
+		document.getElementById("editScheduleLink").href = "staff_editdocschedule.php?editschedule_doctorusername="+document.getElementById("s2").value;
+	}
+
+	// $("#dropdown-menu select").dropdown();
+
 </script>
 
 
