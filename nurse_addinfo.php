@@ -2,10 +2,10 @@
 include_once "header.php";
 include_once "nav_nurse.php";
 
-  if (isset($_POST['patient_hn'])) {
-        $patient_fname = $_POST['patient_fname'];
-        $patient_lname = $_POST['patient_lname'];
-        $patient_hn = $_POST['patient_hn'];
+  if (isset($_GET['patient_hn'])) {
+        $patient_fname = $_GET['patient_fname'];
+        $patient_lname = $_GET['patient_lname'];
+        $patient_hn = $_GET['patient_hn'];
   }
 ?>
 
@@ -141,9 +141,74 @@ include_once "nav_nurse.php";
 <script>
 var patient_fname = <?php echo json_encode($patient_fname,JSON_FORCE_OBJECT)?>;
 var patient_lname = <?php echo json_encode($patient_lname,JSON_FORCE_OBJECT)?>;
-var patient_hn = <?php echo json_encode($partient_hn,JSON_FORCE_OBJECT)?>;
+var patient_hn = <?php echo json_encode($patient_hn,JSON_FORCE_OBJECT)?>;
 
-console.log("POST value: "+patient_fname+patient_lname+patient_hn);
+var appoint_time;
+
+  $( document ).ready(function() {
+    console.log("GET value: "+patient_fname+patient_lname+patient_hn);
+    checkAppointment(patient_hn);
+  });
+
+  function checkAppointment(hn){
+      $.ajax({
+          url: 'control_nurse.php',
+          type: 'POST',
+          data: {check_appoint_hn: hn},
+          success: function(data) {
+            if(data === 'false'){
+              console.log("no appointment");
+              showSelectDoctorPopup();
+            }
+            else{
+              appoint_time = data;
+              console.log("appoint_time : "+appoint_time);
+            }
+          }
+      });
+  }
+
+  function showSelectDoctorPopup(){
+    var htmldoctorsel = '<form action="nurse_addinfo.php" method="get"><input type="text" list="doctorlist" id="doctor_sel" name="doctor_user" style="width: 100%;"><datalist id="doctorlist"><option value="TEST" label="1234">';
+    $.ajax({
+          url: 'control_nurse.php',
+          type: 'POST',
+          data: {listdoctor:true},
+          dataType: "json",
+          success: function(data) {
+            console.log(data);
+            for(var i = 0 ; i < Object.keys(data).length ;i++){
+              console.log("i = "+i);
+              var doctoruser = data[i]['username'];
+              var doctorname = data[i]['initial']+""+data[i]['fName']+" "+data[i]['lName'];
+              htmldoctorsel += '<option value="'+doctoruser+'" label="'+doctorname+'">';
+          }
+        }
+    });
+    htmldoctorsel+= '</datalist></form>'
+
+    showDialog({
+      title: '<span id="span_confirm">ไม่พบการนัดหมายของผู้ป่วย</span>',
+      text: '<p>เพื่อทำการนัดหมายทันที โปรดเลือกแพทย์ที่ตรวจ</p>'+htmldoctorsel,
+      negative: {
+        id: 'cancel-button',
+        title: 'ยกเลิก',
+        onClick: function() { 
+          location.replace('nurse_index.php');
+        }
+      },
+      positive: {
+        id: 'ok-button',
+        title: 'ตกลง',
+        onClick: function() {
+          console.log($("doctor_sel").val());
+          //appointNow
+          location.replace('nurse_addinfo.php?patient_fname='+patient_fname+'&patient_lname='+patient_lname+'&patient_hn='+patient_hn);
+        }
+      },
+      cancelable: false,
+    })
+  }
 
   document.getElementById("submitButton").onclick = function () {
     // console.log(document.getElementById("date").value);
@@ -160,7 +225,7 @@ console.log("POST value: "+patient_fname+patient_lname+patient_hn);
     var minutes   = dateTime.getMinutes();
     var seconds   = dateTime.getSeconds();
     var strDateTime = date+'/'+month+'/'+year+' '+hours+':'+minutes+':'+seconds;
-    console.log(strDateTime);
+    //console.log(strDateTime);
 
     showDialog({
       title: '<span id="span_confirm">Confirmation</span>',

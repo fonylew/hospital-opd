@@ -34,7 +34,7 @@ function browserBack(){
 			style="padding:24px; color: mdl-primary;">
 
 			<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
-				เลือกแผนกที่ต้องการค้นหา
+				เลือกแผนกและแพทย์
 			</p>
 
 			<center>

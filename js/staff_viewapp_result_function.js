@@ -98,7 +98,7 @@ var div_appItem = document.createElement('div');
             span_deptName_2.className = "mdl-color-text--primary";
             span_deptName_2.style.paddingLeft = "8px";
             span_deptName_2.style.fontSize = "large";
-            span_deptName_2.appendChild( document.createTextNode("DEPARTMENTNAME") );
+            span_deptName_2.appendChild( document.createTextNode("นางสาว สมหญิง ซื้อสัตย์") );
          div_8.appendChild( span_deptName_2 );
 
       div_6.appendChild( div_8 );
