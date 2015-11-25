@@ -1,5 +1,43 @@
 <?php
 	include_once "connection.php";
+
+    if (isset($_POST['illness_type'])) {
+        getIllnessList($_POST['illness_type']);
+    }
+
+    function getMedicineList() {
+       $connection = $GLOBALS['connection'];
+
+        $result = mysqli_query($connection, "SELECT med_code,med_name FROM medicine_db") 
+        or die("Query fail: " . mysqli_error($connection));
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){   
+            $b["med_code"] = $row["med_code"];
+            $b["med_name"] = $row["med_name"];
+            array_push($a,$b);
+        }
+        return $a;
+    }
+
+    function getIllnessList($illness_type) {
+       $connection = $GLOBALS['connection'];
+       $illness_type=$connection->real_escape_string($illness_type);
+
+        $result = mysqli_query($connection, 
+            "SELECT illness_code,illness_name
+            FROM illness_db 
+            WHERE illness_type = '$illness_type'") 
+        or die("Query fail: " . mysqli_error($connection));
+        $a = array();
+        $b = array();
+        while ($row = mysqli_fetch_array($result)){   
+            $b["illness_code"] = $row["illness_code"];
+            $b["illness_name"] = $row["illness_name"];
+            array_push($a,$b);
+        }
+        echo json_encode($a,JSON_FORCE_OBJECT); 
+    }
 	
     function getAppointmentbyDoctor($doctor_username) {
 
