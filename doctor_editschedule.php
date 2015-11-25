@@ -5,8 +5,7 @@ include_once "nav_doctor.php";
 
 <!-- setup actionbar -->
 <script type="text/javascript">
-	$("#actionbar-left").append("<label onClick=\"browserBack()\" class=\"mdl-button mdl-js-button mdl-button--icon\" for=\"fixed-header-drawer-exp\"><i class=\"material-icons\">arrow_back</i></label>");
-	$("#actionbar-middle").append("<div style=\"font-size:x-large\">Edit Schedule</div>");
+	$("#actionbar-middle").append("<div style=\"font-size:x-large\">แก้ไขตาราง</div>");
 </script>
 <script type="text/javascript">
 	function browserBack(){

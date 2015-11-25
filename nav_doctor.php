@@ -36,7 +36,7 @@
 			<nav class="mdl-navigation" style="flex-grow: 1;">
 				<a class="mdl-navigation__link" href="doctor_viewappointment.php">รายการนัด</a>
 				<a class="mdl-navigation__link" href="doctor_editschedule.php">แก้ไขตารางเข้าตรวจ</a>
-				<a class="mdl-navigation__link" href="#">สั่งยาใหม่</a>
+				<a class="mdl-navigation__link" href="doctor_viewrejectedprescription.php">แก้ไขใบสั่งยา</a>
 				<div class="mdl-layout-spacer"></div>
 				<a class="mdl-navigation__link" href="javascript:void(0)" onclick="logout()">Logout</a>
 			</nav>

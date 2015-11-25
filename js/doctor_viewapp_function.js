@@ -201,32 +201,3 @@ function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_
 
 	document.getElementById("box1").appendChild(div_appItem);
 };
-
-function hideDetail(){
-	var dialog = $('#orrsDiag');
-	hideDialog(dialog);
-}
-
-function showConfirmDeleteDialog(){
-	showDialog({
-		title:
-		'<span style="font-size: x-large; " class="mdl-color-text--primary">ยกเลิกนัด</span>',
-		text:
-		'ต้องการยกเลิกนัดหรือไม่ ?',
-		negative: {
-			id: 'cancel-button',
-			title: 'ไม่ยกเลิกนัด',
-			onClick: function() { 
-
-			}
-		},
-		positive: {
-			id: 'ok-button',
-			title: 'ยกเลิกนัด',
-			onClick: function() {
-				hideDetail();
-			}
-		},
-		cancelable: true,
-	});
-}
