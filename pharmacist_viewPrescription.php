@@ -186,21 +186,24 @@ include_once "nav_pharmacist.php";
 			    cancelable: false,		  	
 			})
 	};
-	function printMedList(k,description){
+	function printMedList(k,prescript_id){
 		//document.getElementById("medList"+k).innerHTML = "";
+		//getMedicine HERE
 		for (var i = 1; i >= 0; i--) {
+			var medicine = "M"
+			var description = prescript_id+"\n\nAmount:99\n"
 			nameNode = document.createElement("div");
 			nameNode.className = "mdl-cell mdl-cell--2-col";
 			detailNode = document.createElement("div");
 			detailNode.className = "mdl-cell mdl-cell--10-col";
 
 			medF = document.createElement("h6");
-			medName = document.createTextNode("Med"+i);
+			medName = document.createTextNode(medicine);
 			medF.appendChild(medName);
 			nameNode.appendChild(medF);
 
 			detailF = document.createElement("h6");
-			detaill = document.createTextNode(description);
+			detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
 			detailF.appendChild(detaill);
 			detailNode.appendChild(detailF);
 
@@ -389,9 +392,10 @@ include_once "nav_pharmacist.php";
 		     // printMedList(this.id)
 		      var button_det0 = document.createElement('button');
 		         button_det0.onclick = function(){
-		            printMedList(k,'Test'+this.id)
+		            var prescript_id = a[parseInt((this.id).substring(3))-1];
+		            printMedList(k,prescript_id)
 		            console.log(a[parseInt((this.id).substring(3))-1]);
-		            //YEAHHHHH
+		            //YEAHHHHH HERE
 		         };
 		         button_det0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
 		         button_det0.id = "det"+k;
