@@ -89,21 +89,21 @@ include_once "nav_doctor.php";
 									</span>
 									<br>
 									<div class="btn-group-vertical">
-										<a href="#" class="btn btn-default">09.00 - 09.10</a>
-										<a href="#" class="btn btn-default">09.10 - 09.20</a>
-										<a href="#" class="btn btn-default">09.20 - 09.30</a>
-										<a href="#" class="btn btn-default">09.30 - 09.40</a>
-										<a href="#" class="btn btn-default">09.40 - 09.50</a>
-										<a href="#" class="btn btn-default">09.50 - 10.00</a>
-										<a href="#" class="btn btn-default">10.00 - 10.10</a>
-										<a href="#" class="btn btn-default">10.10 - 10.20</a>
-										<a href="#" class="btn btn-default">10.20 - 10.30</a>
-										<a href="#" class="btn btn-default">10.30 - 10.40</a>
-										<a href="#" class="btn btn-default">10.40 - 10.50</a>
-										<a href="#" class="btn btn-default">10.50 - 11.00</a>
-										<a href="#" class="btn btn-default">11.00 - 11.10</a>
-										<a href="#" class="btn btn-default">11.10 - 11.20</a>
-										<a href="#" class="btn btn-default">11.20 - 11.30</a>
+										<a href="#" id="timeslot1" class="btn btn-default">09.00 - 09.10</a>
+										<a href="#" id="timeslot2" class="btn btn-default">09.10 - 09.20</a>
+										<a href="#" id="timeslot3" class="btn btn-default">09.20 - 09.30</a>
+										<a href="#" id="timeslot4" class="btn btn-default">09.30 - 09.40</a>
+										<a href="#" id="timeslot5" class="btn btn-default">09.40 - 09.50</a>
+										<a href="#" id="timeslot6" class="btn btn-default">09.50 - 10.00</a>
+										<a href="#" id="timeslot7" class="btn btn-default">10.00 - 10.10</a>
+										<a href="#" id="timeslot8" class="btn btn-default">10.10 - 10.20</a>
+										<a href="#" id="timeslot9" class="btn btn-default">10.20 - 10.30</a>
+										<a href="#" id="timeslot10" class="btn btn-default">10.30 - 10.40</a>
+										<a href="#" id="timeslot11" class="btn btn-default">10.40 - 10.50</a>
+										<a href="#" id="timeslot12" class="btn btn-default">10.50 - 11.00</a>
+										<a href="#" id="timeslot13" class="btn btn-default">11.00 - 11.10</a>
+										<a href="#" id="timeslot14" class="btn btn-default">11.10 - 11.20</a>
+										<a href="#" id="timeslot15" class="btn btn-default">11.20 - 11.30</a>
 									</div>
 								</center>
 							</div>
@@ -114,21 +114,21 @@ include_once "nav_doctor.php";
 									</span>
 									<br>
 									<div class="btn-group-vertical">
-										<a href="#" class="btn btn-default">13.00 - 13.10</a>
-										<a href="#" class="btn btn-default">13.10 - 13.20</a>
-										<a href="#" class="btn btn-default">13.20 - 13.30</a>
-										<a href="#" class="btn btn-default">13.30 - 13.40</a>
-										<a href="#" class="btn btn-default">13.40 - 13.50</a>
-										<a href="#" class="btn btn-default">13.50 - 14.00</a>
-										<a href="#" class="btn btn-default">14.00 - 14.10</a>
-										<a href="#" class="btn btn-default">14.10 - 14.20</a>
-										<a href="#" class="btn btn-default">14.20 - 14.30</a>
-										<a href="#" class="btn btn-default">14.30 - 14.40</a>
-										<a href="#" class="btn btn-default">14.40 - 14.50</a>
-										<a href="#" class="btn btn-default">14.50 - 15.00</a>
-										<a href="#" class="btn btn-default">15.00 - 15.10</a>
-										<a href="#" class="btn btn-default">15.10 - 15.20</a>
-										<a href="#" class="btn btn-default">15.20 - 15.30</a>
+										<a href="#" id="timeslot16" class="btn btn-default">13.00 - 13.10</a>
+										<a href="#" id="timeslot17" class="btn btn-default">13.10 - 13.20</a>
+										<a href="#" id="timeslot18" class="btn btn-default">13.20 - 13.30</a>
+										<a href="#" id="timeslot19" class="btn btn-default">13.30 - 13.40</a>
+										<a href="#" id="timeslot20" class="btn btn-default">13.40 - 13.50</a>
+										<a href="#" id="timeslot21" class="btn btn-default">13.50 - 14.00</a>
+										<a href="#" id="timeslot22" class="btn btn-default">14.00 - 14.10</a>
+										<a href="#" id="timeslot23" class="btn btn-default">14.10 - 14.20</a>
+										<a href="#" id="timeslot24" class="btn btn-default">14.20 - 14.30</a>
+										<a href="#" id="timeslot25" class="btn btn-default">14.30 - 14.40</a>
+										<a href="#" id="timeslot26" class="btn btn-default">14.40 - 14.50</a>
+										<a href="#" id="timeslot27" class="btn btn-default">14.50 - 15.00</a>
+										<a href="#" id="timeslot28" class="btn btn-default">15.00 - 15.10</a>
+										<a href="#" id="timeslot29" class="btn btn-default">15.10 - 15.20</a>
+										<a href="#" id="timeslot30" class="btn btn-default">15.20 - 15.30</a>
 									</div>
 								</center>
 							</div>
@@ -136,7 +136,7 @@ include_once "nav_doctor.php";
 					</div>
 				</div>
 				<center>
-					<a href="doctor_viewappointment.php">
+					<a href="javascript:void(0)" onclick="saveChanges()">
 						<button
 						class="mdl-button mdl-button--raised mdl-button--colored center"
 						style="margin-top: 16px;">
@@ -176,17 +176,29 @@ include_once "nav_doctor.php";
 
 <!-- setup calendar -->
 <script>
+
+	var selectedDate;
+
 	$('.datepicker').datepicker({
 		language: 'th',
 		todayBtn: "linked"
 	}).on("changeDate", function(e) {
-		var date = e["date"];
-
-		//----- get selected date here -----
+		$("a.btn").removeClass("btn-primary").removeClass("work").addClass("btn-default");
+		var date = new Date(e["date"]);
+		selectedDate = date.getFullYear() + "-" + (date.getMonth() + 1) + "-" + date.getDate();
+      	$.ajax({
+          	url: 'control_doctor.php',
+          	type: 'POST',
+          	data: {schedule_date: selectedDate, schedule_doctor: employee_username},
+          	dataType: "json",
+          	success: function(data) {
+             	for (var i = 0; i < Object.keys(data).length; i++) {
+             		$("#timeslot"+data[i].worktime_slot).removeClass("btn-default").addClass("btn-primary").addClass("work");
+             	}
+          	}	
+      	});
 	});
-</script>
 
-<script>
 	$('#clear').click(function(){
 		console.log('clear');
 		$("a.btn").removeClass("btn-primary").removeClass("work").addClass("btn-default");
@@ -195,6 +207,24 @@ include_once "nav_doctor.php";
 		console.log('all');
 		$("a.btn").removeClass("btn-default").addClass("btn-primary").addClass("work");
 	});
+
+	function saveChanges() {
+		var worktimes = [];
+		for (var i = 0; i < 31; i++) {
+			if ($("#timeslot"+(i+1)).hasClass("work")) worktimes[i] = 1;
+			else worktimes[i] = 0;
+		}
+		worktimes = JSON.stringify(worktimes);
+      	$.ajax({
+          	url: 'control_doctor.php',
+          	type: 'POST',
+          	data: {save_schedule_date: selectedDate, save_schedule_doctor: employee_username, save_schedule_worktime: worktimes},
+          	success() {
+          		alert("Update schedule successfully.");
+          	}
+      	});
+	}
+
 </script>
 
 <?php

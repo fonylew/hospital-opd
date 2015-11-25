@@ -31,6 +31,7 @@ include_once "nav_pharmacist.php";
 	<div class="mdl-grid page-content" id = "box1">
 		<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col">
             <div class="section__text mdl-grid">
+            <!--
             	<div class = "mdl-cell mdl-cell--3-col">
 					<img src="dashboard/images/user.jpg" width="70%" height="70%"
 					style="padding:10px; margin-right: auto; margin-left: auto;">			
@@ -53,22 +54,21 @@ include_once "nav_pharmacist.php";
 					<div id = "medList0" class = "mdl-grid"></div>
 				</div>
 				
-
-				<!-- Raised button with ripple -->
 				<button id= "acc0" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored mdl-js-ripple-effect" onClick = "popAccept(this.id)">
 					Accept
 				</button>
 				<button id = "edi0" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick = "popEdit(this.id)">
-					Edit Prescription
+					Reject Prescription
 				</button>
-				<!-- just for testing delete this button later -->
+
+
 				<button id = "test" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printAllprescription()">
 					test
 				</button>
 				<button id = "det0" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" onClick="printMedList(0)">
 					show detail
 				</button>
-
+			-->
             </div>
         </div>
 
@@ -76,6 +76,25 @@ include_once "nav_pharmacist.php";
 
 
 	<script>
+	var k=0
+	$(document).ready(function(){
+		$.ajax({
+          url: 'control_pharmacist.php',
+          type: 'POST',
+          data: {listprescript:true},
+          dataType: "json",
+          success: function(data) {
+            console.log(data);
+            for(var i = 0 ; i < Object.keys(data).length ;i++){
+              console.log("i = "+i);
+              var patient_name = data[i]['patient_initial']+data[i]['patient_fName']+" "+data[i]['patient_lName'];
+              var doctor_name = data[i]['doctor_initial']+data[i]['doctor_fName']+" "+data[i]['doctor_lName'];
+              printAllprescription(patient_name,doctor_name,data[i]['datetime'],data[i]['hn']);
+            }
+          }
+      	});
+	});
+
 	function deletePrescription(idIn){
 		document.getElementById("log"+idIn).remove();
 	};
@@ -106,9 +125,10 @@ include_once "nav_pharmacist.php";
 
 	function popEdit(idIn){
 		showDialog({
-		    	title: '<span id="span_confirm">Edit Prescription</span>',
+		    	title: '<span id="span_confirm">Reject Prescription</span>',
 		    	 // title: 'Confirmation',
-		      	text: '<h5 style="float:left;">Allergic problem</h5><input type="text" name="editdesc" style = "height: 100px;width:60%; float:right;"><br>',
+		      	//text: '<h5 style="float:left;">Allergic problem</h5><input type="text" name="editdesc" style = "height: 100px;width:60%; float:right;"><br>',
+		      	text: '<h5 style">ต้องการแจ้งเปลี่ยนการจ่ายยาไปยังหมอเจ้าของไข้?</h5>',
 		      	negative: {
 			        id: 'cancel-button',
 			        title: 'ยกเลิก',
@@ -152,94 +172,93 @@ include_once "nav_pharmacist.php";
 		};
 	};
 
-	var k = 0;
-	function printAllprescription(){
-		k = k+1;
+	function printAllprescription(patient_name,doctor_name,datetime,hn){
+	k = k+1;
 		
-var div_log0 = document.createElement('div');
-   div_log0.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col";
-   div_log0.id = "log0";
+	var div_log0 = document.createElement('div');
+	   div_log0.className = "mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col";
+	   div_log0.id = "log"+k;
 
-   var div_0 = document.createElement('div');
-      div_0.className = "section__text mdl-grid";
+	   var div_0 = document.createElement('div');
+	      div_0.className = "section__text mdl-grid";
 
-      var div_1 = document.createElement('div');
-         div_1.className = "mdl-cell mdl-cell--3-col";
+	      var div_1 = document.createElement('div');
+	         div_1.className = "mdl-cell mdl-cell--3-col";
 
-         var img_0 = document.createElement('img');
-            img_0.src = "dashboard/images/user.jpg";
-            img_0.height = "70%";
-            img_0.style.padding = "10px";
-            img_0.style.marginRight = "auto";
-            img_0.style.marginLeft = "auto";
-            img_0.width = "70%";
-         div_1.appendChild( img_0 );
+	         var img_0 = document.createElement('img');
+	            img_0.src = "dashboard/images/user.jpg";
+	            img_0.style.height = "70%";
+	            img_0.style.padding = "10px";
+	            img_0.style.marginRight = "auto";
+	            img_0.style.marginLeft = "auto";
+	            img_0.style.width = "70%";
+	         div_1.appendChild( img_0 );
 
-      div_0.appendChild( div_1 );
-
-
-      var div_2 = document.createElement('div');
-         div_2.className = "mdl-cell mdl-cell--9-col mdl-grid";
-
-         var div_3 = document.createElement('div');
-            div_3.className = "mdl-cell mdl-cell--2-col";
-
-            var span_0 = document.createElement('span');
-               span_0.className = "large";
-               span_0.appendChild( document.createTextNode("Name: ") );
-            div_3.appendChild( span_0 );
+	      div_0.appendChild( div_1 );
 
 
-            var br_0 = document.createElement('br');
-            div_3.appendChild( br_0 );
+	      var div_2 = document.createElement('div');
+	         div_2.className = "mdl-cell mdl-cell--9-col mdl-grid";
+
+	         var div_3 = document.createElement('div');
+	            div_3.className = "mdl-cell mdl-cell--2-col";
+
+	            var span_0 = document.createElement('span');
+	               span_0.className = "large";
+	               span_0.appendChild( document.createTextNode("Name: ") );
+	            div_3.appendChild( span_0 );
 
 
-            var br_1 = document.createElement('br');
-            div_3.appendChild( br_1 );
+	            var br_0 = document.createElement('br');
+	            div_3.appendChild( br_0 );
 
 
-            var span_1 = document.createElement('span');
-               span_1.className = "large";
-               span_1.appendChild( document.createTextNode("Doctor: ") );
-            div_3.appendChild( span_1 );
+	            var br_1 = document.createElement('br');
+	            div_3.appendChild( br_1 );
 
 
-            var br_2 = document.createElement('br');
-            div_3.appendChild( br_2 );
+	            var span_1 = document.createElement('span');
+	               span_1.className = "large";
+	               span_1.appendChild( document.createTextNode("Doctor: ") );
+	            div_3.appendChild( span_1 );
 
 
-            var br_3 = document.createElement('br');
-            div_3.appendChild( br_3 );
+	            var br_2 = document.createElement('br');
+	            div_3.appendChild( br_2 );
 
 
-            var span_2 = document.createElement('span');
-               span_2.className = "large";
-               span_2.appendChild( document.createTextNode("Time: ") );
-            div_3.appendChild( span_2 );
+	            var br_3 = document.createElement('br');
+	            div_3.appendChild( br_3 );
 
 
-            var br_4 = document.createElement('br');
-            div_3.appendChild( br_4 );
+	            var span_2 = document.createElement('span');
+	               span_2.className = "large";
+	               span_2.appendChild( document.createTextNode("Time: ") );
+	            div_3.appendChild( span_2 );
 
 
-            var br_5 = document.createElement('br');
-            div_3.appendChild( br_5 );
+	            var br_4 = document.createElement('br');
+	            div_3.appendChild( br_4 );
 
 
-            var span_3 = document.createElement('span');
-               span_3.className = "large";
-               span_3.appendChild( document.createTextNode("HN: ") );
-            div_3.appendChild( span_3 );
+	            var br_5 = document.createElement('br');
+	            div_3.appendChild( br_5 );
 
 
-            var br_6 = document.createElement('br');
-            div_3.appendChild( br_6 );
+	            var span_3 = document.createElement('span');
+	               span_3.className = "large";
+	               span_3.appendChild( document.createTextNode("HN: ") );
+	            div_3.appendChild( span_3 );
 
 
-            var br_7 = document.createElement('br');
-            div_3.appendChild( br_7 );
+	            var br_6 = document.createElement('br');
+	            div_3.appendChild( br_6 );
 
-         div_2.appendChild( div_3 );
+
+	            var br_7 = document.createElement('br');
+	            div_3.appendChild( br_7 );
+
+	         div_2.appendChild( div_3 );
 
 
          var div_4 = document.createElement('div');
@@ -247,7 +266,7 @@ var div_log0 = document.createElement('div');
 
             var span_4 = document.createElement('span');
                span_4.className = "mdl-color-text--primary large";
-               span_4.appendChild( document.createTextNode("VY321 UUUU") );
+               span_4.appendChild( document.createTextNode(patient_name) );
             div_4.appendChild( span_4 );
 
 
@@ -261,7 +280,7 @@ var div_log0 = document.createElement('div');
 
             var span_5 = document.createElement('span');
                span_5.className = "mdl-color-text--primary large";
-               span_5.appendChild( document.createTextNode("VY321 UUUU") );
+               span_5.appendChild( document.createTextNode(doctor_name) );
             div_4.appendChild( span_5 );
 
 
@@ -275,7 +294,7 @@ var div_log0 = document.createElement('div');
 
             var span_6 = document.createElement('span');
                span_6.className = "mdl-color-text--primary large";
-               span_6.appendChild( document.createTextNode("VY321 UUUU") );
+               span_6.appendChild( document.createTextNode(datetime) );
             div_4.appendChild( span_6 );
 
 
@@ -289,7 +308,7 @@ var div_log0 = document.createElement('div');
 
             var span_7 = document.createElement('span');
                span_7.className = "mdl-color-text--primary large";
-               span_7.appendChild( document.createTextNode("VY321 UUUU") );
+               span_7.appendChild( document.createTextNode(hn) );
             div_4.appendChild( span_7 );
 
          div_2.appendChild( div_4 );
@@ -326,7 +345,7 @@ var div_log0 = document.createElement('div');
 		            popEdit(this.id)
 		         };
 		         button_edi0.id = "edi"+k;
-		         button_edi0.appendChild( document.createTextNode("\n					Edit Prescription\n				") );
+		         button_edi0.appendChild( document.createTextNode("\n					Reject Prescription\n				") );
 		      div_0.appendChild( button_edi0 );
 
 		     // printMedList(this.id)

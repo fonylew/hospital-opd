@@ -57,15 +57,20 @@
 
 	<div class="section__text mdl-cell mdl-cell--12-col">
 		<center>
+			<button onclick="cancleAppointment()" 
+					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
+					style="margin-right:10px;color:white;">
+				ยกเลิกนัด
+			</button>
 			<button onclick="editAppointment()" 
 					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
 					style="margin-right:10px;color:white;">
 				แก้ไขนัด
 			</button>
-			<button onclick="cancleAppointment()" 
-					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent"
-					style="color:white;"
-				ยกเลิกนัด
+			<button onclick="printAppointment()" 
+					class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored"
+					style="margin-right:10px;color:white;">
+				พิมพิ์ใบนัดหมาย
 			</button>
 		</center>
 	</div>

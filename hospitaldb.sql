@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.4.11
+-- version 4.3.11
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: Nov 24, 2015 at 03:28 AM
--- Server version: 5.6.26
--- PHP Version: 5.5.27
+-- Host: 127.0.0.1
+-- Generation Time: Nov 24, 2015 at 04:53 PM
+-- Server version: 5.6.24
+-- PHP Version: 5.6.8
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -14,7 +14,7 @@ SET time_zone = "+00:00";
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `hospitaldb`
@@ -42,8 +42,22 @@ CREATE TABLE IF NOT EXISTS `appointment` (
   `appoint_id` int(11) NOT NULL,
   `HN` varchar(10) NOT NULL,
   `appoint_time` datetime DEFAULT NULL,
-  `doctor_username` varchar(20) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `doctor_username` varchar(20) DEFAULT NULL,
+  `diagnose_status` tinyint(4) NOT NULL DEFAULT '0'
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `appointment`
+--
+
+INSERT INTO `appointment` (`appoint_id`, `HN`, `appoint_time`, `doctor_username`, `diagnose_status`) VALUES
+(1, '123', '2015-11-07 10:00:00', 'doctor01', 0),
+(2, '123', '2015-11-13 11:00:00', 'doctor01', 0),
+(3, '123456', '2015-11-20 11:00:00', 'doctor01', 0),
+(4, '123', '2015-11-19 10:00:00', 'doctor01', 0),
+(5, '888888', '2015-11-24 09:30:00', 'doctor01', 0),
+(6, '909090', '2015-11-28 10:00:00', 'doctor01', 0),
+(7, '555555', '2015-11-30 09:30:00', 'doctor01', 0);
 
 -- --------------------------------------------------------
 
@@ -82,36 +96,57 @@ INSERT INTO `department_db` (`department_order`, `department_name`) VALUES
 CREATE TABLE IF NOT EXISTS `illness_db` (
   `illness_order` int(10) unsigned NOT NULL,
   `illness_code` varchar(20) NOT NULL,
-  `illness_name` varchar(200) NOT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8;
+  `illness_name` varchar(200) NOT NULL,
+  `illness_type` varchar(10) NOT NULL DEFAULT 'ICD10'
+) ENGINE=InnoDB AUTO_INCREMENT=54 DEFAULT CHARSET=utf8;
 
 --
 -- Dumping data for table `illness_db`
 --
 
-INSERT INTO `illness_db` (`illness_order`, `illness_code`, `illness_name`) VALUES
-(1, 'A00-B99', 'โรคติดเชื้อและโรคปรสิตบางโรค'),
-(2, 'C00-D48', 'เนื้องอก'),
-(3, 'D50-D89', 'โรคของเลือดและอวัยวะสร้างเลือดและความผิดปกติบางอย่างของกลไกภูมิคุ้มกัน'),
-(4, 'E00-E90', 'โรคของต่อมไร้ท่อ โภชนาการ และเมตะบอลิซึม'),
-(5, 'F00-F99', 'ความผิดปกติทางจิตและพฤติกรรม'),
-(6, 'G00-G99', 'โรคของระบบประสาท'),
-(7, 'H00-H59', 'โรคของตาและอวัยวะเคียงลูกตา'),
-(8, 'H60-H95', 'โรคของหูและปุ่มกระดูกกกหู'),
-(9, 'I00-I99', 'โรคของระบบไหลเวียนโลหิต'),
-(10, 'J00-J99', 'โรคของระบบหายใจ'),
-(11, 'K00-K93', 'โรคของระบบย่อยอาหาร'),
-(12, 'L00-L99', 'โรคของผิวหนังและเนื้อเยื่อใต้ผิวหนัง'),
-(13, 'M00-M99', 'โรคของระบบกล้ามเนื้อโครงร่าง และเนื้อเยื่อเกี่ยวพัน'),
-(14, 'N00-N99', 'โรคของระบบสืบพันธุ์และระบบปัสสาวะ'),
-(15, 'O00-O99', 'การตั้งครรภ์ การคลอด และระยะหลังคลอด'),
-(16, 'P00-P96', 'ภาวะบางอย่างที่เริ่มต้นในระยะปริกำเนิด'),
-(17, 'Q00-Q99', 'รูปผิดปกติแต่กำเนิด รูปพิการ และความผิดปกติของโครโมโซม'),
-(18, 'R00-R99', 'อาการ อาการแสดง และความผิดปกติที่พบจากการตรวจทางคลินิกและทางห้องปฏิบัติการ มิได้จำแนกไว้ที่ใด'),
-(19, 'S00-T98', 'การบาดเจ็บ การเป็นพิษ และผลสืบเนื่องบางอย่างจากสาเหตุภายนอก'),
-(22, 'U00-U99', 'รหัสเพื่อวัตถุประสงค์พิเศษ'),
-(20, 'V01-Y98', 'สาเหตุภายนอกของการเจ็บป่วยและการตาย'),
-(21, 'Z00-Z99', 'ปัจจัยที่มีผลต่อสถานะสุขภาพและการรับบริการสุขภาพ');
+INSERT INTO `illness_db` (`illness_order`, `illness_code`, `illness_name`, `illness_type`) VALUES
+(33, '052MED', 'Spinal disorders & injuries w CC/MCC', 'SNOMED'),
+(34, '053MED', 'Spinal disorders & injuries w/o CC/MCC', 'SNOMED'),
+(35, '054MED', 'Nervous system neoplasms w MCC', 'SNOMED'),
+(36, '055MED', 'Nervous system neoplasms w/o MCC', 'SNOMED'),
+(37, '056MED', 'Degenerative nervous system disorders w MCC', 'SNOMED'),
+(38, '057MED', 'Degenerative nervous system disorders w/o MCC', 'SNOMED'),
+(39, '058MED', 'Multiple sclerosis & cerebellar ataxia w MCC', 'SNOMED'),
+(40, '059MED', 'Multiple sclerosis & cerebellar ataxia w CC', 'SNOMED'),
+(41, '060MED', 'Multiple sclerosis & cerebellar ataxia w/o CC/MCC', 'SNOMED'),
+(42, '061MED', 'Acute ischemic stroke w use of thrombolytic agent w MCC', 'SNOMED'),
+(1, 'A00-B99', 'โรคติดเชื้อและโรคปรสิตบางโรค', 'ICD10'),
+(2, 'C00-D48', 'เนื้องอก', 'ICD10'),
+(3, 'D50-D89', 'โรคของเลือดและอวัยวะสร้างเลือดและความผิดปกติบางอย่างของกลไกภูมิคุ้มกัน', 'ICD10'),
+(23, 'DRG001', 'Heart transplant or implant of heart assist system w MCC', 'DRG'),
+(24, 'DRG002', 'Heart transplant or implant of heart assist system w/o MCC', 'DRG'),
+(25, 'DRG003', 'ECMO or trach w MV 96+ hrs or PDX exc face  mouth & neck w maj O.R.', 'DRG'),
+(26, 'DRG004', 'Trach w MV 96+ hrs or PDX exc face  mouth & neck w/o maj O.R.', 'DRG'),
+(27, 'DRG005', 'Liver transplant w MCC or intestinal transplant', 'DRG'),
+(28, 'DRG006', 'Liver transplant w/o MCC', 'DRG'),
+(29, 'DRG007', 'Lung transplant', 'DRG'),
+(30, 'DRG008', 'Simultaneous pancreas/kidney transplant', 'DRG'),
+(31, 'DRG009', 'Bone marrow transplant', 'DRG'),
+(32, 'DRG010', 'Pancreas transplant', 'DRG'),
+(4, 'E00-E90', 'โรคของต่อมไร้ท่อ โภชนาการ และเมตะบอลิซึม', 'ICD10'),
+(5, 'F00-F99', 'ความผิดปกติทางจิตและพฤติกรรม', 'ICD10'),
+(6, 'G00-G99', 'โรคของระบบประสาท', 'ICD10'),
+(7, 'H00-H59', 'โรคของตาและอวัยวะเคียงลูกตา', 'ICD10'),
+(8, 'H60-H95', 'โรคของหูและปุ่มกระดูกกกหู', 'ICD10'),
+(9, 'I00-I99', 'โรคของระบบไหลเวียนโลหิต', 'ICD10'),
+(10, 'J00-J99', 'โรคของระบบหายใจ', 'ICD10'),
+(11, 'K00-K93', 'โรคของระบบย่อยอาหาร', 'ICD10'),
+(12, 'L00-L99', 'โรคของผิวหนังและเนื้อเยื่อใต้ผิวหนัง', 'ICD10'),
+(13, 'M00-M99', 'โรคของระบบกล้ามเนื้อโครงร่าง และเนื้อเยื่อเกี่ยวพัน', 'ICD10'),
+(14, 'N00-N99', 'โรคของระบบสืบพันธุ์และระบบปัสสาวะ', 'ICD10'),
+(15, 'O00-O99', 'การตั้งครรภ์ การคลอด และระยะหลังคลอด', 'ICD10'),
+(16, 'P00-P96', 'ภาวะบางอย่างที่เริ่มต้นในระยะปริกำเนิด', 'ICD10'),
+(17, 'Q00-Q99', 'รูปผิดปกติแต่กำเนิด รูปพิการ และความผิดปกติของโครโมโซม', 'ICD10'),
+(18, 'R00-R99', 'อาการ อาการแสดง และความผิดปกติที่พบจากการตรวจทางคลินิกและทางห้องปฏิบัติการ มิได้จำแนกไว้ที่ใด', 'ICD10'),
+(19, 'S00-T98', 'การบาดเจ็บ การเป็นพิษ และผลสืบเนื่องบางอย่างจากสาเหตุภายนอก', 'ICD10'),
+(22, 'U00-U99', 'รหัสเพื่อวัตถุประสงค์พิเศษ', 'ICD10'),
+(20, 'V01-Y98', 'สาเหตุภายนอกของการเจ็บป่วยและการตาย', 'ICD10'),
+(21, 'Z00-Z99', 'ปัจจัยที่มีผลต่อสถานะสุขภาพและการรับบริการสุขภาพ', 'ICD10');
 
 -- --------------------------------------------------------
 
@@ -133,7 +168,7 @@ CREATE TABLE IF NOT EXISTS `medicalproblems` (
 
 CREATE TABLE IF NOT EXISTS `medicalrecord` (
   `HN` varchar(10) NOT NULL DEFAULT '',
-  `appoint_datetime` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `appoint_datetime` datetime NOT NULL,
   `code` varchar(20) DEFAULT NULL,
   `description` varchar(200) DEFAULT NULL,
   `weight` double unsigned NOT NULL DEFAULT '0',
@@ -273,10 +308,7 @@ ALTER TABLE `allergies`
 -- Indexes for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD PRIMARY KEY (`appoint_id`),
-  ADD KEY `HN` (`HN`),
-  ADD KEY `doctor_username` (`doctor_username`),
-  ADD KEY `appoint_time` (`appoint_time`);
+  ADD PRIMARY KEY (`appoint_id`), ADD KEY `HN` (`HN`), ADD KEY `doctor_username` (`doctor_username`), ADD KEY `appoint_time` (`appoint_time`);
 
 --
 -- Indexes for table `department_db`
@@ -288,8 +320,7 @@ ALTER TABLE `department_db`
 -- Indexes for table `illness_db`
 --
 ALTER TABLE `illness_db`
-  ADD PRIMARY KEY (`illness_code`),
-  ADD KEY `illness_order` (`illness_order`);
+  ADD PRIMARY KEY (`illness_code`), ADD KEY `illness_order` (`illness_order`);
 
 --
 -- Indexes for table `medicalproblems`
@@ -301,57 +332,43 @@ ALTER TABLE `medicalproblems`
 -- Indexes for table `medicalrecord`
 --
 ALTER TABLE `medicalrecord`
-  ADD PRIMARY KEY (`HN`,`appoint_datetime`),
-  ADD KEY `diagnose_datetime` (`appoint_datetime`),
-  ADD KEY `nurse_username` (`nurse_username`),
-  ADD KEY `doctor_username` (`doctor_username`),
-  ADD KEY `code` (`code`);
+  ADD PRIMARY KEY (`HN`,`appoint_datetime`), ADD KEY `diagnose_datetime` (`appoint_datetime`), ADD KEY `nurse_username` (`nurse_username`), ADD KEY `doctor_username` (`doctor_username`), ADD KEY `code` (`code`);
 
 --
 -- Indexes for table `medicine`
 --
 ALTER TABLE `medicine`
-  ADD PRIMARY KEY (`medrec_HN`,`prescript_id`,`med_code`),
-  ADD KEY `prescript_id` (`prescript_id`),
-  ADD KEY `medrec_datetime` (`medrec_datetime`),
-  ADD KEY `med_code` (`med_code`);
+  ADD PRIMARY KEY (`medrec_HN`,`prescript_id`,`med_code`), ADD KEY `prescript_id` (`prescript_id`), ADD KEY `medrec_datetime` (`medrec_datetime`), ADD KEY `med_code` (`med_code`);
 
 --
 -- Indexes for table `medicine_db`
 --
 ALTER TABLE `medicine_db`
-  ADD PRIMARY KEY (`med_code`),
-  ADD KEY `medicine_order` (`med_order`);
+  ADD PRIMARY KEY (`med_code`), ADD KEY `medicine_order` (`med_order`);
 
 --
 -- Indexes for table `patient`
 --
 ALTER TABLE `patient`
-  ADD PRIMARY KEY (`HN`),
-  ADD UNIQUE KEY `uc_PersonID` (`id`,`fName`,`lName`);
+  ADD PRIMARY KEY (`HN`), ADD UNIQUE KEY `uc_PersonID` (`id`,`fName`,`lName`);
 
 --
 -- Indexes for table `prescription`
 --
 ALTER TABLE `prescription`
-  ADD PRIMARY KEY (`prescript_id`),
-  ADD KEY `medrec_HN` (`medrec_HN`),
-  ADD KEY `pharmacist_username` (`pharmacist_username`),
-  ADD KEY `medrec_datetime` (`medrec_datetime`);
+  ADD PRIMARY KEY (`prescript_id`), ADD KEY `medrec_HN` (`medrec_HN`), ADD KEY `pharmacist_username` (`pharmacist_username`), ADD KEY `medrec_datetime` (`medrec_datetime`);
 
 --
 -- Indexes for table `user`
 --
 ALTER TABLE `user`
-  ADD PRIMARY KEY (`username`),
-  ADD KEY `department_id` (`department_id`);
+  ADD PRIMARY KEY (`username`), ADD KEY `department_id` (`department_id`);
 
 --
 -- Indexes for table `worktime`
 --
 ALTER TABLE `worktime`
-  ADD PRIMARY KEY (`worktime_id`),
-  ADD KEY `doctor_username` (`doctor_username`);
+  ADD PRIMARY KEY (`worktime_id`), ADD KEY `doctor_username` (`doctor_username`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -361,12 +378,12 @@ ALTER TABLE `worktime`
 -- AUTO_INCREMENT for table `appointment`
 --
 ALTER TABLE `appointment`
-  MODIFY `appoint_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `appoint_id` int(11) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `illness_db`
 --
 ALTER TABLE `illness_db`
-  MODIFY `illness_order` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=23;
+  MODIFY `illness_order` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=54;
 --
 -- AUTO_INCREMENT for table `medicine_db`
 --
@@ -390,59 +407,59 @@ ALTER TABLE `worktime`
 -- Constraints for table `allergies`
 --
 ALTER TABLE `allergies`
-  ADD CONSTRAINT `allergies_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`);
+ADD CONSTRAINT `allergies_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`);
 
 --
 -- Constraints for table `appointment`
 --
 ALTER TABLE `appointment`
-  ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`),
-  ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`);
+ADD CONSTRAINT `appointment_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`),
+ADD CONSTRAINT `appointment_ibfk_2` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`);
 
 --
 -- Constraints for table `medicalproblems`
 --
 ALTER TABLE `medicalproblems`
-  ADD CONSTRAINT `medicalproblems_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`);
+ADD CONSTRAINT `medicalproblems_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`);
 
 --
 -- Constraints for table `medicalrecord`
 --
 ALTER TABLE `medicalrecord`
-  ADD CONSTRAINT `medicalrecord_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`),
-  ADD CONSTRAINT `medicalrecord_ibfk_2` FOREIGN KEY (`nurse_username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `medicalrecord_ibfk_3` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `medicalrecord_ibfk_4` FOREIGN KEY (`code`) REFERENCES `illness_db` (`illness_code`),
-  ADD CONSTRAINT `medicalrecord_ibfk_5` FOREIGN KEY (`appoint_datetime`) REFERENCES `appointment` (`appoint_time`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ADD CONSTRAINT `medicalrecord_ibfk_1` FOREIGN KEY (`HN`) REFERENCES `patient` (`HN`),
+ADD CONSTRAINT `medicalrecord_ibfk_2` FOREIGN KEY (`nurse_username`) REFERENCES `user` (`username`),
+ADD CONSTRAINT `medicalrecord_ibfk_3` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`),
+ADD CONSTRAINT `medicalrecord_ibfk_4` FOREIGN KEY (`code`) REFERENCES `illness_db` (`illness_code`),
+ADD CONSTRAINT `medicalrecord_ibfk_5` FOREIGN KEY (`appoint_datetime`) REFERENCES `appointment` (`appoint_time`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `medicine`
 --
 ALTER TABLE `medicine`
-  ADD CONSTRAINT `medicine_ibfk_1` FOREIGN KEY (`prescript_id`) REFERENCES `prescription` (`prescript_id`),
-  ADD CONSTRAINT `medicine_ibfk_2` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
-  ADD CONSTRAINT `medicine_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`appoint_datetime`),
-  ADD CONSTRAINT `medicine_ibfk_4` FOREIGN KEY (`med_code`) REFERENCES `medicine_db` (`med_code`) ON DELETE NO ACTION ON UPDATE CASCADE;
+ADD CONSTRAINT `medicine_ibfk_1` FOREIGN KEY (`prescript_id`) REFERENCES `prescription` (`prescript_id`),
+ADD CONSTRAINT `medicine_ibfk_2` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
+ADD CONSTRAINT `medicine_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`appoint_datetime`),
+ADD CONSTRAINT `medicine_ibfk_4` FOREIGN KEY (`med_code`) REFERENCES `medicine_db` (`med_code`) ON DELETE NO ACTION ON UPDATE CASCADE;
 
 --
 -- Constraints for table `prescription`
 --
 ALTER TABLE `prescription`
-  ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
-  ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`pharmacist_username`) REFERENCES `user` (`username`),
-  ADD CONSTRAINT `prescription_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`appoint_datetime`);
+ADD CONSTRAINT `prescription_ibfk_1` FOREIGN KEY (`medrec_HN`) REFERENCES `patient` (`HN`),
+ADD CONSTRAINT `prescription_ibfk_2` FOREIGN KEY (`pharmacist_username`) REFERENCES `user` (`username`),
+ADD CONSTRAINT `prescription_ibfk_3` FOREIGN KEY (`medrec_datetime`) REFERENCES `medicalrecord` (`appoint_datetime`);
 
 --
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department_db` (`department_order`);
+ADD CONSTRAINT `user_ibfk_1` FOREIGN KEY (`department_id`) REFERENCES `department_db` (`department_order`);
 
 --
 -- Constraints for table `worktime`
 --
 ALTER TABLE `worktime`
-  ADD CONSTRAINT `worktime_ibfk_1` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`);
+ADD CONSTRAINT `worktime_ibfk_1` FOREIGN KEY (`doctor_username`) REFERENCES `user` (`username`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -237,17 +237,7 @@ include_once "nav_nurse.php";
 
       document.getElementById("addInfo").onclick = function () {
         console.log('just clicked');
-
-        $.ajax({
-              url: 'nurse_addinfo.php',
-              type: 'POST',
-              data: {patient_fname: q_fname,patient_lname: q_lname,patient_hn: q_hn},
-              success: function(data) {
-                  //console.log(data);
-                  console.log('clicked');
-                  location.replace('nurse_addinfo.php');
-              }
-        });
+        location.replace('nurse_addinfo.php?patient_fname='+q_fname+'&patient_lname='+q_lname+'&patient_hn='+q_hn);
       }; 
       
     }

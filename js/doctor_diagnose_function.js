@@ -15,7 +15,7 @@ function showClearConfirm(){
 			id: 'ok-button',
 			title: 'ลบ',
 			onClick: function() {
-				//do something
+				location.reload();
 			}
 		},
 		cancelable: true,
@@ -39,8 +39,24 @@ function showSubmitDiagnoseConfirm(){
 			id: 'ok-button',
 			title: 'บันทึก',
 			onClick: function() {
-				//send data
-				location.href = "doctor_viewappointment.php";
+				var prescriptions = [];
+				for (var i = 1; i <= medicineCount; i++) {
+					var elementExists = document.getElementById("medName"+i);
+					if(elementExists != null && elementExists.value != '-') {
+						var prescription = [document.getElementById("medName"+i).value,document.getElementById("medAmount"+i).value,document.getElementById("medHowToUse"+i).value];
+						prescriptions[i-1] = prescription;
+					}
+				}	
+				prescriptions = JSON.stringify(prescriptions);
+		        $.ajax({
+		            url: 'control_doctor.php',
+		            type: 'POST',
+		            data: {diagnose_code: document.getElementById("s2").value,diagnose_description: document.getElementById("description").value, diagnose_appointid: diagnose_appoint_id, diagnose_prescriptions: prescriptions},
+		            dataType: "text",
+		            success: function(data) {
+		            	location.href = "doctor_viewappointment.php";
+		            }
+		        });
 			}
 		},
 		cancelable: true,
@@ -58,7 +74,7 @@ function onToggleNextApp(){
 	}
 }
 
-function addPrescription(){
+function addPrescription(medicineCount){
 	var div_0 = document.createElement('div');
 	div_0.style.marginTop = "32px";
 	div_0.style.marginBottom = "16px";
@@ -72,33 +88,32 @@ function addPrescription(){
 	div_1.style.marginRight = "auto";
 	div_1.className = "mdl-cell--6-col";
 
-	var form_0 = document.createElement('form');
-	form_0.action = "#";
-
 	var div_2 = document.createElement('div');
-	div_2.className = "mdl-textfield mdl-js-textfield mdl-textfield--floating-label";
+	div_2.className = "form-group";
 	div_2.style.width = "100%";
+	div_2.style.marginTop ="15px";
 
-	var input_medName = document.createElement('input');
-	input_medName.type = "text";
-	input_medName.id = "medName";
-	input_medName.className = "mdl-textfield__input";
+	var input_medName = document.createElement('select');
+	input_medName.id = "medName"+medicineCount;
+	input_medName.className = "form-control";
+
+	var option = document.createElement("option");
+	option.text = "-- ชื่อยา --";
+	option.value = "-";
+	input_medName.add(option);
+
+	for (var i = 0; i < medicine_count; i++) {
+		var option = document.createElement("option");
+		option.text = medicine_list[i].med_name;
+		option.value = medicine_list[i].med_code;
+		input_medName.add(option);
+	}
+
 	div_2.appendChild( input_medName );
 
-
-	var label_userLabel = document.createElement('label');
-	label_userLabel.className = "mdl-textfield__label";
-	label_userLabel.htmlFor = "username";
-	label_userLabel.id = "user-label";
-	label_userLabel.appendChild( document.createTextNode("ชื่อยา") );
-	div_2.appendChild( label_userLabel );
-
-	form_0.appendChild( div_2 );
-
-	div_1.appendChild( form_0 );
+	div_1.appendChild( div_2 );
 
 	div_0.appendChild( div_1 );
-
 
 	var div_3 = document.createElement('div');
 	div_3.className = "mdl-cell--6-col";
@@ -115,7 +130,7 @@ function addPrescription(){
 	var input_medAmount = document.createElement('input');
 	input_medAmount.className = "mdl-textfield__input";
 	input_medAmount.type = "text";
-	input_medAmount.id = "medAmount";
+	input_medAmount.id = "medAmount"+medicineCount;
 	div_4.appendChild( input_medAmount );
 
 
@@ -147,7 +162,7 @@ function addPrescription(){
 
 	var input_medHowToUse = document.createElement('input');
 	input_medHowToUse.type = "text";
-	input_medHowToUse.id = "medHowToUse";
+	input_medHowToUse.id = "medHowToUse"+medicineCount;
 	input_medHowToUse.className = "mdl-textfield__input";
 	div_6.appendChild( input_medHowToUse );
 
