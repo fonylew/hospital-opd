@@ -36,33 +36,16 @@ $hn = $_SESSION['patient_hn'];
 					<div class="form-group">
 	                	<label for="s1">เลือกแผนกที่ต้องการเข้าตรวจ</label>
                 		<select id="s1" class="form-control" onchange="callDoctor()">
-		                 <!-- <option value="department_0">โปรดเลือกแผนก</option>
-		                  <option value="department_1">DEPARTMENT_NAME1</option>
-		                  <option value="department_2">DEPARTMENT_NAME2</option>
-		                  <option value="department_3">DEPARTMENT_NAME3</option>
-		                  <option value="department_4">DEPARTMENT_NAME4</option>
-		                  <option value="department_5">DEPARTMENT_NAME5</option> -->
                 		</select>
                 		  
 	              	</div>
 	              	<br>
 					<div class="form-group">
 	                	<label for="s1">เลือกแพทย์ที่ต้องการนัด (ไม่จำเป็นต้องเลือก)</label>
-                		<select id="s2" class="form-control">
-                		
+                		<select name="selectdoc"id="s2" class="form-control">
 		                 <option value="doc_id_จ">ไม่ระบุแพทย์</option>
-
-		                 <!--  <option value="doc_id_1">Dr. NAME1 SURMANE1</option>
-		                  <option value="doc_id_2">Dr. NAME2 SURMANE2</option>
-		                  <option value="doc_id_3">Dr. NAME3 SURMANE3</option>
-		                  <option value="doc_id_4">Dr. NAME4 SURMANE4</option>
-		                  <option value="doc_id_5">Dr. NAME5 SURMANE5</option>
-		                  <option value="doc_id_6">Dr. NAME6 SURMANE6</option>
-		                  <option value="doc_id_7">Dr. NAME7 SURMANE7</option>
-		                  <option value="doc_id_8">Dr. NAME8 SURMANE8</option>
-		                  <option value="doc_id_9">Dr. NAME9 SURMANE9</option>
-		                  <option value="doc_id_10">Dr. NAME10 SURMANE10</option> -->
                 		</select>
+                		<input type="hidden" value="" name="departno" id="departno">
 	              	</div>
               	</div>
               	<center>
@@ -117,6 +100,7 @@ $hn = $_SESSION['patient_hn'];
        function callDoctor(){
        	 var depart_no = document.getElementById("s1").value;
        	 // console.log(depart_no);
+       	 document.getElementById("departno").value = depart_no;
            $.ajax({
               url: 'control_patient.php',
               type: 'POST',
