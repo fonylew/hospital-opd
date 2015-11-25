@@ -191,7 +191,7 @@ function addAppointment(appoint_id,appoint_hn,appoint_name,appoint_date,appoint_
 	a_0.href = "doctor_editprescription.php?diagnose_appoint_id="+appoint_id+"&diagnose_appoint_hn="+appoint_hn+"&diagnose_appoint_name="+appoint_name+"&diagnose_appoint_date="+appoint_date+"&diagnose_appoint_time="+appoint_time+"&diagnose_prescript_id="+prescript_id;
 
 	a_0.className = "mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect";
-	a_0.appendChild( document.createTextNode("\n				ตรวจ\n			") );
+	a_0.appendChild( document.createTextNode("\n				แก้ไขใบสั่งยา\n			") );
 
 	center_0.appendChild( a_0 );
 
