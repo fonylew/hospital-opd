@@ -7,7 +7,7 @@
        $doctor_username=$connection->real_escape_string($doctor_username);
 
         $result = mysqli_query($connection, 
-        	"SELECT appoint_id,appointment.HN,DATE_FORMAT(DATE(appoint_time),'%W %D %M %Y') AS appoint_date,DATE_FORMAT(TIME(appoint_time),'%H:%i') AS appoint_time,DATE_FORMAT(TIME(appoint_time)+ INTERVAL 10 MINUTE,'%H:%i') AS appoint_time2,patient.initial,patient.fName,patient.lName 
+        	"SELECT appoint_id,appointment.HN,DATE_FORMAT(DATE(appoint_time),'%W %e %M %Y') AS appoint_date,DATE_FORMAT(TIME(appoint_time),'%H:%i') AS appoint_time,DATE_FORMAT(TIME(appoint_time)+ INTERVAL 10 MINUTE,'%H:%i') AS appoint_time2,patient.initial,patient.fName,patient.lName 
         	FROM appointment 
         	LEFT JOIN patient ON appointment.HN = patient.HN
         	WHERE doctor_username = '$doctor_username' AND diagnose_status = 0 AND DATE(appoint_time) >= CURDATE()") 

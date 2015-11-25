@@ -160,7 +160,7 @@ if (isset($_GET['diagnose_appoint_id'])) {
 						<select id="s1" class="form-control">
 							<option value="-">-- ประเภทรหัสโรค --</option>
 							<option value="type_1">ICD10</option>
-							<option value="type_2">SNOWMED</option>
+							<option value="type_2">SNOMED</option>
 							<option value="type_3">DRG</option>
 						</select>
 					</div>
