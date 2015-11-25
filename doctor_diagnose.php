@@ -13,6 +13,7 @@ if (isset($_GET['diagnose_appoint_id'])) {
 	$diagnose_appoint_name = $_GET['diagnose_appoint_name'];
 	$diagnose_appoint_date = $_GET['diagnose_appoint_date'];
 	$diagnose_appoint_time = $_GET['diagnose_appoint_time'];
+	$generaldetail = getMedrecGeneralDetail($diagnose_appoint_id);
 }
 
 ?>
@@ -143,12 +144,7 @@ if (isset($_GET['diagnose_appoint_id'])) {
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td style="font-size: large;">75</td>
-							<td style="font-size: large;">176</td>
-							<td style="font-size: large;">37</td>
-							<td style="font-size: large;">500</td>
-							<td style="font-size: large;">500</td>
+						<tr id = "generaldetail_table">
 						</tr>
 					</tbody>
 				</table>
@@ -260,7 +256,15 @@ if (isset($_GET['diagnose_appoint_id'])) {
 
 	var medicine_list = <?php echo json_encode($medicine_list,JSON_FORCE_OBJECT)?>;
 	var medicine_count = <?php echo json_encode($medicine_count,JSON_FORCE_OBJECT)?>;	
+	var diagnose_appoint_id = <?php echo json_encode($diagnose_appoint_id,JSON_FORCE_OBJECT)?>;
 	var medicineCount = 0;
+
+	var generaldetail = <?php echo json_encode($generaldetail,JSON_FORCE_OBJECT)?>;
+	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.weight+" kg.</td>");
+	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.height+" cm.</td>");
+	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.temperature+" ํC</td>");
+	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.heartRate+" ครั้ง/นาที</td>");
+	$("#generaldetail_table").append("<td style='font-size: large;''>"+generaldetail.bloodPressure+"</td>");
 
 	$("#dropdown-menu select").dropdown();
 	

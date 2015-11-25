@@ -39,16 +39,24 @@ function showSubmitDiagnoseConfirm(){
 			id: 'ok-button',
 			title: 'บันทึก',
 			onClick: function() {
-				//send data
+				var prescriptions = [];
 				for (var i = 1; i <= medicineCount; i++) {
 					var elementExists = document.getElementById("medName"+i);
-					if(elementExists == null) console.log("yay!!!"); //element not exist
-					else console.log("woooo!!!"); //element exist
-					// console.log(document.getElementById("medName"+i).value);
-					// console.log(document.getElementById("medAmount"+i).value);
-					// console.log(document.getElementById("medHowToUse"+i).value);
-				}				
-				// location.href = "doctor_viewappointment.php";
+					if(elementExists != null && elementExists.value != '-') {
+						var prescription = [document.getElementById("medName"+i).value,document.getElementById("medAmount"+i).value,document.getElementById("medHowToUse"+i).value];
+						prescriptions[i-1] = prescription;
+					}
+				}	
+				prescriptions = JSON.stringify(prescriptions);
+		        $.ajax({
+		            url: 'control_doctor.php',
+		            type: 'POST',
+		            data: {diagnose_code: document.getElementById("s2").value,diagnose_description: document.getElementById("description").value, diagnose_appointid: diagnose_appoint_id, diagnose_prescriptions: prescriptions},
+		            dataType: "text",
+		            success: function(data) {
+		            	location.href = "doctor_viewappointment.php";
+		            }
+		        });
 			}
 		},
 		cancelable: true,
