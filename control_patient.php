@@ -24,6 +24,9 @@
 	if (isset($_POST['get_doctor'])){
     	getDoctor($_POST['get_doctor']);
 	}
+	if (isset($_POST['get_doctor_name'])){
+    	getDoctorDepart($_POST['get_doctor_name']);
+	}
     function checkUser($hn){
     	$connection = $GLOBALS['connection'];
 		$hn = $connection->real_escape_string($hn);
@@ -112,6 +115,25 @@
 	      echo json_encode($b,JSON_FORCE_OBJECT);
     }
 
+    function getDoctorDepart($docname){
+    	  $connection = $GLOBALS['connection'];
+    	  $docname = $connection->real_escape_string($docname);
 
+    	  $result = mysqli_query($connection, "SELECT * FROM user 
+    										INNER JOIN department_db ON user.department_id = department_db.department_order
+    										WHERE user.username ='$docname'") or die("Query fail: " . mysqli_error($connection));
+    	  $a = array();
+    	  $b = array();
+    	  while ($row = mysqli_fetch_array($result)){
+				$a['initial']= $row['initial'];
+				$a['fName']= $row['fName'];
+				$a['lName']= $row['lName'];
+				$a['department_id'] = $row['department_id'];
+				$a['department_name'] = $row['department_name'];
+				array_push($b, $a);	
+	      }
+	      echo json_encode($b,JSON_FORCE_OBJECT);
+
+    }
 
 ?>
