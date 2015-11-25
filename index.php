@@ -55,12 +55,7 @@ $hn = $_SESSION['patient_hn'];
 		<script>
 			createAppointView()
 		</script>
-	</center>
-
-
-		<div class="mdl-color--white mdl-cell mdl-cell--3-col">
-
-		</div>
+		</center>
 	</div>
 
 	<!-- FAB button with ripple -->
