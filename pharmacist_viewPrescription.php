@@ -206,11 +206,8 @@ include_once "nav_pharmacist.php";
 
 		             // Two Parameter in DOM here
 
-		    //          var medicine = "["+med_code+"] "+med_name;
-					 // var description = "amount: "+amount+"    how to: "+howto;
-					 var medicine = "["+med_code+"] "+med_name;
-					 var description_amount = "amount: "+amount;
-					 var description_howto ="how to: "+howto;
+		             var medicine = "["+med_code+"] "+med_name;
+					 var description = "จำนวน :  "+amount+"เม็ด  |       วิธีการใช้ : "+howto;
 
 		             //UNUN generated code
 		             	num = idIn.substring(3);
@@ -224,20 +221,10 @@ include_once "nav_pharmacist.php";
 						medF.appendChild(medName);
 						nameNode.appendChild(medF);
 
-						// detailF = document.createElement("h6");
-						// detaill = document.createTextNode(description+'\n\n\n'+prescript_id);
-						// detailF.appendChild(detaill);
-						// detailNode.appendChild(detailF);
-						detail_head_amount = document.createElement("h6");
-						detail_amount = document.createTextNode(description_amount);
-
-						detail_head_howto = document.createElement("h6");
-						detail_howto = document.createTextNode(description_howto);
-
-						detail_head_amount.appendChild(detail_amount);
-						detail_head_howto.appendChild(detail_howto);
-						detailNode.appendChild(detail_head_amount);
-						detailNode.appendChild(detail_head_howto);
+						detailF = document.createElement("h6");
+						detaill = document.createTextNode(description);
+						detailF.appendChild(detaill);
+						detailNode.appendChild(detailF);
 
 						document.getElementById("medList"+num).appendChild(nameNode);
 						document.getElementById("medList"+num).appendChild(detailNode);
@@ -294,7 +281,7 @@ include_once "nav_pharmacist.php";
 
 	            var span_1 = document.createElement('span');
 	               span_1.className = "large";
-	               span_1.appendChild( document.createTextNode("แพทย์เจ้าของไข้: ") );
+	               span_1.appendChild( document.createTextNode("แพทย์: ") );
 	            div_3.appendChild( span_1 );
 
 
