@@ -1,9 +1,11 @@
 <?php
+/*
 	session_start();
 	$patient_initial = $_SESSION['patient_initial'];
 	$patient_fname = $_SESSION['patient_fname'];
 	$patient_lname = $_SESSION['patient_lname'];
 	$patient_hn = $_SESSION['patient_hn'];
+	*/
 ?>
 	<!-- this div will be closed in nav_end.php -->
 	<div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer mdl-layout--fixed-header">
@@ -35,12 +37,12 @@
 		</div>
 
 <script>
-
+/*
     var patient_initial = <?php echo json_encode($patient_initial,JSON_FORCE_OBJECT)?>;
     var patient_fname = <?php echo json_encode($patient_fname,JSON_FORCE_OBJECT)?>;
     var patient_lname = <?php echo json_encode($patient_lname,JSON_FORCE_OBJECT)?>;
     var patient_hn = <?php echo json_encode($patient_hn,JSON_FORCE_OBJECT)?>;
-
+*/
     document.getElementById("patient_name").innerHTML = "<br>"+patient_initial + " " + patient_fname + " " + patient_lname+"</br>";
     document.getElementById("patient_hn").innerHTML = "<br>HN :"+patient_hn+"</br>";
 
