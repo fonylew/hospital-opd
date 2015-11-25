@@ -29,7 +29,7 @@ include_once "nav_pharmacist.php";
 
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content" id = "box1">
-		<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col">
+		<!--<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col">
             <div class="section__text mdl-grid">
             <!--
             	<div class = "mdl-cell mdl-cell--3-col">
@@ -186,7 +186,7 @@ include_once "nav_pharmacist.php";
 			    cancelable: false,		  	
 			})
 	};
-	function printMedList(k,prescript_id){
+	function printMedList(idIn,prescript_id){
 		//This line got error so I comment it out
 		//document.getElementById("medList"+k).innerHTML = "";
 		//getMedicine HERE
@@ -210,10 +210,11 @@ include_once "nav_pharmacist.php";
 					 var description = "amount: "+amount+"    how to: "+howto;
 
 		             //UNUN generated code
+		             	num = idIn.substring(3);
 						nameNode = document.createElement("div");
-						nameNode.className = "mdl-cell mdl-cell--2-col";
+						nameNode.className = "mdl-cell mdl-cell--3-col";
 						detailNode = document.createElement("div");
-						detailNode.className = "mdl-cell mdl-cell--10-col";
+						detailNode.className = "mdl-cell mdl-cell--9-col";
 
 						medF = document.createElement("h6");
 						medName = document.createTextNode(medicine);
@@ -225,8 +226,8 @@ include_once "nav_pharmacist.php";
 						detailF.appendChild(detaill);
 						detailNode.appendChild(detailF);
 
-						document.getElementById("medList"+k).appendChild(nameNode);
-						document.getElementById("medList"+k).appendChild(detailNode);
+						document.getElementById("medList"+num).appendChild(nameNode);
+						document.getElementById("medList"+num).appendChild(detailNode);
 
 		          }
             	}
@@ -382,7 +383,7 @@ include_once "nav_pharmacist.php";
 
 
          var div_medList0 = document.createElement('div');
-            div_medList0.className = "mdl-grid";
+            div_medList0.className = "mdl-cell mdl-cell--12-col mdl-grid";
             div_medList0.id = "medList"+k;
          div_2.appendChild( div_medList0 );
 
@@ -413,7 +414,7 @@ include_once "nav_pharmacist.php";
 		      var button_det0 = document.createElement('button');
 		         button_det0.onclick = function(){
 		            var prescript_id = a[parseInt((this.id).substring(3))-1];
-		            printMedList(k,prescript_id)
+		            printMedList(button_det0.id,prescript_id)
 		            console.log(a[parseInt((this.id).substring(3))-1]);
 		            //YEAHHHHH HERE
 		         };
