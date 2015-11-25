@@ -29,7 +29,7 @@ include_once "nav_pharmacist.php";
 
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content" id = "box1">
-		<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col">
+		<!--<div id = "log0" class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col">
             <div class="section__text mdl-grid">
             <!--
             	<div class = "mdl-cell mdl-cell--3-col">
