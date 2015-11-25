@@ -7,6 +7,8 @@ include_once "nav_pharmacist.php";
   //$("#actionbar").empty();
   $("#actionbar-middle").append("View Prescription");
 </script>
+<!-- Background (Grey) -->
+<link rel="stylesheet" type="text/css" href="css/material-fullpalette.css">
 
 <style>
 	.large{

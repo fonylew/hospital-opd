@@ -8,6 +8,8 @@ include_once "nav_nurse.php";
   $("#actionbar-middle").append("<div style=\"font-size:x-large\">ค้นหาผู้ป่วย</div>");
 </script>
 
+<!-- Background (Grey) -->
+<link rel="stylesheet" type="text/css" href="css/material-fullpalette.css">
 
 <style>
 #span_head { 
@@ -40,33 +42,36 @@ include_once "nav_nurse.php";
   <div class="mdl-grid page-content" id="divmain">
 
     <!-- Search Patient -->
-    <div class="demo-card-wide mdl-card mdl-shadow--2dp" 
-          style="padding:24px; color: mdl-primary;">
+    <div class="mdl-cell mdl-cell--6-col">
+      <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--12-col" 
+      style="padding:24px; color: mdl-primary;">
 
-      <p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
-        ค้นหาผู้ป่วย
-      </p>
+        <p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
+          ค้นหาผู้ป่วย
+        </p>
 
-      <div class="mdl-card__supporting-text" align="center" >
-        <form action="#">
-          <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-            <input class="mdl-textfield__input" type="text" id="hnquery" maxlength="20"/>
-            <label class="mdl-textfield__label" for="hn">HN</label>
-          </div>
-        </form>
+        <div class="mdl-card__supporting-text" align="center" >
+          <form action="#">
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <input class="mdl-textfield__input" type="text" id="hnquery" maxlength="20"/>
+              <label class="mdl-textfield__label" for="hn">HN</label>
+            </div>
+          </form>
+        </div>
+
+        <center>
+          <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--colored" 
+                  onClick = "findPatient()" 
+                  id="search-button" >
+            <i class="material-icons" style = "padding-right:3px">search</i> ค้นหา
+          </button>
+        </center>
       </div>
-
-      <center>
-        <button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" 
-                onClick = "findPatient()" 
-                id="search-button" >
-          <i class="material-icons" style = "padding-right:3px">search</i> ค้นหา
-        </button>
-      </center>
     </div>
 
     <!-- Patient Information HTML Original-->
-<!--     <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--7-col mdl-grid">
+    <!-- <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--7-col mdl-grid"> -->
+<!--     <div class="mdl-color--white mdl-shadow--2dp mdl-cell mdl-cell--9-col mdl-grid">
       <div class="section__text mdl-cell mdl-cell--12-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone">
            
         <p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
@@ -91,7 +96,7 @@ include_once "nav_nurse.php";
 
         <center>
           <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"
-                  id="addInfo">
+                  id="addInfoTest">
               Add General Information
           </button>
         </center>
