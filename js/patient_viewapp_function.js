@@ -218,7 +218,7 @@ function moreDetail(hn,appoint_id,department_name,doctor_name,appoint_date,appoi
 	console.log(appoint_id);
 	showDialog({
 		title:
-		'<span style="font-size: x-large; ">หมายเลขนัด: </span>' + '<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: x-large;" >'+appoint_id+'</span>',
+		'<form method="post" action="patient_edit_app.php"><span style="font-size: x-large; ">หมายเลขนัด: </span>' + '<span id="appId" class="mdl-color-text--primary" style="padding-left: 8px; font-size: x-large;" >'+appoint_id+'</span>',
 		text:
 		
 		'<div class="mdl-cell--12-col mdl-grid"> <div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">แผนก: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col">'+""+ 
@@ -228,9 +228,10 @@ function moreDetail(hn,appoint_id,department_name,doctor_name,appoint_date,appoi
 		'<span style="font-size: large; ">วัน: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> <span id="date" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">'+appoint_date+'</span> </div> </div> <div class="mdl-cell--12-col mdl-grid"> '+""+
 		'<div class="section__text mdl-cell mdl-cell--4-col"> <span style="font-size: large; ">เวลา: </span> </div> <div class="section__text mdl-cell mdl-cell--8-col"> '+""+
 		'<span id="time" class="mdl-color-text--primary" style="padding-left: 8px; font-size: large;">'+appoint_time+'</span> </div> </div> <div class="section__text mdl-cell mdl-cell--12-col"> <center> '+""+
-		'<a href="patient_newapp_seldoc.php" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-right: 16px;"> แก้ไขนัด </a> '+""+
+		
+		'<a href="patient_edit_app.php?appointid='+appoint_id+'" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-right: 16px;"> แก้ไขนัด </a> '+""+
 		'<button onClick="showConfirmDeleteDialog('+appoint_id+')" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect"> ยกเลิกนัด </button> '+""+
-		'<button onClick="hideDetail()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-left: 16px;"> ปิด </button> </center> </div>' 
+		'<button onClick="hideDetail()" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" style="margin-left: 16px;"> ปิด </button> </center> </div></form>' 
 	}); 
 }
 

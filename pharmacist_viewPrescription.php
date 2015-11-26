@@ -7,6 +7,8 @@ include_once "nav_pharmacist.php";
   //$("#actionbar").empty();
   $("#actionbar-middle").append("View Prescription");
 </script>
+<!-- Background (Grey) -->
+<link rel="stylesheet" type="text/css" href="css/material-fullpalette.css">
 
 <style>
 	.large{
@@ -207,7 +209,9 @@ include_once "nav_pharmacist.php";
 		             // Two Parameter in DOM here
 
 		             var medicine = "["+med_code+"] "+med_name;
-					 var description = "จำนวน :  "+amount+"เม็ด  |       วิธีการใช้ : "+howto;
+					 // var description = "จำนวน :  "+amount+"เม็ด  |       วิธีการใช้ : "+howto;
+					 var description_amount = "จำนวน : "+amount+"เม็ด";
+					 var description_howto ="วิธีการใช้ : "+howto;
 
 		             //UNUN generated code
 		             	num = idIn.substring(3);
@@ -220,11 +224,21 @@ include_once "nav_pharmacist.php";
 						medName = document.createTextNode(medicine);
 						medF.appendChild(medName);
 						nameNode.appendChild(medF);
+						
+						// detailF = document.createElement("h6");
+						// detaill = document.createTextNode(description);
+						// detailF.appendChild(detaill);
+						// detailNode.appendChild(detailF);
+						detail_head_amount = document.createElement("h6");
+						detail_amount = document.createTextNode(description_amount);
 
-						detailF = document.createElement("h6");
-						detaill = document.createTextNode(description);
-						detailF.appendChild(detaill);
-						detailNode.appendChild(detailF);
+						detail_head_howto = document.createElement("h6");
+						detail_howto = document.createTextNode(description_howto);
+
+						detail_head_amount.appendChild(detail_amount);
+						detail_head_howto.appendChild(detail_howto);
+						detailNode.appendChild(detail_head_amount);
+						detailNode.appendChild(detail_head_howto);
 
 						document.getElementById("medList"+num).appendChild(nameNode);
 						document.getElementById("medList"+num).appendChild(detailNode);

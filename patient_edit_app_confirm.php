@@ -9,19 +9,7 @@ $timeslot = $_POST['gettimeslot'];
 $date = $_POST['getdate'];
 $fulldate = $_POST['getfulldate'];
 $departno = $_POST['departno'];
-/*
-if($departno == 0) $departname = "ไม่ระบุ";
-if($departno == 1) $departname = "กุมารเวช";
-if($departno == 2) $departname = "จิตเวช";
-if($departno == 3) $departname = "ต่อมไร้ท่อ";
-if($departno == 4) $departname = "ทันตกรรม";
-if($departno == 5) $departname = "ผิวหนัง";
-if($departno == 6) $departname = "ระบบทางเดินหายใจและปอด";
-if($departno == 7) $departname = "รังสีรักษา";
-if($departno == 8) $departname = "สูตินารีเวช";
-if($departno == 9) $departname = "หู คอ จมูก";
-if($departno == 10) $departname = "อายุรเวช"; */
-
+$appid =$_POST['appid'];
 ?>
 
 <!-- setup actionbar -->
@@ -43,7 +31,34 @@ if($departno == 10) $departname = "อายุรเวช"; */
 
 <main class="mdl-layout__content">
 	<div class="mdl-grid page-content">
-    	<div class="mdl-cell mdl-cell--9-col mdl-color--white mdl-shadow--2dp" style="padding:24px;">
+    	<div class="mdl-cell mdl-cell--9-col mdl-color--white mdl-shadow--2dp" style="padding:24px;">    	<center>
+    		<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
+				ข้อมูลที่ต้องการจะเปลี่ยนแปลง
+			</p>
+		</center>
+		<div style="margin-top: 16px; margin-left: auto; margin-right: auto; width: 20em;">
+			<div style="margin-top: 0px;">
+				<span style="font-size: large; ">แผนก: </span>
+	        	<div id="departname_old"></div>
+	        </div>
+	        <br>
+	        <div style="margin-top: 0px;">
+				<span style="font-size: large;">แพทย์: </span>
+	        	<div id="name_old"></div>
+	        </div>
+	        <br>
+	        <div style="margin-top: 0px;">
+				<span style="font-size: large;">วันที่: </span>
+	        	<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;"><div id="date_old"></span>
+	        </div>
+	        <br>
+	        <div style="margin-top: 0px;">
+				<span style="font-size: large;">เวลา: </span>
+	        	<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;"><div id="time_old"></span>
+	        </div>
+	        <br>
+		</div>
+		<!---->
     	<center>
     		<p class="mdl-color-text--primary mdl-typography--display-1" align="center" >
 				ยืนยันข้อมูลการนัดแพทย์
@@ -87,7 +102,7 @@ if($departno == 10) $departname = "อายุรเวช"; */
 	  			</button>
 	  		</a>
     		
-	  			<button onClick="makeAppointment()"
+	  			<button onClick="editAppointment()"
 	  				class="mdl-button mdl-button--raised mdl-button--primary "
 	  				style="margin-top: 16px;">
 	  				ยืนยันการนัดแพทย์
@@ -112,6 +127,7 @@ if($departno == 10) $departname = "อายุรเวช"; */
 	var timeslot = '<?php echo $timeslot;?>';
 	var date = '<?php echo $date;?>';
 	var departno = '<?php echo $departno;?>';
+	var appid ='<?php echo $appid?>';
 	console.log(timeslot);
            $.ajax({
               url: 'control_patient.php',
@@ -127,11 +143,29 @@ if($departno == 10) $departname = "อายุรเวช"; */
           	
           });
 
-           function makeAppointment(){  	
             $.ajax({
               url: 'control_patient.php',
               type: 'POST',
-              data: {makeappoint_hn: hn,makeappoint_doctor: doctor_user,makeappoint_timeslot:timeslot,makeappointment_date: date},
+              data: {appoint_old: appid},
+              dataType: "json",
+              success: function(data) {
+             
+             
+             console.log(data[0]['initial']);
+				 $('#name_old').append('<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">'+data[0]['initial']+' '+data[0]['fName']+' '+data[0]['lName']+'</span>');
+				 $('#departname_old').append('<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">'+data[0]['department_name']+'</span>');
+				  $('#time_old').append('<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">'+data[0]['appoint_time']+' - '+data[0]['appoint_time2']+'</span>');
+				   $('#date_old').append('<span class="mdl-color-text--primary" style="padding-left: 4px; font-size: large;">'+data[0]['appoint_date']+'</span>');
+              	
+              } 
+          	
+          });
+
+           function editAppointment(){  	
+            $.ajax({
+              url: 'control_patient.php',
+              type: 'POST',
+              data: {editappoint_hn: hn,editappoint_doctor: doctor_user,editappoint_timeslot:timeslot,editappointment_date: date,editold_app: appid},
               dataType: "json",
               success: function(data) {
               	alert("successful !");

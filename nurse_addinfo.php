@@ -19,6 +19,9 @@ include_once "nav_nurse.php";
     window.history.back();
   }
 </script>
+<!-- Background (Grey) -->
+<link rel="stylesheet" type="text/css" href="css/material-fullpalette.css">
+
 
 <style>
 #span_head { 
