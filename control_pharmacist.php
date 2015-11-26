@@ -2,7 +2,7 @@
 	include_once "connection.php";
 
 	if (isset($_POST['search_hn'])) {
-        findPatient($_POST['search_hn']);
+        findPatientAllergic($_POST['search_hn']);
     }
 
 	if (isset($_POST['listprescript'])) {

@@ -65,7 +65,7 @@ include_once "nav_pharmacist.php";
 	                	<input class="mdl-textfield__input" type="text" id="hn" maxlength="10"/>
 	                	<label class="mdl-textfield__label" for="hn">HN</label>
 	            	</div>
-	            	<button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick = "searchPatientInfo()" 
+	            	<button class="mdl-button mdl-shadow--2dp mdl-button--colored mdl-js-button mdl-js-ripple-effect" onClick = "findPatientAllergic()" 
 						id="search-button" >
 						<i class="material-icons" style = "padding-right:3px">search</i> search
 					</button>
@@ -85,7 +85,36 @@ include_once "nav_pharmacist.php";
 
 
 
-	<script>		
+	<script>
+	document.getElementById("fo").innerHTML = "";
+	function findPatientAllergic(){
+		var hn = document.getElementById("hn").value;
+        console.log(hn);
+        $.ajax({
+              url: 'control_pharmacist.php',
+              type: 'POST',
+              data: {search_hn: hn},
+              dataType: "json",
+              success: function(data) {
+                console.log(data);
+                if (!jQuery.isEmptyObject(data)){
+                  q_fname = data.patient_initial + data.patient_fname;
+                  q_lname = data.patient_lname;
+                  q_hn = data.patient_hn;
+                  searchPatientInfo(q_fname, q_lname, q_hn);
+                  createLog();
+
+                }
+                else{
+                  alert('ไม่พบรหัสประจำตัวผู้ป่วย (HN) นี้ในระบบ');
+                }
+
+              }
+        });
+
+        createLog();
+
+	}
 		function searchPatientInfo(){
 			//info
 		    div1 = document.createElement("div");
@@ -134,7 +163,7 @@ include_once "nav_pharmacist.php";
 		    span_firstname_value= document.createElement("span");
 		    span_firstname_value.id = "span_normal";
 		    span_firstname_value.className = "mdl-color-text--primary";
-		    text_firstname_value = document.createTextNode("Asdf");
+		    text_firstname_value = document.createTextNode(q_fname);
 		    span_firstname_value.appendChild(text_firstname_value);
 		    span_firstname_value.appendChild(br1);
 		    span_firstname_value.appendChild(br2);
@@ -146,7 +175,7 @@ include_once "nav_pharmacist.php";
 		    span_lastname_value= document.createElement("span");
 		    span_lastname_value.id = "span_normal";
 		    span_lastname_value.className = "mdl-color-text--primary";
-		    text_lastname_value = document.createTextNode("Qwerty");
+		    text_lastname_value = document.createTextNode(q_lname);
 		    span_lastname_value.appendChild(text_lastname_value);
 		    span_lastname_value.appendChild(br3);
 		    span_lastname_value.appendChild(br4);
@@ -158,7 +187,7 @@ include_once "nav_pharmacist.php";
 		    span_hn_value= document.createElement("span");
 		    span_hn_value.id = "span_normal";
 		    span_hn_value.className = "mdl-color-text--primary";
-		    text_hn_value = document.createTextNode(document.getElementById("hn").value);
+		    text_hn_value = document.createTextNode(q_hn);
 		    span_hn_value.appendChild(text_hn_value);
 		    span_hn_value.appendChild(br5);
 		    span_hn_value.appendChild(br6);
@@ -181,10 +210,10 @@ include_once "nav_pharmacist.php";
 		    document.getElementById("divmain").appendChild(div1);
 
 		    //create log
+		}
 
-		    document.getElementById("fo").innerHTML = "";
-		    logNumber = 1;
-		    for (var j = logNumber ; j >= 0; j--) {
+		function createLog(){
+		    
 			    info = document.createElement("div");
 				ininfo = document.createElement("div");
 				ininfo.className = "section__text mdl-cell mdl-cell--10-col-desktop mdl-cell--6-col-tablet mdl-cell--3-col-phone  mdl-grid";
@@ -195,14 +224,16 @@ include_once "nav_pharmacist.php";
 				valueN = document.createElement("div");
 				valueN.className = "mdl-cell mdl-cell--10-col"
 
-				dat = document.createElement("span");
-				datt = document.createTextNode("Date: ");
-				dat.appendChild(datt);
-				dat.className = "large";
-				dat_value = document.createElement("span");
-				dat_valuet = document.createTextNode("lalala lalalalala");
-				dat_value.appendChild(dat_valuet);
-				dat_value.className = "mdl-color-text--primary large";
+
+				// dat = document.createElement("span");
+				// datt = document.createTextNode("Date: ");
+				// dat.appendChild(datt);
+				// dat.className = "large";
+				// dat_value = document.createElement("span");
+				// dat_valuet = document.createTextNode("lalala lalalalala");
+				// dat_value.appendChild(dat_valuet);
+				// dat_value.className = "mdl-color-text--primary large";
+
 
 				doc = document.createElement("span");
 				doct = document.createTextNode("Doctor: ");
@@ -261,8 +292,7 @@ include_once "nav_pharmacist.php";
 				ininfo.appendChild(grd);
 				info.appendChild(ininfo);
 				document.getElementById("fo").appendChild(info);
-			}	
-    	};
+		}	
 		
 	</script>
 
